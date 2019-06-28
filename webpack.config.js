@@ -12,7 +12,7 @@ const conf = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "build.js",
+    filename: "index.js",
     publicPath: "/"
   },
   module: {
@@ -60,8 +60,10 @@ const conf = {
   devServer: {
     port: 8080,
     overlay: true,
+    historyApiFallback: true,
+    publicPath: '/',
     proxy: {
-      "/api": "http://localhost:8000"
+      "/api/": "http://localhost:8000"
     }
   },
   plugins: [
@@ -76,7 +78,7 @@ const conf = {
         to: "./assets/images"
       }
     ]),
-    new ExtractTextPlugin("./styles/index.css")
+    new ExtractTextPlugin("./assets/styles/index.css")
   ]
 };
 
