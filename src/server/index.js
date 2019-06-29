@@ -16,11 +16,11 @@ app.use(function *(next) {
   }
 });
 
-app.use(koaRequest({
-  dataType: 'json',
-  timeout: 3000,
-  host: API_BASE
-}));
+// app.use(koaRequest({
+//   dataType: 'json',
+//   timeout: 3000,
+//   host: API_BASE
+// }));
 
 mongoose.connect(`mongodb://localhost/${DB_NAME}`, { useNewUrlParser: true });
 app.use(router.routes());

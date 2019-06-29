@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 import SectionWrapper from '../SectionWrapper/SectionWrapper';
 import Cards from '../Cards/Cards';
+import Sidebar from '../Sidebar/Sidebar';
 
 const StyledMain = styled.main`
-
 `;
 
 const MainWrapper = styled.div`
@@ -21,6 +21,7 @@ const Home = () => {
       <SectionWrapper>
         <MainWrapper>
           <Cards />
+          <Sidebar />
         </MainWrapper>
       </SectionWrapper>
     </StyledMain>

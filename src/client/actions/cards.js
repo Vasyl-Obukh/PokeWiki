@@ -2,7 +2,7 @@ import { CARDS_REQUESTED } from '../constants/actionTypes';
 import paths from '../constants/paths';
 
 export function fetchCards({
-  limit = 30,
+  limit = 20,
   page = 1,
   evolutionLevels = [],
   species = [],

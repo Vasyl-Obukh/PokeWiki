@@ -5,8 +5,12 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { fetchCards } from '../../actions/cards';
-
 import Card from '../Card/Card';
+
+const CardsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 class Cards extends Component {
   componentDidMount() {
@@ -19,13 +23,16 @@ class Cards extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { isLoading, data } = this.props;
     if(isLoading) {
       return <FontAwesomeIcon icon={faSpinner} />;
     }
     if(data.length) {
-
+      return (
+        <CardsContainer>
+          {data.map((_) => <Card key={_.id} data={_} />)}
+        </CardsContainer>
+      );
     }
     return null;
   }

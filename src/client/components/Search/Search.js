@@ -13,12 +13,14 @@ const SearchField = styled.input`
   border-radius: 25px;
   border: none;
   outline: none;
-  background-color: #f7f7f7;
+  background-color: #fff//#f7f7f7;
   color: black;
+  box-shadow: 0 2px 5px darkslategray;
   transition: all .5s;
   
   &:focus {
     width: 350px;
+    box-shadow: -2px 2px 5px darkslategray;
   }
 `;
 
