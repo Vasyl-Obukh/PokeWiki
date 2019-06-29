@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 const SiteWrapper = styled.div`
   display: grid;
-  min-height: 200vh;
+  min-height: 100vh;
   grid-template-rows: auto 1fr auto;
   overflow-x: hidden;  
 `;

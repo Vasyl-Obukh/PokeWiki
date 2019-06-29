@@ -1,5 +1,30 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const Home = () => <h1>Home Page</h1>;
+import SectionWrapper from '../SectionWrapper/SectionWrapper';
+import Cards from '../Cards/Cards';
+
+const StyledMain = styled.main`
+
+`;
+
+const MainWrapper = styled.div`
+  display: grid;
+  padding: 50px 15px;
+  grid-template-columns: 5fr 2fr;
+  grid-column-gap: 50px;
+`;
+
+const Home = () => {
+  return (
+    <StyledMain>
+      <SectionWrapper>
+        <MainWrapper>
+          <Cards />
+        </MainWrapper>
+      </SectionWrapper>
+    </StyledMain>
+  );
+};
 
 export default Home;

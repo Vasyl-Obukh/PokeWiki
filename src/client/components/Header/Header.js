@@ -12,7 +12,7 @@ const StyledHeader = styled.header`
 
 const HeaderWrapper = styled.div`
   display: flex;
-  padding: 10px 30px;
+  padding: 10px 15px;
   align-items: center;
   justify-content: space-between;
 `;
