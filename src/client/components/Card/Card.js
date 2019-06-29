@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Card = ({ id }) => {
+const Card = () => {
   return (
-    <h3>{id}</h3>
+    <h3></h3>
   );
 };
 

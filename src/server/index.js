@@ -1,17 +1,8 @@
-const express = require('express');
-const path = require('path');
+const app = require('koa')();
+const router = require('./routers');
 
-const router = express.Router();
+const PORT = 8000;
 
-const app = express();
-const port = 8000;
+app.use(router.routes());
 
-app.get('/api/pokemons', (req, res) => {
-  res.json({ 'a': 'hello' });
-});
-
-app.get('*', (req, res) => {
-  res.end();
-});
-
-app.listen(port, () => console.log(`Server started on port ${port}`));
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

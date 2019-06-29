@@ -1,0 +1,4 @@
+export const CARDS_FETCHING = 'FETCHING_CARDS';
+export const CARDS_RECEIVED = 'CARDS_RECEIVED';
+export const CARDS_REQUESTED = 'CARDS_REQUESTED';
+export const CARDS_ERROR = 'CARDS_ERROR';
