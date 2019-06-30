@@ -16,6 +16,12 @@
     "last 5 versions",
     "ios >= 8"
   ],
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./jestFetch.js"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
@@ -43,6 +49,7 @@
     "imagemin-webpack-plugin": "^2.3.0",
     "img-loader": "^3.0.1",
     "jest": "^24.0.0",
+    "jest-fetch-mock": "^2.1.2",
     "koa": "1.6.2",
     "koa-http-request": "1.1.2",
     "koa-logger": "1",

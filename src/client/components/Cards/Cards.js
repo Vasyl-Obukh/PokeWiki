@@ -14,7 +14,13 @@ const CardsContainer = styled.div`
 `;
 
 const CardsError = styled.h2`
-
+  padding-left: 25px;
+  
+  &::after {
+    content: '!!!';
+    padding-left: 5px;
+    color: red;
+  }
 `;
 
 const rotate = keyframes`
