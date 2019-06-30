@@ -4,7 +4,7 @@ const router = require('koa-router')(
   {prefix: '/api'}
 );
 
-const getData = (url) => {
+const getData = (url, cb = e => e) => {
   return new Promise(function(resolve, reject){
     let req = https.get(url, (res) => {
       let fullData = '';
@@ -16,7 +16,7 @@ const getData = (url) => {
         }
       });
       res.on('end', function () {
-        resolve(JSON.parse(fullData ));
+        resolve(cb(JSON.parse(fullData )));
       });
     });
 
@@ -27,15 +27,27 @@ const getData = (url) => {
   });
 };
 
-router.get('/', function* () {
-  const promises = [];
-  for (let i = 1; i <= 18; i++) {
-    let url = API_BASE + '/pokemon/' + i;
-    promises[i - 1] = getData(url);
-  }
-  const apiRes = yield Promise.all(promises);
+const getDesiredFields = _ => ({
+  name: _.name,
+  id: _.id,
+  thumb: _.sprites.front_default,
+  abilities: _.abilities.map(_ => _.ability.name),
+  baseExperience: _.base_experience,
+  height: _.height,
+  weight: _.weight,
+  types: _.types.map(_ => _.type.name),
+  stats: _.stats.map(_ => ({ base: _.base_stat, name: _.stat.name }))
+});
 
-  this.body = apiRes;
+router.get('/', function* () {
+  let promises = [];
+  const { offset, limit } = this.request.query;
+  const pokemons = yield getData(API_BASE + '/pokemon?offset=' + offset + '&&limit=' + limit);
+  pokemons.results.forEach(_ => {
+    promises.push(getData(_.url, getDesiredFields));
+  });
+  const results = yield Promise.all(promises);
+  this.body = results;
 });
 
 module.exports = router;

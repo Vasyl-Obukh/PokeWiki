@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const CardContainer = styled.div`
   margin: 15px;
-  width: 275px;
-  height: 375px;
+  width: 230px;
+  height: 325px;
   overflow: hidden;
   border-radius: 25px;
   box-shadow: 0 2px 5px darkslategray;
@@ -37,12 +37,12 @@ const CardName = styled.div`
 `;
 
 const Card = (props) => {
-  const { name, sprites } = props.data;
+  const { name, thumb } = props.data;
   console.log(props);
   return (
     <CardContainer>
       <CardThumbWrapper>
-        <CardThumb src={sprites.front_default} alt={name} />
+        <CardThumb src={thumb} alt={name} />
       </CardThumbWrapper>
       <CardInfo>
         <CardName>{name}</CardName>
