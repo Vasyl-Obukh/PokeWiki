@@ -1,12 +1,12 @@
 const https = require('https');
+const { API_BASE } = require('./config');
 const router = require('koa-router')(
   {prefix: '/api'}
 );
 
-const getPokemon = (id) => {
+const getData = (url) => {
   return new Promise(function(resolve, reject){
-
-    let req = https.get('https://pokeapi.co/api/v2/pokemon/' + id, (res) => {
+    let req = https.get(url, (res) => {
       let fullData = '';
       res.on('data', (data) => {
         try{
@@ -28,9 +28,10 @@ const getPokemon = (id) => {
 };
 
 router.get('/', function* () {
-  const promises = []
-  for (let i = 1; i <= 30; i++) {
-    promises[i - 1] = getPokemon(i);
+  const promises = [];
+  for (let i = 1; i <= 18; i++) {
+    let url = API_BASE + '/pokemon/' + i;
+    promises[i - 1] = getData(url);
   }
   const apiRes = yield Promise.all(promises);
 
