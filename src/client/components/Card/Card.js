@@ -37,7 +37,6 @@ const CardThumb = styled.img`
 
 const Card = (props) => {
   const { name, thumb, id, abilities, types } = props.data;
-  console.log(props);
   return (
     <CardContainer>
       <CardThumbWrapper href={`/pokemon/${id}`}>

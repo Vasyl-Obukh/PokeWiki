@@ -7,14 +7,16 @@ export function fetchCards({
   evolutionLevels = [],
   elements = [],
   search = ''
-} = {}) {
+}) {
   const offset = (page - 1) * limit;
   const evoLevelsQuery = evolutionLevels.length ? '&&evolutionLevels=' + evolutionLevels : '';
   const elementsQuery = elements.length ? '&&elements=' + elements : '';
   const searchQuery = search ? '&&search=' + search : '';
+  const url = `${paths.API_ROOT}/?offset=${offset}&&limit=${limit}${evoLevelsQuery}${elementsQuery}${searchQuery}`;
+  console.log(url);
   return {
     type: CARDS_REQUESTED,
-    url: `${paths.API_ROOT}/?offset=${offset}&&limit=${limit}${evoLevelsQuery}${elementsQuery}${searchQuery}`
+    url//: `${paths.API_ROOT}/?offset=${offset}&&limit=${limit}${evoLevelsQuery}${elementsQuery}${searchQuery}`
   };
 }
 

@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import SectionWrapper from '../SectionWrapper/SectionWrapper';
 import Cards from '../Cards/Cards';
 import Sidebar from '../Sidebar/Sidebar';
+import Pagination from '../Pagination/Pagination';
 
 const StyledContent = styled.div`
 `;
@@ -22,13 +25,14 @@ const Main = styled.main`
   box-shadow: 0 0 5px darkslategray;
 `;
 
-const Home = () => {
+const Home = ({ showPagination, currentPage, search }) => {
   return (
     <StyledContent>
       <SectionWrapper>
         <ContentWrapper>
           <Main>
-            <Cards />
+            <Cards currentPage={currentPage} search={search}/>
+            {showPagination && <Pagination currentPage={currentPage} search={search} />}
           </Main>
           <Sidebar />
         </ContentWrapper>
@@ -37,4 +41,13 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withRouter(connect(
+  (state, props) => {
+    const search = new URLSearchParams(props.location.search);
+    return {
+      showPagination: Math.ceil(state.cards.data.count / 18) > 1 && !state.cards.isLoading,
+      currentPage: parseInt(search.get('page')) || 1,
+      search: search.toString()
+    };
+  }
+)(Home));

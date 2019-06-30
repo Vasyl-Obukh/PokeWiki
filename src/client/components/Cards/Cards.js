@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -28,28 +29,39 @@ const rotate = keyframes`
 const Spinner = styled(FontAwesomeIcon)`
   display: block;
   margin: auto;
+  font-size: 30px;
   animation: ${rotate} 2s linear infinite;
 `;
 
 class Cards extends Component {
   componentDidMount() {
-    this.props.fetchCards();
+    this.props.fetchCards({
+      page: this.props.currentPage
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if(prevProps.search !== this.props.search) {
+      this.props.fetchCards({
+        page: this.props.currentPage
+      });
+    }
   }
 
   static propTypes = {
     isLoading: PropTypes.bool,
-    data: PropTypes.arrayOf(PropTypes.object)
+    elements: PropTypes.arrayOf(PropTypes.object)
   };
 
   render() {
-    const { isLoading, data, error } = this.props;
+    const { isLoading, elements = [], error } = this.props;
     if(isLoading) {
       return <Spinner icon={faSpinner} />;
     }
-    if(data.length) {
+    if(elements.length) {
       return (
         <CardsContainer>
-          {data.map((_) => <Card key={_.id} data={_} />)}
+          {elements.map((_) => <Card key={_.id} data={_} />)}
         </CardsContainer>
       );
     }
@@ -60,17 +72,17 @@ class Cards extends Component {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   ({
     cards: {
-      data, isLoading, error
+      data = {}, isLoading, error
     }
    }) => ({
-    data,
+    elements: data.elements,
     isLoading,
     error
   }),
   dispatch => ({
     fetchCards: url => dispatch(fetchCards(url))
   })
-)(Cards);
+)(Cards));

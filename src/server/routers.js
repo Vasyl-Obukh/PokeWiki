@@ -16,6 +16,7 @@ const getData = (url, cb = e => e) => {
         }
       });
       res.on('end', function () {
+        console.log(JSON.parse(fullData ));
         resolve(cb(JSON.parse(fullData )));
       });
     });
@@ -46,8 +47,12 @@ router.get('/', function* () {
   pokemons.results.forEach(_ => {
     promises.push(getData(_.url, getDesiredFields));
   });
-  const results = yield Promise.all(promises);
-  this.body = results;
+  const elements = yield Promise.all(promises);
+  //console.log({pokemons});
+  this.body = {
+    elements,
+    count: pokemons.count
+  };
 });
 
 module.exports = router;
