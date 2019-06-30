@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import CardInfo from '../CardInfo/CardInfo';
 
 const CardContainer = styled.div`
   margin: 15px;
@@ -16,36 +17,33 @@ const CardContainer = styled.div`
   }
 `;
 
-const CardThumbWrapper = styled.div`
+const CardThumbWrapper = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 50%;
   background-color: #f0f0f0;
+  transition: all .2s;
+  
+  &:hover {
+  background-color: #e0e0e0;
+  }
 `;
 
 const CardThumb = styled.img`
   height: 100%;
 `;
 
-const CardInfo = styled.div`
-`;
-
-const CardName = styled.div`
-  
-`;
-
 const Card = (props) => {
-  const { name, thumb } = props.data;
+  const { name, thumb, id, abilities, types } = props.data;
   console.log(props);
   return (
     <CardContainer>
-      <CardThumbWrapper>
+      <CardThumbWrapper href={`/pokemon/${id}`}>
         <CardThumb src={thumb} alt={name} />
       </CardThumbWrapper>
-      <CardInfo>
-        <CardName>{name}</CardName>
+      <CardInfo id={id} name={name} abilities={abilities} types={types}>
       </CardInfo>
     </CardContainer>
   );
