@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import paths from '../../constants/paths';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 import Home from '../Home/Home';
 import PokemonPage from '../PokemonPage/PokemonPage';
 import ErrorPage from '../ErrorPage/ErrorPage';
@@ -25,6 +26,7 @@ const App = () => {
         <Route path={paths.ERROR} component={ErrorPage} />
         <Route component={ErrorPage} />
       </Switch>
+      <Footer/>
     </SiteWrapper>
 
   );
