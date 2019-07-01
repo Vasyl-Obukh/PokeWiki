@@ -3,9 +3,8 @@ import paths from '../constants/paths';
 import { PAGE_LIMIT } from '../constants/config';
 
 export function fetchCards({
-  limit = PAGE_LIMIT,
   page = 1,
-  evolutionLevels = [],
+  evoLevels = [],
   elements = [],
   search = ''
 }) {
@@ -15,10 +14,10 @@ export function fetchCards({
       url: `${paths.API_ROOT}/?search=${search}`
     });
   }
-  const offset = (page - 1) * limit;
-  const evoLevelsQuery = evolutionLevels.length ? '&&evoLevels=' + evolutionLevels : '';
+  const offset = (page - 1) * PAGE_LIMIT;
+  const evoLevelsQuery = evoLevels.length ? '&&evoLevels=' + evoLevels : '';
   const elementsQuery = elements.length ? '&&elements=' + elements : '';
-  const url = `${paths.API_ROOT}/?offset=${offset}&&limit=${limit}${evoLevelsQuery}${elementsQuery}`;
+  const url = `${paths.API_ROOT}/?offset=${offset}&&limit=${PAGE_LIMIT}${evoLevelsQuery}${elementsQuery}`;
   return {
     type: CARDS_REQUESTED,
     url

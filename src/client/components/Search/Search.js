@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { withRouter } from 'react-router-dom';
+import { Field, reduxForm } from 'redux-form';
 
 const SearchForm = styled.form`
   position: relative;
@@ -13,7 +15,7 @@ const SearchField = styled.input`
   border-radius: 25px;
   border: none;
   outline: none;
-  background-color: #fff//#f7f7f7;
+  background-color: #fff;
   color: black;
   box-shadow: 0 2px 5px darkslategray;
   transition: all .5s;
@@ -30,12 +32,11 @@ const SearchIcon = styled(FontAwesomeIcon)`
   top: calc(50% - 8px);
 `;
 
-const Search = () => {
-  const handleSubmit = () => console.log('form submitted');
+const Search = (props) => {
   return (
-    <SearchForm onSubmit={handleSubmit}>
-      <SearchField type='text' placeholder='search...' />
-      <SearchIcon icon={faSearch} color={'gray'}/>
+    <SearchForm>
+      <SearchField type='text' name='search' placeholder='search...' />
+      <SearchIcon icon={faSearch} color='gray' />
     </SearchForm>
   );
 };

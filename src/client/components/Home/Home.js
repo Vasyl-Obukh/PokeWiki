@@ -26,14 +26,14 @@ const Main = styled.main`
   box-shadow: 0 0 5px darkslategray;
 `;
 
-const Home = ({ showPagination, currentPage, search }) => {
+const Home = ({ showPagination, currentPage, search, searchParams }) => {
   return (
     <StyledContent>
       <SectionWrapper>
         <ContentWrapper>
           <Main>
-            <Cards currentPage={currentPage} search={search}/>
-            {showPagination && <Pagination currentPage={currentPage} search={search} />}
+            <Cards currentPage={currentPage} search={search} searchParams={searchParams}/>
+            {showPagination && !search && <Pagination currentPage={currentPage} search={search} />}
           </Main>
           <Sidebar />
         </ContentWrapper>
@@ -45,10 +45,12 @@ const Home = ({ showPagination, currentPage, search }) => {
 export default withRouter(connect(
   (state, props) => {
     const search = new URLSearchParams(props.location.search);
+    //console.log(search.toString());
     return {
       showPagination: Math.ceil(state.cards.data.count / 18) > 1 && !state.cards.isLoading,
       currentPage: parseInt(search.get('page')) || 1,
-      search: search.toString()
+      search: search.toString(),
+      searchParams: search
     };
   }
 )(Home));

@@ -9,7 +9,7 @@ describe('cards actions', () => {
     const params = {
       limit: 24,
       page: 2,
-      evolutionLevels: [1, 2],
+      evoLevels: [1, 2],
       elements: ['fire', 'steel'],
     };
 
@@ -50,7 +50,7 @@ describe('cards actions', () => {
       search: 'some text',
       limit: 24,
       page: 2,
-      evolutionLevels: [1, 2],
+      evoLevels: [1, 2],
       elements: ['fire', 'steel'],
     };
 
