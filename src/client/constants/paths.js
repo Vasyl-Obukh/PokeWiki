@@ -1,6 +1,6 @@
 export default {
   HOME: '/',
-  POKEMON_PAGE: '/pokemons/:id',
+  POKEMON_PAGE: '/pokemon/:id',
   ERROR: '/error',
   API_ROOT: '/api'
 };

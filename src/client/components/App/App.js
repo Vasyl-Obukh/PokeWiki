@@ -8,6 +8,7 @@ import Home from '../Home/Home';
 import PokemonPage from '../PokemonPage/PokemonPage';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import styled from 'styled-components';
+import SectionWrapper from '../SectionWrapper/SectionWrapper';
 
 const SiteWrapper = styled.div`
   display: grid;
@@ -16,16 +17,25 @@ const SiteWrapper = styled.div`
   overflow-x: hidden;  
 `;
 
+const StyledContent = styled.div`
+  height: 100%;
+`;
+
 const App = () => {
   return (
     <SiteWrapper>
       <Header />
-      <Switch>
-        <Route exact path={paths.HOME} component={Home} />
-        <Route path={paths.POKEMON_PAGE} component={PokemonPage}/>
-        <Route path={paths.ERROR} component={ErrorPage} />
-        <Route component={ErrorPage} />
-      </Switch>
+      <StyledContent>
+        <SectionWrapper>
+          <Switch>
+            <Route exact path={paths.HOME} component={Home} />
+            <Route path={`${paths.POKEMON_PAGE}([1-9][0-9]{0,})`} component={PokemonPage}/>
+            <Route path={paths.ERROR} component={ErrorPage} />
+            <Route component={ErrorPage} />
+          </Switch>
+        </SectionWrapper>
+      </StyledContent>
+
       <Footer/>
     </SiteWrapper>
 

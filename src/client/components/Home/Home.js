@@ -8,10 +8,6 @@ import Cards from '../Cards/Cards';
 import Sidebar from '../Sidebar/Sidebar';
 import Pagination from '../Pagination/Pagination';
 
-const StyledContent = styled.div`
-  height: 100%;
-`;
-
 const ContentWrapper = styled.div`
   display: grid;
   padding: 50px 15px;
@@ -28,24 +24,19 @@ const Main = styled.main`
 
 const Home = ({ showPagination, currentPage, search, searchParams }) => {
   return (
-    <StyledContent>
-      <SectionWrapper>
-        <ContentWrapper>
-          <Main>
-            <Cards currentPage={currentPage} search={search} searchParams={searchParams}/>
-            {showPagination && !search && <Pagination currentPage={currentPage} search={search} />}
-          </Main>
-          <Sidebar />
-        </ContentWrapper>
-      </SectionWrapper>
-    </StyledContent>
+    <ContentWrapper>
+      <Main>
+        <Cards currentPage={currentPage} search={search} searchParams={searchParams}/>
+        {showPagination && !searchParams.has('search') && <Pagination currentPage={currentPage} search={search} />}
+      </Main>
+      <Sidebar />
+    </ContentWrapper>
   );
 };
 
 export default withRouter(connect(
   (state, props) => {
     const search = new URLSearchParams(props.location.search);
-    //console.log(search.toString());
     return {
       showPagination: Math.ceil(state.cards.data.count / 18) > 1 && !state.cards.isLoading,
       currentPage: parseInt(search.get('page')) || 1,

@@ -19,7 +19,7 @@ const getData = (url, cb = e => e) => {
         }
       });
       res.on('end', function () {
-        resolve(cb(JSON.parse(fullData )));
+        resolve(cb(JSON.parse(fullData)));
       });
     });
 
@@ -31,7 +31,7 @@ const getData = (url, cb = e => e) => {
 };
 
 const getEntityFullData = _ => ({
-  ...getData(_),
+  ...getEntityData(_),
   baseExperience: _.base_experience,
   height: _.height,
   weight: _.weight,
@@ -46,7 +46,7 @@ const getEntityData = _ => ({
   types: _.types.map(_ => _.type.name)
 });
 
-const getPromises = (data, cb) => {
+const getPromises = (data, cb = e => e) => {
   const promises = [];
   data.forEach(_ => {
     promises.push(getData(_.url, cb));
@@ -83,7 +83,21 @@ router.get('/', function* () {
     elements: pokemonsData,
     count: COUNT
   };
+});
 
+const getRandomElements = (elements, n) => {
+  return [...Array(n)].map(() => elements[Math.floor(Math.random()*elements.length)]);
+};
+
+router.get('/pokemon/:id', function* () {
+  const pokemon = yield getData(`${API_BASE}/pokemon/${this.params.id}`);
+  const result = getEntityFullData(pokemon);
+  const types = (yield getData(`${API_BASE}/type`)).results.filter(_ => result.types.includes(_.name));
+  const typesPromises = yield getPromises(types);
+  const related = (yield Promise.all(typesPromises)).map(_ => _.pokemon.map(_ => _.pokemon)).reduce((acc, val) => acc.concat(val), []);
+  const relatedPromises = yield getPromises(getRandomElements(related, 5), getEntityData);
+  const relatedPokemons = yield Promise.all(relatedPromises);
+  this.body = {result, relatedPokemons};
 });
 
 module.exports = router;

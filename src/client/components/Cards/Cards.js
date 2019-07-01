@@ -2,41 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
 import { fetchCards } from '../../actions/cards';
 import Card from '../Card/Card';
+import Error from '../Error/Error';
+import Spinner from '../Spinner/Spinner';
 
 const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-`;
-
-const CardsError = styled.h2`
-  padding-left: 25px;
-  
-  &::after {
-    content: '!!!';
-    padding-left: 5px;
-    color: red;
-  }
-`;
-
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-const Spinner = styled(FontAwesomeIcon)`
-  display: block;
-  margin: auto;
-  font-size: 30px;
-  animation: ${rotate} 2s linear infinite;
 `;
 
 class Cards extends Component {
@@ -58,7 +32,7 @@ class Cards extends Component {
   render() {
     const { isLoading, elements = [], error } = this.props;
     if(isLoading) {
-      return <Spinner icon={faSpinner} />;
+      return <Spinner />;
     }
     if(elements.length) {
       return (
@@ -68,7 +42,7 @@ class Cards extends Component {
       );
     }
     if(error) {
-      return <CardsError>{error}</CardsError>
+      return <Error>{error}</Error>
     }
     return null;
   }

@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/server/index.js",
-    "server": "nodemon src/server/index.js",
+    "server": "DEBUG=* nodemon src/server/index.js",
     "client": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
@@ -31,6 +31,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "array-flat-polyfill": "^1.0.1",
     "autoprefixer": "^9.4.2",
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.4",
