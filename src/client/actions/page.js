@@ -7,4 +7,3 @@ export function fetchPage(id) {
     url: `${paths.API_ROOT}/pokemon/${id}`
   };
 }
-

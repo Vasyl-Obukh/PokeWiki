@@ -1,6 +1,6 @@
 import { CARDS_REQUESTED } from '../constants/actionTypes';
-import paths from '../constants/paths';
 import { PAGE_LIMIT } from '../constants/config';
+import paths from '../constants/paths';
 
 export function fetchCards({
   page = 1,
