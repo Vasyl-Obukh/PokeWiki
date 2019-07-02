@@ -7,7 +7,7 @@ import deepFreeze from 'deep-freeze';
 describe('cards actions', () => {
   it('CARDS_REQUESTED all params succes', () => {
     const params = {
-      limit: 24,
+      limit: 18,
       page: 2,
       evoLevels: [1, 2],
       elements: ['fire', 'steel'],
@@ -17,7 +17,7 @@ describe('cards actions', () => {
 
     expect(fetchCards(params)).toEqual({
       type: CARDS_REQUESTED,
-      url: `${paths.API_ROOT}/?offset=24&&limit=24&&evoLevels=1,2&&elements=fire,steel`
+      url: `${paths.API_ROOT}/?offset=18&&limit=18&&evoLevels=1,2&&elements=fire,steel`
     });
   });
 

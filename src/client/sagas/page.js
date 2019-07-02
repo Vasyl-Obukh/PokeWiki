@@ -21,7 +21,7 @@ export function* fetchLatestPage(action) {
     const relatedResponce = yield call(fetch, `${paths.API_ROOT}/related/?types=${data.types}`);
     const related = yield relatedResponce.json();
     console.log('Related data received', related);
-    yield put({ type: RELATED_RECEIVED, related });
+    yield put({ type: RELATED_RECEIVED, data: related });
   } catch (error) {
     console.error(error);
     yield put({ type: PAGE_ERROR, error: 'Something goes wrong...' });

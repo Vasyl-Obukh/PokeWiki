@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { fetchPage } from '../../actions/page';
 import Spinner from '../Spinner/Spinner';
+import Pokemon from '../Pokemon/Pokemon';
+import Related from '../Related/Related';
 import Error from '../Error/Error';
 
 const ContentWrapper = styled.div`
@@ -29,13 +31,15 @@ class PokemonPage extends Component {
   }
 
   render() {
-    //console.log(this.props.data);
-    const { isLoading, data, error } = this.props;
+    const { isLoading, data, relatedIsLoading, relatedData, error } = this.props;
     return (
       <ContentWrapper>
         <Main>
           {isLoading && <Spinner/>}
           {error && <Error>{error}</Error>}
+          {data && <Pokemon data={data}/>}
+          {relatedIsLoading && <Spinner/>}
+          {relatedData.length ? <Related data={relatedData} /> : null}
         </Main>
       </ContentWrapper>
     );
@@ -44,11 +48,13 @@ class PokemonPage extends Component {
 
 export default withRouter(
   connect(
-    ({page: {data = {}, isLoading, error}}, props) => {
+    ({page: {data, isLoading, error}, related: {isLoading : relatedIsLoading, data: relatedData}}, props) => {
       return {
         id: props.location.pathname.split('/').slice(-1)[0],
         data,
         isLoading,
+        relatedIsLoading,
+        relatedData,
         error
       };
     },
