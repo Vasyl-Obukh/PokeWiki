@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/server/index.js",
-    "server": "DEBUG=* nodemon src/server/index.js",
+    "server": "nodemon src/server/index.js",
     "client": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
@@ -72,6 +72,7 @@
     "request": "^2.88.0",
     "reselect": "^4.0.0",
     "sass-loader": "^7.1.0",
+    "string-compare": "^1.0.1",
     "style-loader": "^0.23.1",
     "styled-components": "^4.3.2",
     "svg-url-loader": "^2.3.2",

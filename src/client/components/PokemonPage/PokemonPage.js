@@ -29,7 +29,7 @@ class PokemonPage extends Component {
   }
 
   render() {
-    console.log(this.props.data);
+    //console.log(this.props.data);
     const { isLoading, data, error } = this.props;
     return (
       <ContentWrapper>

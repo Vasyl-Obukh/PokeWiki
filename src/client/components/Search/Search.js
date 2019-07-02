@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { withRouter } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
 
 const SearchForm = styled.form`
   position: relative;
@@ -34,7 +32,7 @@ const SearchIcon = styled(FontAwesomeIcon)`
 
 const Search = (props) => {
   return (
-    <SearchForm>
+    <SearchForm action='/' autoComplete='off' >
       <SearchField type='text' name='search' placeholder='search...' />
       <SearchIcon icon={faSearch} color='gray' />
     </SearchForm>
