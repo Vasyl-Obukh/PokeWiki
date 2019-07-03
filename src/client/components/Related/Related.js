@@ -40,7 +40,7 @@ const Related = ({ data }) => {
       <RelatedTitle>Related pokemons</RelatedTitle>
       <RelatedWrapper>
         {data.map(_ => (
-          <RelatedItem key={_.id} href={`/pokemon/${_.id}`}>
+          <RelatedItem key={_.id || _} href={`/pokemon/${_.id}`}>
             <RelatedImage src={_.thumb} alt={_.name} />
             <RelatedName>{_.name}</RelatedName>
           </RelatedItem>

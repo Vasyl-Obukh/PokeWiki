@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import paths from '../../constants/paths';
 import CardInfo from '../CardInfo/CardInfo';
 
 const CardContainer = styled.div`
@@ -37,15 +39,26 @@ const CardThumb = styled.img`
 
 const Card = (props) => {
   const { name, thumb, id, abilities, types } = props.data;
+  const url = paths.POKEMON_PAGE.replace(/:\w*$/, id);
   return (
     <CardContainer>
-      <CardThumbWrapper href={`/pokemon/${id}`}>
+      <CardThumbWrapper href={url}>
         <CardThumb src={thumb} alt={name} />
       </CardThumbWrapper>
-      <CardInfo id={id} name={name} abilities={abilities} types={types}>
+      <CardInfo name={name} url={url} abilities={abilities} types={types}>
       </CardInfo>
     </CardContainer>
   );
+};
+
+Card.propTypes = {
+  data: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    thumb: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    abilities: PropTypes.array,
+    types: PropTypes.array
+  })
 };
 
 export default Card;

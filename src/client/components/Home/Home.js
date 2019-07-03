@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
 import Cards from '../Cards/Cards';
 import Sidebar from '../Sidebar/Sidebar';
 import Pagination from '../Pagination/Pagination';
@@ -21,16 +21,22 @@ const Main = styled.main`
   box-shadow: 0 0 5px darkslategray;
 `;
 
-const Home = ({ showPagination, currentPage, search, searchParams }) => {
+const Home = ({ showPagination, currentPage, searchParams }) => {
   return (
     <ContentWrapper>
       <Main>
-        <Cards currentPage={currentPage} search={search} searchParams={searchParams}/>
-        {showPagination && !searchParams.has('search') && <Pagination currentPage={currentPage} search={search} />}
+        <Cards currentPage={currentPage} search={searchParams.toString()} searchParams={searchParams}/>
+        {showPagination && !searchParams.has('search') && <Pagination currentPage={currentPage} search={searchParams} />}
       </Main>
       <Sidebar />
     </ContentWrapper>
   );
+};
+
+Home.propTypes = {
+  showPagination: PropTypes.bool.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  searchParams: PropTypes.object
 };
 
 export default withRouter(connect(
@@ -39,7 +45,6 @@ export default withRouter(connect(
     return {
       showPagination: state.cards.data && Math.ceil(state.cards.data.count / 18) > 1 && !state.cards.isLoading,
       currentPage: parseInt(search.get('page')) || 1,
-      search: search.toString(),
       searchParams: search
     };
   }

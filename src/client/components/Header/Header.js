@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import SectionWrapper from '../SectionWrapper/SectionWrapper';
 import Logo from '../Logo/Logo';
 import Search from '../Search/Search';

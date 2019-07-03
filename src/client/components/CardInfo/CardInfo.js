@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Info = styled.div`
@@ -34,6 +35,7 @@ const CardKey = styled.div`
     content: ':';
   }
 `;
+
 const CardValues = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -41,7 +43,8 @@ const CardValues = styled.ul`
   padding: 0;
   margin: 0;
 `;
-const CardVaue = styled.li`
+
+const CardValue = styled.li`
   list-style: none;
   padding: 5px 10px;
   font-size: 14px;
@@ -51,24 +54,31 @@ const CardVaue = styled.li`
   }
 `;
 
-const CardInfo = ({ id, abilities, types, name }) => {
+const CardInfo = ({ abilities, types, name, url }) => {
   return (
     <Info>
-      <CardName href={`/pokemon/${id}`}>{name}</CardName>
+      <CardName href={url}>{name}</CardName>
       <CardEntry>
         <CardKey>Abilities</CardKey>
         <CardValues>
-          {abilities.map((_, id) => <CardVaue key={id}>{_}</CardVaue>)}
+          {abilities.map((_, id) => <CardValue key={id}>{_}</CardValue>)}
         </CardValues>
       </CardEntry>
       <CardEntry>
         <CardKey>Types</CardKey>
         <CardValues>
-          {types.map((_, id) => <CardVaue key={id}>{_}</CardVaue>)}
+          {types.map((_, id) => <CardValue key={id}>{_}</CardValue>)}
         </CardValues>
       </CardEntry>
     </Info>
   );
+};
+
+CardInfo.propTypes = {
+  abilities: PropTypes.arrayOf(PropTypes.string),
+  types: PropTypes.arrayOf(PropTypes.string),
+  name: PropTypes.string.isRequired,
+  url: PropTypes.string
 };
 
 export default CardInfo;

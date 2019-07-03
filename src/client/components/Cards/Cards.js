@@ -26,15 +26,16 @@ class Cards extends Component {
 
   static propTypes = {
     isLoading: PropTypes.bool,
-    elements: PropTypes.arrayOf(PropTypes.object)
+    elements: PropTypes.arrayOf(PropTypes.object),
+    error: PropTypes.string
   };
 
   render() {
     const { isLoading, elements = [], error } = this.props;
-    if(isLoading) {
+    if (isLoading) {
       return <Spinner />;
     }
-    if(elements.length) {
+    if (elements.length) {
       return (
         <CardsContainer>
           {elements.map((_) => _.id && <Card key={_.id} data={_} />)}

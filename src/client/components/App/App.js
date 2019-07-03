@@ -35,10 +35,8 @@ const App = () => {
           </Switch>
         </SectionWrapper>
       </StyledContent>
-
       <Footer/>
     </SiteWrapper>
-
   );
 };
 

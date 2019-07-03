@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { reduxForm, FormSection, Field } from 'redux-form';
 import styled from 'styled-components';
 import filters from '../../constants/filters';
@@ -35,7 +36,6 @@ let FilterForm = (props) => {
     <StyledForm onSubmit={handleSubmit}>
       <h2>Filter by:</h2>
       <StyledFormSection name='types'>
-        {/*<h3>Type</h3>*/}
         {filters.types.map(_ => (
           <div key={_}>
             <Field component='input' type='checkbox' id={_} key={_} name={_} />
@@ -46,6 +46,10 @@ let FilterForm = (props) => {
       <FormButton type='submit'>filter</FormButton>
     </StyledForm>
   );
+};
+
+FilterForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired
 };
 
 FilterForm = reduxForm({
