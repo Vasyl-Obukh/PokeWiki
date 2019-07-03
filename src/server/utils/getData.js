@@ -5,14 +5,19 @@ module.exports = (url, cb = e => e) => {
     let req = https.get(url, (res) => {
       let fullData = '';
       res.on('data', (data) => {
-        try{
+        try {
           fullData += data;
-        } catch(ex) {
-          reject(ex);
+        } catch(e) {
+          reject(e);
         }
       });
       res.on('end', function () {
-        resolve(cb(JSON.parse(fullData)));
+        try {
+          resolve(cb(JSON.parse(fullData)));
+        } catch (e) {
+          resolve({result: null});
+          reject(e);
+        }
       });
     });
 

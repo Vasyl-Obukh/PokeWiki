@@ -37,7 +37,7 @@ class Cards extends Component {
     if(elements.length) {
       return (
         <CardsContainer>
-          {elements.map((_) => <Card key={_.id} data={_} />)}
+          {elements.map((_) => _.id && <Card key={_.id} data={_} />)}
         </CardsContainer>
       );
     }

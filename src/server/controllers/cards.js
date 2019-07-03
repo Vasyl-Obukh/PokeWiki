@@ -33,15 +33,17 @@ function* getCards() {
         types[type] = (yield getData(`${API_BASE}/type/${type}`)).pokemon.map(_ => _.pokemon);
       }
       requestedElements.push(...types[type]);
-      count = requestedElements.length;
-      results = requestedElements.slice(offset, offset + limit);
     }
+    count = requestedElements.length;
+    results = requestedElements.slice(offset, +offset + +limit);
   } else {
     results = (yield getData(`${API_BASE}/pokemon?offset=${offset}&&limit=${limit}`)).results;
   }
 
-  const promises = getPromises(results, getEntityData);
-  const pokemonsData = yield Promise.all(promises);
+  let promises;
+  let pokemonsData;
+  promises = getPromises(results, getEntityData);
+  pokemonsData = yield Promise.all(promises);
 
   this.body = {
     elements: pokemonsData,
