@@ -10,6 +10,7 @@ const PokemonWrapper = styled.div`
 
 const PokemonImage = styled.img`
   width: 275px;
+  height: 275px;
   border-radius: 50%;
   background-color: #f0f0f0;
   box-shadow: 0 0 5px darkslategray;

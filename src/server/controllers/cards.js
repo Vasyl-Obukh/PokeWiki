@@ -6,9 +6,10 @@ require('string-compare');
 
 let count;
 let pokemonsFullList;
+let types = {};
 
 function* getCards() {
-  const { offset, limit, search } = this.request.query;
+  const { offset, limit, search, elements } = this.request.query;
   let results;
 
   if (!count) {
@@ -24,6 +25,17 @@ function* getCards() {
       console.log('Pokemons list after cashing: ', `list length = ${pokemonsFullList ? pokemonsFullList.length : 0}`);
     }
     results = pokemonsFullList.filter(_ => searchPokemons(_.name, search));
+  } else if (elements) {
+    const requestedTypes = elements.split(',');
+    const requestedElements = [];
+    for (let type of requestedTypes) {
+      if (!types[type]) {
+        types[type] = (yield getData(`${API_BASE}/type/${type}`)).pokemon.map(_ => _.pokemon);
+      }
+      requestedElements.push(...types[type]);
+      count = requestedElements.length;
+      results = requestedElements.slice(offset, offset + limit);
+    }
   } else {
     results = (yield getData(`${API_BASE}/pokemon?offset=${offset}&&limit=${limit}`)).results;
   }
