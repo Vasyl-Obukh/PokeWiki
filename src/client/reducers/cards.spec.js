@@ -46,7 +46,7 @@ describe('cards reducers', () => {
     });
   });
 
-  it('CARDS_RECEIVED succes', () => {
+  it('CARDS_ERROR succes', () => {
     const state = {};
     const error = new Error('something goes wrong');
     const action = {
