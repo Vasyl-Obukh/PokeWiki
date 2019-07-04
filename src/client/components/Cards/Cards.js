@@ -49,20 +49,22 @@ class Cards extends Component {
   }
 }
 
-export default withRouter(connect(({cards: {data = {}, isLoading, error}}, {searchParams}) => {
-  const evoLevels = searchParams.get('evoLevels');
-  const elements = searchParams.get('elements');
-  return {
-      elements: data.elements,
-      isLoading,
-      error,
+export default withRouter(connect(
+  ({cards: {data = {}, isLoading, error}}, {searchParams}) => {
+    const evoLevels = searchParams.get('evoLevels');
+    const elements = searchParams.get('elements');
+
+    return {
       searchParams: {
         page: parseInt(searchParams.get('page')) || 1,
         evoLevels: evoLevels ? evoLevels : [],
         elements: elements ? elements : [],
         search: searchParams.get('search')
-      }
-    }
+      },
+      elements: data.elements,
+      isLoading,
+      error
+    };
   },
   dispatch => ({
     fetchCards: searchParams => dispatch(fetchCards(searchParams))

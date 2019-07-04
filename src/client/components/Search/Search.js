@@ -30,7 +30,7 @@ const SearchIcon = styled(FontAwesomeIcon)`
   top: calc(50% - 8px);
 `;
 
-const Search = (props) => {
+const Search = () => {
   return (
     <SearchForm action='/' autoComplete='off' >
       <SearchField type='text' name='search' placeholder='search...' />

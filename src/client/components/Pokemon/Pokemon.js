@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const PokemonWrapper = styled.div`
@@ -34,11 +35,13 @@ const InfoKey = styled.div`
     content: ':';
   }
 `;
+
 const InfoValue = styled.div`
   font-style: italic;
   font-weight: ${props => props.primary ? 'bold' : 'normal'};
   text-transform: ${props => props.primary ? 'uppercase' : 'none'};
 `;
+
 const ValueItem = styled.span`
   padding: 5px;
   
@@ -47,25 +50,24 @@ const ValueItem = styled.span`
   }
 `;
 
-const Pokemon = ({ data }) => {
-  console.log(data);
+const Pokemon = ({ data: {thumb, name, abilities, types, baseExperience, height, weight, stats} }) => {
   return (
     <PokemonWrapper>
-      <PokemonImage src={data.thumb} alt={data.name} />
+      <PokemonImage src={thumb} alt={name} />
       <PokemonInfo>
         <InfoKey>Name</InfoKey>
-        <InfoValue primary>{data.name}</InfoValue>
+        <InfoValue primary>{name}</InfoValue>
         <InfoKey>Abilities</InfoKey>
-        <InfoValue>{data.abilities.map(_ => <ValueItem key={_}>{_}</ValueItem>)}</InfoValue>
+        <InfoValue>{abilities.map(_ => <ValueItem key={_}>{_}</ValueItem>)}</InfoValue>
         <InfoKey>Types</InfoKey>
-        <InfoValue>{data.types.map(_ => <ValueItem key={_}>{_}</ValueItem>)}</InfoValue>
+        <InfoValue>{types.map(_ => <ValueItem key={_}>{_}</ValueItem>)}</InfoValue>
         <InfoKey>Experience</InfoKey>
-        <InfoValue>{data.baseExperience}</InfoValue>
+        <InfoValue>{baseExperience}</InfoValue>
         <InfoKey>Height</InfoKey>
-        <InfoValue>{data.height}</InfoValue>
+        <InfoValue>{height}</InfoValue>
         <InfoKey>Weight</InfoKey>
-        <InfoValue>{data.weight}</InfoValue>
-        {data.stats.map(_ => (
+        <InfoValue>{weight}</InfoValue>
+        {stats.map(_ => (
           <Fragment key={_.name}>
             <InfoKey>{_.name}</InfoKey>
             <InfoValue>{_.base}</InfoValue>
@@ -74,6 +76,19 @@ const Pokemon = ({ data }) => {
       </PokemonInfo>
     </PokemonWrapper>
   );
+};
+
+Pokemon.propTypes = {
+  data: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    abilities: PropTypes.arrayOf(PropTypes.string).isRequired,
+    types: PropTypes.arrayOf(PropTypes.string).isRequired,
+    stats: PropTypes.arrayOf(PropTypes.object).isRequired,
+    thumb: PropTypes.string,
+    baseExperience: PropTypes.number,
+    height: PropTypes.number,
+    weight: PropTypes.number
+  })
 };
 
 export default Pokemon;

@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import Cards from '../Cards/Cards';
 import Sidebar from '../Sidebar/Sidebar';
 import Pagination from '../Pagination/Pagination';
+import { showPagination } from '../../selectors';
 
 const ContentWrapper = styled.div`
   display: grid;
@@ -43,7 +44,7 @@ export default withRouter(connect(
   (state, props) => {
     const search = new URLSearchParams(props.location.search);
     return {
-      showPagination: state.cards.data && Math.ceil(state.cards.data.count / 18) > 1 && !state.cards.isLoading,
+      showPagination: showPagination(state),
       currentPage: parseInt(search.get('page')) || 1,
       searchParams: search
     };

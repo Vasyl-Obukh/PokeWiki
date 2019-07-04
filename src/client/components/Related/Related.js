@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import paths from '../../constants/paths';
 
 const RelatedWrapper = styled.div`
   display: flex;
@@ -40,7 +42,7 @@ const Related = ({ data }) => {
       <RelatedTitle>Related pokemons</RelatedTitle>
       <RelatedWrapper>
         {data.map(_ => (
-          <RelatedItem key={_.id || _} href={`/pokemon/${_.id}`}>
+          <RelatedItem key={_.id || _} href={paths.POKEMON_PAGE.replace(/:\w*$/, _.id)}>
             <RelatedImage src={_.thumb} alt={_.name} />
             <RelatedName>{_.name}</RelatedName>
           </RelatedItem>
@@ -48,6 +50,14 @@ const Related = ({ data }) => {
       </RelatedWrapper>
       </>
   );
+};
+
+Related.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    thumb: PropTypes.string
+  }))
 };
 
 export default Related;

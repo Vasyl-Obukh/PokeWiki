@@ -1,21 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-
-const range = (from, to, step = 1) => {
-  let i = from;
-  const range = [];
-
-  while (i <= to) {
-    range.push(i);
-    i += step;
-  }
-
-  return range;
-};
+import range from '../../utils/range';
+import { getPagesAmount } from '../../selectors/index';
 
 const PaginationList = styled.ul`
   display: flex;
@@ -131,8 +122,14 @@ const Pagination = ({
   );
 };
 
+Pagination.propTypes = {
+  pagesAmount: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  search: PropTypes.object
+};
+
 export default connect(
   state => ({
-    pagesAmount: Math.ceil(state.cards.data.count / 18)
+    pagesAmount: getPagesAmount(state)
   })
 )(Pagination);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
@@ -20,14 +21,17 @@ const Main = styled.main`
 `;
 
 class PokemonPage extends Component {
+  static propTypes = {
+    fetchPage: PropTypes.func.isRequired,
+    data: PropTypes.object,
+    relatedData: PropTypes.arrayOf(PropTypes.object),
+    isLoading: PropTypes.bool.isRequired,
+    relatedIsLoading: PropTypes.bool.isRequired,
+    error: PropTypes.string
+  };
+
   componentDidMount() {
     this.props.fetchPage(this.props.id);
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if(prevProps.id !== this.props.id) {
-      this.props.fetchPage(this.props.id);
-    }
   }
 
   render() {
@@ -47,10 +51,15 @@ class PokemonPage extends Component {
 }
 
 export default withRouter(
-  connect(
-    ({page: {data, isLoading, error}, related: {isLoading : relatedIsLoading, data: relatedData}}, props) => {
+  connect((
+    {
+       page: {data, isLoading, error},
+       related: {isLoading : relatedIsLoading, data: relatedData}
+     },
+     props
+    ) => {
       return {
-        id: props.location.pathname.split('/').slice(-1)[0],
+        id: props.location.pathname.match(/[1-9][0-9]*$/)[0],
         data,
         isLoading,
         relatedIsLoading,

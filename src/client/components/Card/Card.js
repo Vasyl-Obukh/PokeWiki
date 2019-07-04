@@ -40,6 +40,7 @@ const CardThumb = styled.img`
 const Card = (props) => {
   const { name, thumb, id, abilities, types } = props.data;
   const url = paths.POKEMON_PAGE.replace(/:\w*$/, id);
+
   return (
     <CardContainer>
       <CardThumbWrapper href={url}>
@@ -54,8 +55,8 @@ const Card = (props) => {
 Card.propTypes = {
   data: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    thumb: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
+    thumb: PropTypes.string,
     abilities: PropTypes.array,
     types: PropTypes.array
   })

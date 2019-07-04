@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import FilterForm from '../FilterForm/FilterForm';
@@ -32,6 +33,11 @@ const Sidebar = (props) => {
       <FilterForm onSubmit={handleSubmit} initialValues={initialValues} />
     </SidebarContainer>
   );
+};
+
+Sidebar.propTypes = {
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
 
 export default withRouter(Sidebar);
