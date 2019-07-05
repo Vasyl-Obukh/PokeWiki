@@ -14,10 +14,13 @@ const SidebarContainer = styled.aside`
 
 const Sidebar = (props) => {
   const handleSubmit = values => {
-    const elements = Object.entries(values.type).filter(_ => _[1]).map(_ => _[0]);
-    const elementsQuery = elements.length ? `elements=${elements}` : '';
-    const url = `/${elementsQuery ? '?' + elementsQuery : ''}`;
-    props.history.push(url);
+    const searchParams = new URLSearchParams(props.location.search);
+
+    const elements = Object.entries(values.types).filter(_ => _[1]).map(_ => _[0]);
+    //const elementsQuery = elements.length ? `elements=${elements}` : '';
+    //const url = `/${elementsQuery ? '?' + elementsQuery : ''}`;
+    searchParams.set('elements', elements);
+    props.history.push(`/?${searchParams}`);
   };
 
   const query = new URLSearchParams(props.location.search);

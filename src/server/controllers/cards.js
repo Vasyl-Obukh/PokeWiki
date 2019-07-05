@@ -1,15 +1,66 @@
 const getData = require('../utils/getData');
 const getPromises = require('../utils/getPromises');
 const { getEntityData } = require('../selectors');
-const { API_BASE, SEARCH_CORRECTNESS } = require('../config');
+const { API_BASE, SEARCH_CORRECTNESS, PAGE_LIMIT } = require('../config');
 require('string-compare');
+
+const COUNT = 964;
+
+const _pipe = (a, b) => (arg) => b(a(arg));
+const pipe = (...ops) => ops.reduce(_pipe);
+
+function* filterBySearch({ prev = [], filters }) {
+  const { search } = filters;
+  let pokemonsList;
+
+  if (!search) return ({ prev, filters });
+
+  if (prev.length) {
+    pokemonsList = prev;
+  } else {
+    pokemonsList = (yield getData(`${API_BASE}/pokemon?limit=${COUNT}`)).results;
+  }
+
+  return ({
+    prev: pokemonsList.filter(_ => searchPokemons(_.name, search)),
+    filters
+  });
+}
+
+function* filterByTypes({prev = [], filters}) {
+  const { types } = filters;
+  let pokemonsList;
+
+  if(!types.length) return ({ prev, filters });
+
+  if (prev.length) {
+    pokemonsList = prev.filter(_ => _.types.some(_ => filters.includes(_)));
+  } else {
+    const requestedElements = [];
+    for (let type of types) {
+      const a = (yield getData(`${API_BASE}/type/${type}`)).pokemon.map(_ => _.pokemon);
+      requestedElements.push(...a);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
 
 let count;
 let pokemonsFullList;
 let types = {};
 
 function* getCards() {
-  const { offset, limit, search, elements } = this.request.query;
+  const offset = (this.params.page - 1) * PAGE_LIMIT;
+  const { search, elements } = JSON.parse(this.request.query.filters);
   let results;
 
   if (!count) {
@@ -24,8 +75,9 @@ function* getCards() {
       pokemonsFullList = (yield getData(`${API_BASE}/pokemon?limit=${count}`)).results;
       console.log('Pokemons list after cashing: ', `list length = ${pokemonsFullList ? pokemonsFullList.length : 0}`);
     }
+
     results = pokemonsFullList.filter(_ => searchPokemons(_.name, search));
-  } else if (elements) {
+  } else if (elements.length) {
     const requestedTypes = elements.split(',');
     const requestedElements = [];
     for (let type of requestedTypes) {
@@ -34,10 +86,11 @@ function* getCards() {
       }
       requestedElements.push(...types[type]);
     }
+
     count = requestedElements.length;
-    results = requestedElements.slice(offset, +offset + +limit);
+    results = requestedElements.slice(offset, +offset + PAGE_LIMIT);
   } else {
-    results = (yield getData(`${API_BASE}/pokemon?offset=${offset}&&limit=${limit}`)).results;
+    results = (yield getData(`${API_BASE}/pokemon?offset=${offset}&&limit=${PAGE_LIMIT}`)).results;
   }
 
   const promises = getPromises(results, getEntityData);

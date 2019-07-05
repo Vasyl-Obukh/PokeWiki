@@ -12,8 +12,7 @@ const ContentWrapper = styled.div`
   display: grid;
   padding: 50px 15px;
   height: 100%;
-  grid-template-columns: ${props => props.primary ? '5fr 2fr' : '1fr'};
-  //grid-template-columns: 5fr 2fr;
+  grid-template-columns: 5fr 2fr;
   grid-column-gap: 50px;
 `;
 
@@ -24,14 +23,13 @@ const Main = styled.main`
 `;
 
 const Home = ({ showPagination, currentPage, searchParams }) => {
-  const isSearching = searchParams.has('search')
   return (
-    <ContentWrapper primary={!isSearching}>
+    <ContentWrapper>
       <Main>
         <Cards currentPage={currentPage} search={searchParams.toString()} searchParams={searchParams}/>
-        {showPagination && !searchParams.has('search') && <Pagination currentPage={currentPage} search={searchParams} />}
+        {showPagination && <Pagination currentPage={currentPage} search={searchParams} />}
       </Main>
-      {!isSearching && <Sidebar />}
+      <Sidebar />
     </ContentWrapper>
   );
 };
