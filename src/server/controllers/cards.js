@@ -40,10 +40,8 @@ function* getCards() {
     results = (yield getData(`${API_BASE}/pokemon?offset=${offset}&&limit=${limit}`)).results;
   }
 
-  let promises;
-  let pokemonsData;
-  promises = getPromises(results, getEntityData);
-  pokemonsData = yield Promise.all(promises);
+  const promises = getPromises(results, getEntityData);
+  const pokemonsData = yield Promise.all(promises);
 
   this.body = {
     elements: pokemonsData,
