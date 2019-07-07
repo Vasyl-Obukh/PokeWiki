@@ -1,8 +1,17 @@
 const app = require('koa')();
 const router = require('./routers');
 const logger = require('koa-logger');
-const mongoose = require('mongoose');
-const { DB_NAME, PORT } = require('./config');
+const { PORT } = require('./config');
+const threads = require('worker_threads');
+const { Worker } = threads;
+global.indexing = true;
+
+const indexingWorker = new Worker(__dirname + '/indexingWorker.js');
+
+indexingWorker.on('exit', () => {
+  global.indexing = false;
+});
+
 
 app.use(logger());
 app.use(function *(next) {
@@ -15,6 +24,5 @@ app.use(function *(next) {
   }
 });
 
-mongoose.connect(`mongodb://localhost/${DB_NAME}`, { useNewUrlParser: true });
 app.use(router.routes());
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
