@@ -12,9 +12,13 @@ class Indexing {
       throw 'Instantiation failed: use Singleton.instance instead of new.';
     }
     this._running = false;
-    this._worker = new Worker(__dirname + '/indexingWorker.js');
-    this._client = redis.createClient();
+    this.worker = new Worker(__dirname + '/indexingWorker.js');
+    this.client = redis.createClient();
+    this.interceptor = this.interceptor.bind(this);
     this._count = 0;
+    this._callbacks = {
+      'end': []
+    };
   }
 
   get running() {
@@ -23,14 +27,6 @@ class Indexing {
 
   set running(value) {
     this._running = !!value;
-  }
-
-  get worker() {
-    return this._worker;
-  }
-
-  get client() {
-    return this._client;
   }
 
   get count() {
@@ -62,6 +58,8 @@ class Indexing {
         switch (message.type) {
           case 'fulfilled':
             this.running = false;
+            //this._callbacks['end'].forEach(cb => cb());
+            console.log(this._callbacks);
             console.log('Indexing finished...');
           case 'data-chunk':
             const data = message.value;
@@ -77,10 +75,11 @@ class Indexing {
       }
     });
 
-    this.worker.on('exit', () => {
-      console.log('Indexing worker finished...');
-      this.running = false;
-    });
+    // this.worker.on('exit', () => {
+    //   console.log('Indexing worker finished...');
+    //   this.running = false;
+    //   this._callbacks['end'].forEach(cb => cb());
+    // });
   };
 
   start = () => {
@@ -96,6 +95,24 @@ class Indexing {
       minutes * 60 * 1000
     );
   };
+
+  addIndexListening = (name, cb) => {
+    this._callbacks[name].push(cb);
+    console.log(this._callbacks[name]);
+  };
+
+  * interceptor (next) {
+
+    console.log('\n\n\n\n\nget here');
+     yield this.indexingPromise(next);
+  }
+
+  indexingPromise = (next) => {
+    new Promise(res => this.addIndexListening('end', () => {
+
+      res(next)
+    }));
+  }
 
   getPokemons = (from = 1, to = this.count) => {
     return new Promise((resolve, reject) => {
