@@ -1,14 +1,12 @@
-const { PAGE_LIMIT } = require('../config');
 const { filterBySearch, filterByTypes, createPipeline } = require('../filters');
-const Indexing = require('../indexing');
-
-const index = Indexing.instance;
+const { PAGE_LIMIT } = require('../config');
+const indexator = require('../indexator');
 
 function* getCards() {
   const offset = (this.params.page - 1) * PAGE_LIMIT;
   const filters = JSON.parse(this.request.query.filters);
 
-  const pokemons = yield index.getPokemons();
+  const pokemons = yield indexator.getPokemons();
   const result = createPipeline(
     filterBySearch,
     filterByTypes

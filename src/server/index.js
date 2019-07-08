@@ -2,17 +2,11 @@ const app = require('koa')();
 const router = require('./routers');
 const logger = require('koa-logger');
 const { PORT } = require('./config');
+const indexator = require('./indexator');
 
-const Indexing = require('./indexing');
-
-const delay = (ms) => new Promise(res => setTimeout(res, ms))
-
-const indexing = Indexing.instance;
-indexing.configure();
-indexing.startWithInterval(15);
-
+indexator.startWithInterval(15);
 app.use(logger());
-app.use(indexing.interceptor);
+app.use(indexator.interceptor);
 app.use(function *(next) {
   try {
     yield next;

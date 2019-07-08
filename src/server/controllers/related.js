@@ -1,12 +1,10 @@
 const getRandomElements = require('../utils/randomElements');
 const { filterByTypes, createPipeline } = require('../filters');
-const Indexing = require('../indexing');
-
-const index = Indexing.instance;
+const indexator = require('../indexator');
 
 function* getRelated() {
   const requestedTypes = this.query.types.split(',');
-  const pokemons = yield index.getPokemons();
+  const pokemons = yield indexator.getPokemons();
   const result = createPipeline(
     filterByTypes
   )({value: pokemons, filters: {types: requestedTypes}});
