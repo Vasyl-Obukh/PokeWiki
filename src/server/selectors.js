@@ -8,7 +8,7 @@ const getEntityFullData = _ => ({
 
 const getEntityData = _ => ({
   name: _.name,
-  id: _.id,
+  id: _.id > 807 ? _.id - 9193 : _.id,
   thumb: _.sprites ? _.sprites.front_default : '',
   abilities: _.abilities ? _.abilities.map(_ => _.ability.name) : [],
   types: _.types ? _.types.map(_ => _.type.name) : []

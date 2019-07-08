@@ -16,19 +16,19 @@ const Sidebar = (props) => {
   const handleSubmit = values => {
     const searchParams = new URLSearchParams(props.location.search);
 
-    const elements = Object.entries(values.types).filter(_ => _[1]).map(_ => _[0]);
+    const types = Object.entries(values.types).filter(_ => _[1]).map(_ => _[0]);
     //const elementsQuery = elements.length ? `elements=${elements}` : '';
     //const url = `/${elementsQuery ? '?' + elementsQuery : ''}`;
-    searchParams.set('elements', elements);
+    searchParams.set('types', types);
     props.history.push(`/?${searchParams}`);
   };
 
   const query = new URLSearchParams(props.location.search);
-  const elementsString = query.get('elements');
-  const elements = elementsString ? elementsString.split(',').map(_ => [_, true]) : [];
+  const typesString = query.get('types');
+  const types = typesString ? typesString.split(',').map(_ => [_, true]) : [];
 
   const initialValues = {
-    types: Object.fromEntries(elements)
+    types: Object.fromEntries(types)
   };
 
   return (

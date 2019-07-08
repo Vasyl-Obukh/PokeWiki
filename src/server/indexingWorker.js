@@ -2,9 +2,7 @@ const threads = require('worker_threads');
 const axios = require('axios');
 const StreamFromUrl = require('./StreamFromUrl');
 const { getEntityFullData } = require('./selectors');
-const { API_BASE } = require('./config');
-
-const CONCURRENT_COUNT = 30;
+const { API_BASE, CONCURRENT_COUNT } = require('./config');
 
 threads.parentPort.on('message', data => {
   switch (data.type) {
@@ -19,7 +17,7 @@ threads.parentPort.on('message', data => {
 const run = () => {
   console.log('Indexing worker: Data fetching started...');
 
-  axios.get(`${API_BASE}/pokemon?limit=807`).then(responce => {
+  axios.get(`${API_BASE}/pokemon?limit=-1`).then(responce => {
     const urls = responce.data.results.map(_ => _.url);
     fetching(urls);
   });

@@ -1,11 +1,13 @@
-const getData = require('../utils/getData');
-const { getEntityFullData } = require('../selectors');
-const { API_BASE } = require('../config');
+const Indexing = require('../indexing');
+
+const indexing = Indexing.instance;
 
 const getPage = function* () {
-  const pokemon = yield getData(`${API_BASE}/pokemon/${this.params.id}`);
-  const result = getEntityFullData(pokemon);
-  this.body = result;
+  if (indexing.running) {
+    this.status = 503;
+  } else {
+    this.body = yield indexing.getPokemon(this.params.id, true);
+  }
 };
 
 module.exports = {

@@ -52,13 +52,13 @@ class Cards extends Component {
 export default withRouter(connect(
   ({cards: {data = {}, isLoading, error}}, {searchParams}) => {
     const evoLevels = searchParams.get('evoLevels');
-    const elements = searchParams.get('elements');
+    const types = searchParams.get('types');
 
     return {
       searchParams: {
         page: parseInt(searchParams.get('page')) || 1,
         evoLevels: evoLevels ? evoLevels : [],
-        elements: elements ? elements : [],
+        types: types ? types : [],
         search: searchParams.get('search')
       },
       elements: data.elements,
