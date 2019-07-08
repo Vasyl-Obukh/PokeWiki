@@ -2,16 +2,12 @@ const app = require('koa')();
 const router = require('./routers');
 const logger = require('koa-logger');
 const { PORT } = require('./config');
-const threads = require('worker_threads');
-const { Worker } = threads;
-global.indexing = true;
 
-const indexingWorker = new Worker(__dirname + '/indexingWorker.js');
+const Indexing = require('./indexing');
 
-indexingWorker.on('exit', () => {
-  global.indexing = false;
-});
-
+const indexing = Indexing.instance;
+indexing.configure();
+indexing.startWithInterval(15);
 
 app.use(logger());
 app.use(function *(next) {
