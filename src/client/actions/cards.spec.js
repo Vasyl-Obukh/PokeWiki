@@ -10,14 +10,14 @@ describe('cards actions', () => {
       limit: PAGE_LIMIT,
       page: 2,
       evoLevels: [1, 2],
-      elements: ['fire', 'steel'],
+      types: ['fire', 'steel'],
     };
 
     deepFreeze(params);
 
     expect(fetchCards(params)).toEqual({
       type: CARDS_REQUESTED,
-      url: `${paths.API_ROOT}/?offset=${PAGE_LIMIT}&&limit=${PAGE_LIMIT}&&evoLevels=1,2&&elements=fire,steel`
+      url: `${paths.API_ROOT}/pages/2/?filters=${JSON.stringify({ search: '', types: params.types, evoLevels: params.evoLevels })}`
     });
   });
 
@@ -28,7 +28,7 @@ describe('cards actions', () => {
 
     expect(fetchCards(params)).toEqual({
       type: CARDS_REQUESTED,
-      url: `${paths.API_ROOT}/?offset=0&&limit=${PAGE_LIMIT}`
+      url: `${paths.API_ROOT}/pages/1/?filters=${JSON.stringify({ search: '', types: [], evoLevels: [] })}`
     });
   });
 
@@ -41,7 +41,7 @@ describe('cards actions', () => {
 
     expect(fetchCards(params)).toEqual({
       type: CARDS_REQUESTED,
-      url: `${paths.API_ROOT}/?search=some text`
+      url: `${paths.API_ROOT}/pages/1/?filters=${JSON.stringify({ search: 'some text', types: [], evoLevels: [] })}`
     });
   });
 
@@ -51,14 +51,14 @@ describe('cards actions', () => {
       limit: 24,
       page: 2,
       evoLevels: [1, 2],
-      elements: ['fire', 'steel'],
+      types: ['fire', 'steel'],
     };
 
     deepFreeze(params);
 
     expect(fetchCards(params)).toEqual({
       type: CARDS_REQUESTED,
-      url: `${paths.API_ROOT}/?search=some text`
+      url: `${paths.API_ROOT}/pages/2/?filters=${JSON.stringify({ search: 'some text', types: params.types, evoLevels: params.evoLevels })}`
     });
   });
 });

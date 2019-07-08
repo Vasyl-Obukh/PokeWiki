@@ -49,7 +49,6 @@ const startWithInterval = (minutes) => {
 
 const addIndexListening = (name, cb) => {
   callbacks[name].push(cb);
-  console.log(callbacks[name]);
 };
 
 function* interceptor (next) {
@@ -57,11 +56,7 @@ function* interceptor (next) {
   yield next;
 }
 
-const indexingPromise = () => {
-  return new Promise(res => addIndexListening('end', () => {
-    res();
-  }));
-};
+const indexingPromise = () =>  new Promise(res => addIndexListening('end', () => res()));
 
 const getPokemons = (from = 1, to = count) => {
   return new Promise((resolve, reject) => {

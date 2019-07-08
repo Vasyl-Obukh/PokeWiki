@@ -46,7 +46,7 @@ const Card = (props) => {
       <CardThumbWrapper href={url}>
         <CardThumb src={thumb} alt={name} />
       </CardThumbWrapper>
-      <CardInfo name={name} url={url} abilities={abilities} types={types}>
+      <CardInfo data={{name, url, abilities, types}} name={name} url={url} abilities={abilities} types={types}>
       </CardInfo>
     </CardContainer>
   );

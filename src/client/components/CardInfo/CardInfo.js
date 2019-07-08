@@ -54,7 +54,7 @@ const CardValue = styled.li`
   }
 `;
 
-const CardInfo = ({ abilities, types, name, url }) => {
+const CardInfo = ({ data: { abilities, types, name, url } }) => {
   return (
     <Info>
       <CardName href={url}>{name}</CardName>
@@ -75,10 +75,12 @@ const CardInfo = ({ abilities, types, name, url }) => {
 };
 
 CardInfo.propTypes = {
-  abilities: PropTypes.arrayOf(PropTypes.string),
-  types: PropTypes.arrayOf(PropTypes.string),
-  name: PropTypes.string.isRequired,
-  url: PropTypes.string
+  data: PropTypes.shape({
+    abilities: PropTypes.arrayOf(PropTypes.string),
+    types: PropTypes.arrayOf(PropTypes.string),
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string
+  }).isRequired
 };
 
 export default CardInfo;

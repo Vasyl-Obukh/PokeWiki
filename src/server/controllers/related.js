@@ -1,6 +1,6 @@
 const getRandomElements = require('../utils/randomElements');
-const { filterByTypes, createPipeline } = require('../filters');
-const indexator = require('../indexator');
+const { filterByTypes, createPipeline } = require('../utils/filters');
+const indexator = require('../utils/indexator');
 
 function* getRelated() {
   const requestedTypes = this.query.types.split(',');

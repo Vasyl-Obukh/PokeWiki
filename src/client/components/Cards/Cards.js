@@ -18,7 +18,7 @@ class Cards extends Component {
     this.props.fetchCards(this.props.searchParams);
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps) {
     if(prevProps.search !== this.props.search) {
       this.props.fetchCards(this.props.searchParams);
     }

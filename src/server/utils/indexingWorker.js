@@ -2,7 +2,7 @@ const threads = require('worker_threads');
 const axios = require('axios');
 const StreamFromUrl = require('./StreamFromUrl');
 const { getEntityFullData } = require('./selectors');
-const { API_BASE, CONCURRENT_COUNT } = require('./config');
+const { API_BASE, CONCURRENT_COUNT } = require('../config/config');
 
 threads.parentPort.on('message', data => {
   switch (data.type) {

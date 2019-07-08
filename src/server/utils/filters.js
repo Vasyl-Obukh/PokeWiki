@@ -1,4 +1,4 @@
-const { SEARCH_CORRECTNESS } = require('./config');
+const { SEARCH_CORRECTNESS } = require('../config/config');
 require('string-compare');
 
 function filterBySearch({value, filters = {}}) {

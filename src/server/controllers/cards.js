@@ -1,6 +1,6 @@
-const { filterBySearch, filterByTypes, createPipeline } = require('../filters');
-const { PAGE_LIMIT } = require('../config');
-const indexator = require('../indexator');
+const { filterBySearch, filterByTypes, createPipeline } = require('../utils/filters');
+const { PAGE_LIMIT } = require('../config/config');
+const indexator = require('../utils/indexator');
 
 function* getCards() {
   const offset = (this.params.page - 1) * PAGE_LIMIT;

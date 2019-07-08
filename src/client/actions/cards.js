@@ -7,7 +7,7 @@ export function fetchCards({
   types = [],
   search = ''
 }) {
-  const url = `${paths.API_ROOT}/pages/${page}/?filters=${JSON.stringify({evoLevels, types, search})}`;
+  const url = `${paths.API_ROOT}/pages/${page}/?filters=${JSON.stringify({  search, types, evoLevels })}`;
   return {
     type: CARDS_REQUESTED,
     url
