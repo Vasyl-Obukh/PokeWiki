@@ -18,5 +18,5 @@ export default {
     'dragon',
     'fairy'
   ],
-  levels: [1, 2, 3]
+  evoLevels: [1, 2, 3, 4]
 };

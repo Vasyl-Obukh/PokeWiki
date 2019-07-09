@@ -35,10 +35,20 @@ let FilterForm = (props) => {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <h2>Filter by:</h2>
+      <h3>Types</h3>
       <StyledFormSection name='types'>
         {filters.types.map(_ => (
           <div key={_}>
-            <Field component='input' type='checkbox' id={_} key={_} name={_} />
+            <Field component='input' type='checkbox' id={_} name={_} />
+            <StyledLabel htmlFor={_}>{_}</StyledLabel>
+          </div>
+        ))}
+      </StyledFormSection>
+      <h3>Evolution levels</h3>
+      <StyledFormSection name='evoLevels'>
+        {filters.evoLevels.map(_ => (
+          <div key={_}>
+            <Field component='input' type='checkbox' id={_} name={_ + ''} />
             <StyledLabel htmlFor={_}>{_}</StyledLabel>
           </div>
         ))}
