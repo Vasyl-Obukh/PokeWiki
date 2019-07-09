@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import paths from '../../constants/paths';
-import CardInfo from '../CardInfo/CardInfo';
+import CardInfo from '../CardInfo';
 
 const CardContainer = styled.div`
   margin: 15px;
@@ -37,7 +37,7 @@ const CardThumb = styled.img`
   height: 100%;
 `;
 
-const Card = (props) => {
+const Index = (props) => {
   const { name, thumb, id, abilities, types } = props.data;
   const url = paths.POKEMON_PAGE.replace(/:\w*$/, id);
 
@@ -52,7 +52,7 @@ const Card = (props) => {
   );
 };
 
-Card.propTypes = {
+Index.propTypes = {
   data: PropTypes.shape({
     name: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
@@ -62,4 +62,4 @@ Card.propTypes = {
   })
 };
 
-export default Card;
+export default Index;

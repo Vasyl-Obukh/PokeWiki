@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
-import FilterForm from '../FilterForm/FilterForm';
+import FilterForm from '../FilterForm';
 
 const SidebarContainer = styled.aside`
   position: sticky;

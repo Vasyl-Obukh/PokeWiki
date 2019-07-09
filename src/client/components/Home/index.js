@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Cards from '../Cards/Cards';
-import Sidebar from '../Sidebar/Sidebar';
-import Pagination from '../Pagination/Pagination';
+import Sidebar from '../Sidebar';
+import Pagination from '../Pagination';
 import { showPagination } from '../../selectors';
 
 const ContentWrapper = styled.div`

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { fetchPage } from '../../actions/page';
-import Spinner from '../Spinner/Spinner';
-import Pokemon from '../Pokemon/Pokemon';
-import Related from '../Related/Related';
-import Error from '../Error/Error';
+import Spinner from '../Spinner';
+import Pokemon from '../Pokemon';
+import Related from '../Related';
+import Error from '../Error';
 
 const ContentWrapper = styled.div`
   padding: 50px 15px;

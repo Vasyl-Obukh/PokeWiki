@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { fetchCards } from '../../actions/cards';
-import Card from '../Card/Card';
-import Error from '../Error/Error';
-import Spinner from '../Spinner/Spinner';
+import Card from '../Card';
+import Error from '../Error';
+import Spinner from '../Spinner';
 
 const CardsContainer = styled.div`
   display: flex;

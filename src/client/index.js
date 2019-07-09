@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
 import store from './store/index';
-import ScrollToTop from './components/ScrollToTop/ScrollToTop';
-import App from './components/App/App';
+import ScrollToTop from './components/ScrollToTop';
+import App from './components/App';
 import theme from './utils/theme';
 import './assets/styles/index.scss';
 

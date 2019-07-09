@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import SectionWrapper from '../SectionWrapper/SectionWrapper';
-import Logo from '../Logo/Logo';
-import Search from '../Search/Search';
+import SectionWrapper from '../SectionWrapper';
+import Logo from '../Logo';
+import Search from '../Search';
 
 const StyledHeader = styled.header`
   background-color: ${props => props.theme.backgroundPrimary};

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SectionWrapper from '../SectionWrapper/SectionWrapper';
+import SectionWrapper from '../SectionWrapper';
 
 const FooterContainer = styled.footer`
   background-color: ${props => props.theme.backgroundPrimary};
