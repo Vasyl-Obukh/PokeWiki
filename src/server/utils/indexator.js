@@ -20,13 +20,17 @@ worker.on('message', message => {
         callbacks['end'].forEach(cb => cb());
         console.log('Indexing finished...');
         break;
-      case 'data-chunk':
+      case 'data':
         if (message.value) {
           message.value.forEach(el => {
+            //console.log(el);
             client.set(el.id, JSON.stringify(el));
-            count = el.id;
+            count = el.id > count ? el.id : count;
           });
         }
+        break;
+      default:
+        console.error(`Worker: unknown message type: ${message.type}`);
     }
   } else {
     console.log(`Worker message: ${message}`);

@@ -1,4 +1,4 @@
-const { filterBySearch, filterByTypes, createPipeline } = require('../utils/filters');
+const { filterBySearch, filterByTypes, filterByEvolutionLevels, createPipeline } = require('../utils/filters');
 const { PAGE_LIMIT } = require('../config/config');
 const indexator = require('../utils/indexator');
 
@@ -9,7 +9,8 @@ function* getCards() {
   const pokemons = yield indexator.getPokemons();
   const result = createPipeline(
     filterBySearch,
-    filterByTypes
+    filterByTypes,
+    filterByEvolutionLevels
   )({value: pokemons, filters});
 
   this.body = {
