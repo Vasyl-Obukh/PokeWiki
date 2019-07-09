@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { reduxForm, Field } from 'redux-form';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -7,7 +9,7 @@ const SearchForm = styled.form`
   position: relative;
 `;
 
-const SearchField = styled.input`
+const SearchField = styled(Field)`
   padding: 10px 15px 10px 35px;
   width: 150px;
   border-radius: 25px;
@@ -30,13 +32,23 @@ const SearchIcon = styled(FontAwesomeIcon)`
   top: calc(50% - 8px);
 `;
 
-const Search = () => {
+let Search = (props) => {
+  const { handleSubmit } = props;
+
   return (
-    <SearchForm action='/' autoComplete='off' >
-      <SearchField type='text' name='search' placeholder='search...' />
+    <SearchForm onSubmit={handleSubmit} autoComplete='off' >
+      <SearchField component='input' type='text' name='search' placeholder='search...' />
       <SearchIcon icon={faSearch} color='gray' />
     </SearchForm>
   );
 };
+
+Search.propTypes = {
+  handleSubmit: PropTypes.func.isRequired
+};
+
+Search = reduxForm({
+  form: 'search'
+})(Search);
 
 export default Search;

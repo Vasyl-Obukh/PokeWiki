@@ -7,7 +7,7 @@ const StyledButton = styled(FontAwesomeIcon)`
   position: fixed;
   display: block;
   bottom: 150px;
-  right: 50px;
+  right: calc((100vw - ${props => props.theme.basicWidth}) / 2);
   height: 50px;
   padding: 10px;
   border-radius: 50%;

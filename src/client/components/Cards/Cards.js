@@ -19,7 +19,7 @@ class Cards extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.search !== this.props.search) {
+    if (prevProps.search !== this.props.search) {
       this.props.fetchCards(this.props.searchParams);
     }
   }
@@ -32,6 +32,7 @@ class Cards extends Component {
 
   render() {
     const { isLoading, elements = [], error } = this.props;
+
     if (isLoading) {
       return <Spinner />;
     }
@@ -42,7 +43,7 @@ class Cards extends Component {
         </CardsContainer>
       );
     }
-    if(error) {
+    if (error) {
       return <Error>{error}</Error>
     }
     return null;
@@ -61,6 +62,7 @@ export default withRouter(connect(
         types: types ? types : [],
         search: searchParams.get('search')
       },
+      search: searchParams.toString(),
       elements: data.elements,
       isLoading,
       error

@@ -26,7 +26,7 @@ const Home = ({ showPagination, currentPage, searchParams }) => {
   return (
     <ContentWrapper>
       <Main>
-        <Cards currentPage={currentPage} search={searchParams.toString()} searchParams={searchParams}/>
+        <Cards currentPage={currentPage} searchParams={searchParams}/>
         {showPagination && <Pagination currentPage={currentPage} search={searchParams} />}
       </Main>
       <Sidebar />
@@ -42,11 +42,11 @@ Home.propTypes = {
 
 export default withRouter(connect(
   (state, props) => {
-    const search = new URLSearchParams(props.location.search);
+    const searchParams = new URLSearchParams(props.location.search);
     return {
       showPagination: showPagination(state),
-      currentPage: parseInt(search.get('page')) || 1,
-      searchParams: search
+      currentPage: parseInt(searchParams.get('page')) || 1,
+      searchParams
     };
   }
 )(Home));

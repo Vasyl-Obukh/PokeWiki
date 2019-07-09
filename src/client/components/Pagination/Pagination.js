@@ -44,7 +44,7 @@ const Pagination = ({
     const totalBlocks = totalNumbers + 2;
 
     if (pagesAmount > totalBlocks) {
-      let pages = [];
+      let pages;
 
       const leftBound = currentPage - pageNeighbours;
       const rightBound = currentPage + pageNeighbours;
@@ -77,6 +77,7 @@ const Pagination = ({
   };
 
   if (!pagesAmount || pagesAmount === 1) return null;
+
   const dots = '...';
   const pages = fetchPageNumbers();
 

@@ -12,6 +12,17 @@ const SidebarContainer = styled.aside`
   box-shadow: 0 0 5px darkslategray;
 `;
 
+const normalizeSearchParams = (searchParams, {types, evoLevels}) => {
+  searchParams.set('page', 1);
+  types.length ?
+    searchParams.set('types', types)
+    : searchParams.delete('types');
+  evoLevels.length ?
+    searchParams.set('evoLevels',  evoLevels)
+    : searchParams.delete('evoLevels');
+  return searchParams;
+};
+
 const Sidebar = (props) => {
   const handleSubmit = values => {
     const searchParams = new URLSearchParams(props.location.search);
@@ -23,15 +34,9 @@ const Sidebar = (props) => {
     const types = convertToStringArray(values.types)
     const evoLevels = convertToStringArray(values.evoLevels);
 
-    searchParams.set('page', 1);
-    types.length ?
-      searchParams.set('types', types)
-      : searchParams.delete('types');
-    evoLevels.length ?
-      searchParams.set('evoLevels',  evoLevels)
-      : searchParams.delete('evoLevels');
+    const normalizedParams  = normalizeSearchParams(searchParams, {types, evoLevels});
 
-    props.history.push(`/?${searchParams}`);
+    props.history.push(`/?${normalizedParams}`);
   };
 
   const query = new URLSearchParams(props.location.search);

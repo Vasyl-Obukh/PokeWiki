@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import styled from 'styled-components';
 import paths from '../../constants/paths';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Home from '../Home/Home';
 import PokemonPage from '../PokemonPage/PokemonPage';
 import ErrorPage from '../ErrorPage/ErrorPage';
-import styled from 'styled-components';
 import SectionWrapper from '../SectionWrapper/SectionWrapper';
 import ScrollUpButton from '../ScrollUpButton/ScrollUpButton';
 

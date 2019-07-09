@@ -39,15 +39,15 @@ const RelatedName = styled.p`
 const Related = ({ data }) => {
   return (
       <>
-      <RelatedTitle>Related pokemons</RelatedTitle>
-      <RelatedWrapper>
-        {data.map(_ => (
-          <RelatedItem key={_.id || _} href={paths.POKEMON_PAGE.replace(/:\w*$/, _.id)}>
-            <RelatedImage src={_.thumb} alt={_.name} />
-            <RelatedName>{_.name}</RelatedName>
-          </RelatedItem>
-        ))}
-      </RelatedWrapper>
+        <RelatedTitle>Related pokemons</RelatedTitle>
+        <RelatedWrapper>
+          {data.map(_ => (
+            <RelatedItem key={_.id} href={paths.POKEMON_PAGE.replace(/:\w*$/, _.id)}>
+              <RelatedImage src={_.thumb} alt={_.name} />
+              <RelatedName>{_.name}</RelatedName>
+            </RelatedItem>
+          ))}
+        </RelatedWrapper>
       </>
   );
 };

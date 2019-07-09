@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import SectionWrapper from '../SectionWrapper/SectionWrapper';
 import Logo from '../Logo/Logo';
@@ -16,17 +18,27 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Header = () => {
+const Header = (props) => {
+  const handleSubmit = values => {
+    props.history.push(`/?search=${values.search}`);
+  };
+
   return (
     <StyledHeader>
       <SectionWrapper>
         <HeaderWrapper>
           <Logo />
-          <Search />
+          <Search onSubmit={handleSubmit} />
         </HeaderWrapper>
       </SectionWrapper>
     </StyledHeader>
   );
 };
 
-export default Header;
+Header.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
+};
+
+export default withRouter(Header);
