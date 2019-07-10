@@ -10,7 +10,7 @@ import SectionWrapper from '../SectionWrapper';
 import ScrollUpButton from '../ScrollUpButton';
 import * as Styles from './styles';
 
-const Index = () => {
+const App = () => {
   return (
     <Styles.SiteWrapper>
       <Header />
@@ -30,4 +30,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default App;

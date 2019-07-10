@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Card /> snapshot tests Should not break if data has not some properties 1`] = `
+<div
+  className="sc-bdVaJa dhyrWd"
+>
+  <a
+    className="sc-bwzfXH zJzk"
+    href="/pokemon/1"
+  >
+    <img
+      alt="bulbasaur"
+      className="sc-htpNat kQspvn"
+      src="#"
+    />
+  </a>
+  <div
+    className="sc-bxivhb erBfwI"
+  >
+    <a
+      className="sc-ifAKCX gzbZPg"
+      href="/pokemon/1"
+    >
+      bulbasaur
+    </a>
+    <div
+      className="sc-EHOje Sxglg"
+    >
+      <div
+        className="sc-bZQynM jLRQxB"
+      >
+        Abilities
+      </div>
+      <ul
+        className="sc-gzVnrw ddaANZ"
+      />
+    </div>
+    <div
+      className="sc-EHOje Sxglg"
+    >
+      <div
+        className="sc-bZQynM jLRQxB"
+      >
+        Types
+      </div>
+      <ul
+        className="sc-gzVnrw ddaANZ"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Card /> snapshot tests Should render correctly 1`] = `
+<div
+  className="sc-bdVaJa dhyrWd"
+>
+  <a
+    className="sc-bwzfXH zJzk"
+    href="/pokemon/1"
+  >
+    <img
+      alt="bulbasaur"
+      className="sc-htpNat kQspvn"
+      src="/some/url"
+    />
+  </a>
+  <div
+    className="sc-bxivhb erBfwI"
+  >
+    <a
+      className="sc-ifAKCX gzbZPg"
+      href="/pokemon/1"
+    >
+      bulbasaur
+    </a>
+    <div
+      className="sc-EHOje Sxglg"
+    >
+      <div
+        className="sc-bZQynM jLRQxB"
+      >
+        Abilities
+      </div>
+      <ul
+        className="sc-gzVnrw ddaANZ"
+      >
+        <li
+          className="sc-htoDjs jtBnBC"
+        >
+          ability 1
+        </li>
+        <li
+          className="sc-htoDjs jtBnBC"
+        >
+          ability 2
+        </li>
+      </ul>
+    </div>
+    <div
+      className="sc-EHOje Sxglg"
+    >
+      <div
+        className="sc-bZQynM jLRQxB"
+      >
+        Types
+      </div>
+      <ul
+        className="sc-gzVnrw ddaANZ"
+      >
+        <li
+          className="sc-htoDjs jtBnBC"
+        >
+          poison
+        </li>
+        <li
+          className="sc-htoDjs jtBnBC"
+        >
+          grass
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;

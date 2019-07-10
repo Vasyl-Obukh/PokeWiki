@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardInfo /> snapshot tests Should not break if data has not some properties 1`] = `
+<div
+  className="sc-bdVaJa gZgFKk"
+>
+  <a
+    className="sc-bwzfXH gUcobS"
+    href="#"
+  >
+    bulbasaur
+  </a>
+  <div
+    className="sc-htpNat bGYxOQ"
+  >
+    <div
+      className="sc-bxivhb iiksNy"
+    >
+      Abilities
+    </div>
+    <ul
+      className="sc-ifAKCX heVQjm"
+    />
+  </div>
+  <div
+    className="sc-htpNat bGYxOQ"
+  >
+    <div
+      className="sc-bxivhb iiksNy"
+    >
+      Types
+    </div>
+    <ul
+      className="sc-ifAKCX heVQjm"
+    />
+  </div>
+</div>
+`;
+
+exports[`<CardInfo /> snapshot tests Should render correctly 1`] = `
+<div
+  className="sc-bdVaJa gZgFKk"
+>
+  <a
+    className="sc-bwzfXH gUcobS"
+    href="/pokemon/1"
+  >
+    bulbasaur
+  </a>
+  <div
+    className="sc-htpNat bGYxOQ"
+  >
+    <div
+      className="sc-bxivhb iiksNy"
+    >
+      Abilities
+    </div>
+    <ul
+      className="sc-ifAKCX heVQjm"
+    >
+      <li
+        className="sc-EHOje hLHcYN"
+      >
+        ability 1
+      </li>
+      <li
+        className="sc-EHOje hLHcYN"
+      >
+        ability 2
+      </li>
+    </ul>
+  </div>
+  <div
+    className="sc-htpNat bGYxOQ"
+  >
+    <div
+      className="sc-bxivhb iiksNy"
+    >
+      Types
+    </div>
+    <ul
+      className="sc-ifAKCX heVQjm"
+    >
+      <li
+        className="sc-EHOje hLHcYN"
+      >
+        grass
+      </li>
+      <li
+        className="sc-EHOje hLHcYN"
+      >
+        poison
+      </li>
+    </ul>
+  </div>
+</div>
+`;

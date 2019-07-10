@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import Cards from '../Cards/Cards';
+import Cards from '../Cards';
 import Sidebar from '../Sidebar';
 import Pagination from '../Pagination';
 import { showPagination } from '../../selectors';

@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Cards /> snapshot tests Should render cards 1`] = `
+<div
+  className="sc-bdVaJa erSRMf"
+>
+  <div
+    className="sc-bwzfXH fyoMqL"
+  >
+    <a
+      className="sc-htpNat BbZKb"
+      href="/pokemon/1"
+    >
+      <img
+        alt="bulbasaur"
+        className="sc-bxivhb hXlsvd"
+        src="#"
+      />
+    </a>
+    <div
+      className="sc-ifAKCX kAOeim"
+    >
+      <a
+        className="sc-EHOje jSnQJi"
+        href="/pokemon/1"
+      >
+        bulbasaur
+      </a>
+      <div
+        className="sc-bZQynM ilGomh"
+      >
+        <div
+          className="sc-gzVnrw saJjW"
+        >
+          Abilities
+        </div>
+        <ul
+          className="sc-htoDjs lnaTJ"
+        />
+      </div>
+      <div
+        className="sc-bZQynM ilGomh"
+      >
+        <div
+          className="sc-gzVnrw saJjW"
+        >
+          Types
+        </div>
+        <ul
+          className="sc-htoDjs lnaTJ"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH fyoMqL"
+  >
+    <a
+      className="sc-htpNat BbZKb"
+      href="/pokemon/2"
+    >
+      <img
+        alt="pikachu"
+        className="sc-bxivhb hXlsvd"
+        src="#"
+      />
+    </a>
+    <div
+      className="sc-ifAKCX kAOeim"
+    >
+      <a
+        className="sc-EHOje jSnQJi"
+        href="/pokemon/2"
+      >
+        pikachu
+      </a>
+      <div
+        className="sc-bZQynM ilGomh"
+      >
+        <div
+          className="sc-gzVnrw saJjW"
+        >
+          Abilities
+        </div>
+        <ul
+          className="sc-htoDjs lnaTJ"
+        />
+      </div>
+      <div
+        className="sc-bZQynM ilGomh"
+      >
+        <div
+          className="sc-gzVnrw saJjW"
+        >
+          Types
+        </div>
+        <ul
+          className="sc-htoDjs lnaTJ"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Cards /> snapshot tests Should render error message block 1`] = `
+<h2
+  className="sc-iwsKbI fiErXU"
+>
+  Something goes wrong...
+</h2>
+`;
+
+exports[`<Cards /> snapshot tests Should render null 1`] = `null`;
+
+exports[`<Cards /> snapshot tests Should render spinner 1`] = `
+<svg
+  aria-hidden="true"
+  className="svg-inline--fa fa-spinner fa-w-16 sc-gZMcBi Mssdr"
+  data-icon="spinner"
+  data-prefix="fas"
+  focusable="false"
+  role="img"
+  style={Object {}}
+  viewBox="0 0 512 512"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+    fill="currentColor"
+    style={Object {}}
+  />
+</svg>
+`;
