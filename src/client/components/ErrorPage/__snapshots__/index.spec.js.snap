@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ErrorPage /> tests snapshot test 1`] = `
+<h1
+  className="sc-bdVaJa grGzbq"
+>
+  Error Page
+</h1>
+`;

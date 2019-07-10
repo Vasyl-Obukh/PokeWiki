@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Cards /> snapshot tests Should render cards 1`] = `
+exports[`<Cards /> tests Should render cards 1`] = `
 <div
   className="sc-bdVaJa erSRMf"
 >
@@ -103,7 +103,7 @@ exports[`<Cards /> snapshot tests Should render cards 1`] = `
 </div>
 `;
 
-exports[`<Cards /> snapshot tests Should render error message block 1`] = `
+exports[`<Cards /> tests Should render error message block 1`] = `
 <h2
   className="sc-iwsKbI fiErXU"
 >
@@ -111,9 +111,9 @@ exports[`<Cards /> snapshot tests Should render error message block 1`] = `
 </h2>
 `;
 
-exports[`<Cards /> snapshot tests Should render null 1`] = `null`;
+exports[`<Cards /> tests Should render null 1`] = `null`;
 
-exports[`<Cards /> snapshot tests Should render spinner 1`] = `
+exports[`<Cards /> tests Should render spinner 1`] = `
 <svg
   aria-hidden="true"
   className="svg-inline--fa fa-spinner fa-w-16 sc-gZMcBi Mssdr"

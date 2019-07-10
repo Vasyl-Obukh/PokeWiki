@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> tests snapshot test 1`] = `
+<footer
+  className="sc-bwzfXH fQsIRM"
+>
+  <div
+    className="sc-bdVaJa docqaL"
+  >
+    <div
+      className="sc-htpNat fLwSoa"
+    >
+      <p
+        className="sc-bxivhb iRbXOH"
+      >
+        Copyright © 2019 by Vasyl Obukh. All Rights Reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+`;

@@ -1,37 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import styled from 'styled-components';
+import * as Styles from './styles';
 import SectionWrapper from '../SectionWrapper';
 import Logo from '../Logo';
 import Search from '../Search';
 
-const StyledHeader = styled.header`
-  background-color: ${props => props.theme.backgroundPrimary};
-  box-shadow: 0 5px 10px darkslategrey;
-`;
-
-const HeaderWrapper = styled.div`
-  display: flex;
-  padding: 10px 15px;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const Header = (props) => {
+export const Header = (props) => {
   const handleSubmit = values => {
     props.history.push(`/?search=${values.search}`);
   };
 
   return (
-    <StyledHeader>
+    <Styles.Header>
       <SectionWrapper>
-        <HeaderWrapper>
+        <Styles.Wrapper>
           <Logo />
           <Search onSubmit={handleSubmit} />
-        </HeaderWrapper>
+        </Styles.Wrapper>
       </SectionWrapper>
-    </StyledHeader>
+    </Styles.Header>
   );
 };
 

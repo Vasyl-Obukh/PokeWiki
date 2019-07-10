@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ConnectedCards, { Cards, mapStateToProps, mapDispatchToProps } from './index';
+import { Cards, mapStateToProps } from './index';
 
-describe('<Cards /> snapshot tests', () => {
+describe('<Cards /> tests', () => {
   let props;
 
   beforeEach(() => {
@@ -57,5 +57,75 @@ describe('<Cards /> snapshot tests', () => {
     const component = renderer.create(<Cards {...props}/>);
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
+  });
+});
+
+describe('Connect functions tests', () => {
+  let state, props;
+
+  beforeEach(() => {
+    state = {cards: {
+      isLoading: false,
+      data: {},
+      error: undefined,
+    }};
+    props = {
+      searchParams: new URLSearchParams('page=2&&types=normal,fire&&evoLevels=1,2&&search=bulbasaur')
+    };
+  });
+
+  test('mapStateToProps() with full set of params', () => {
+    expect(mapStateToProps(state, props)).toEqual({
+      searchParams: {
+        page: 2,
+        evoLevels: ['1', '2'],
+        types: ['normal', 'fire'],
+        search: 'bulbasaur'
+      },
+      search: props.searchParams.toString(),
+      elements: [],
+      isLoading: false,
+      error: undefined
+    });
+  });
+
+  test('mapStateToProps() without props', () => {
+    expect(mapStateToProps(state)).toEqual({
+      searchParams: {
+        page: 1,
+        evoLevels: [],
+        types: [],
+        search: null
+      },
+      search: '',
+      elements: [],
+      isLoading: false,
+      error: undefined
+    });
+  });
+
+  test('mapStateToProps() ', () => {
+    state.cards.data.elements = [
+      {name: 'bulbasaur', id: 1},
+      {name: 'pikachu', id: 2}
+    ];
+    state.cards.isLoading = true;
+    state.cards.error = 'Something goes wrong...';
+
+    expect(mapStateToProps(state, props)).toEqual({
+      searchParams: {
+        page: 2,
+        evoLevels: ['1', '2'],
+        types: ['normal', 'fire'],
+        search: 'bulbasaur'
+      },
+      search: props.searchParams.toString(),
+      elements: [
+        {name: 'bulbasaur', id: 1},
+        {name: 'pikachu', id: 2}
+      ],
+      isLoading: true,
+      error: 'Something goes wrong...'
+    });
   });
 });

@@ -1,36 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import * as Styles from './styles';
 import Cards from '../Cards';
 import Sidebar from '../Sidebar';
 import Pagination from '../Pagination';
 import { showPagination } from '../../selectors';
 
-const ContentWrapper = styled.div`
-  display: grid;
-  padding: 50px 15px;
-  height: 100%;
-  grid-template-columns: 5fr 2fr;
-  grid-column-gap: 50px;
-`;
-
-const Main = styled.main`
-  padding: 25px 10px;
-  border-radius: 25px;
-  box-shadow: 0 0 5px darkslategray;
-`;
-
-const Home = ({ showPagination, currentPage, searchParams }) => {
+export const Home = ({ showPagination, currentPage, searchParams }) => {
   return (
-    <ContentWrapper>
-      <Main>
+    <Styles.Wrapper>
+      <Styles.Main>
         <Cards currentPage={currentPage} searchParams={searchParams}/>
         {showPagination && <Pagination currentPage={currentPage} search={searchParams} />}
-      </Main>
+      </Styles.Main>
       <Sidebar />
-    </ContentWrapper>
+    </Styles.Wrapper>
   );
 };
 
@@ -40,13 +26,13 @@ Home.propTypes = {
   searchParams: PropTypes.object
 };
 
-export default withRouter(connect(
-  (state, props) => {
-    const searchParams = new URLSearchParams(props.location.search);
-    return {
-      showPagination: showPagination(state),
-      currentPage: parseInt(searchParams.get('page')) || 1,
-      searchParams
-    };
-  }
-)(Home));
+export const mapStateToProps = (state, props) => {
+  const searchParams = new URLSearchParams(props.location.search);
+  return {
+    showPagination: showPagination(state),
+    currentPage: parseInt(searchParams.get('page')) || 1,
+    searchParams
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(Home));

@@ -1,30 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
 import SectionWrapper from '../SectionWrapper';
-
-const FooterContainer = styled.footer`
-  background-color: ${props => props.theme.backgroundPrimary};
-`;
-
-const FooterWrapper = styled.div`
-  padding: 25px;
-`;
-
-const Copyright = styled.p`
-  text-align: center;
-  color: ${props => props.theme.colorSecondary}
-`;
+import * as Styles from './styles';
 
 const Footer = () => {
   const copyright = 'Copyright © 2019 by Vasyl Obukh. All Rights Reserved.';
   return (
-    <FooterContainer>
+    <Styles.Container>
       <SectionWrapper>
-        <FooterWrapper>
-          <Copyright>{copyright}</Copyright>
-        </FooterWrapper>
+        <Styles.Wrapper>
+          <Styles.Copyright>{copyright}</Styles.Copyright>
+        </Styles.Wrapper>
       </SectionWrapper>
-    </FooterContainer>
+    </Styles.Container>
   );
 };
 

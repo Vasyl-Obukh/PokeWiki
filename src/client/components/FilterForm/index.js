@@ -1,60 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm, FormSection, Field } from 'redux-form';
-import styled from 'styled-components';
+import * as Styles from './styles';
 import filters from '../../constants/filters';
-
-const StyledForm = styled.form`
-  padding: 0 50px;
-`;
-
-const StyledFormSection = styled(FormSection)`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-`;
-
-const StyledLabel = styled.label`
-  margin-left: 5px;
-`;
-
-const FormButton = styled.button`
-  padding: 5px 10px;
-  margin-top: 25px;
-  width: 100%;
-  border-radius: 20px;
-  background-color: ${props => props.theme.backgroundPrimary};
-  text-transform: capitalize;
-  color: white;
-  border: none;
-  cursor: pointer;
-`;
 
 let FilterForm = (props) => {
   const { handleSubmit } = props;
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <Styles.Form onSubmit={handleSubmit}>
       <h2>Filter by:</h2>
       <h3>Types</h3>
-      <StyledFormSection name='types'>
+      <Styles.StyledFormSection name='types'>
         {filters.types.map(_ => (
           <div key={_}>
             <Field component='input' type='checkbox' id={_} name={_} />
-            <StyledLabel htmlFor={_}>{_}</StyledLabel>
+            <Styles.Label htmlFor={_}>{_}</Styles.Label>
           </div>
         ))}
-      </StyledFormSection>
+      </Styles.StyledFormSection>
       <h3>Evolution levels</h3>
-      <StyledFormSection name='evoLevels'>
+      <Styles.StyledFormSection name='evoLevels'>
         {filters.evoLevels.map(_ => (
           <div key={_}>
             <Field component='input' type='checkbox' id={_} name={_ + ''} />
-            <StyledLabel htmlFor={_}>{_}</StyledLabel>
+            <Styles.Label htmlFor={_}>{_}</Styles.Label>
           </div>
         ))}
-      </StyledFormSection>
-      <FormButton type='submit'>filter</FormButton>
-    </StyledForm>
+      </Styles.StyledFormSection>
+      <Styles.FormButton type='submit'>filter</Styles.FormButton>
+    </Styles.Form>
   );
 };
 

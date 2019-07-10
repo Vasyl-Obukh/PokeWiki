@@ -52,7 +52,10 @@ export class Cards extends Component {
   }
 }
 
-export const mapStateToProps = ({cards: {data = {}, isLoading, error}}, {searchParams}) => {
+export const mapStateToProps = (
+  { cards: {data = {}, isLoading, error} },
+  { searchParams = new URLSearchParams() } = {}
+) => {
   const evoLevels = searchParams.get('evoLevels');
   const types = searchParams.get('types');
 
@@ -64,7 +67,7 @@ export const mapStateToProps = ({cards: {data = {}, isLoading, error}}, {searchP
       search: searchParams.get('search')
     },
     search: searchParams.toString(),
-    elements: data.elements,
+    elements: data.elements || [],
     isLoading,
     error
   };
