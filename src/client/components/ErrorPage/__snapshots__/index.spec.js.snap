@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ErrorPage /> tests snapshot test 1`] = `
+exports[`<ErrorPage /> tests Should render correctly 1`] = `
 <h1
   className="sc-bdVaJa grGzbq"
 >

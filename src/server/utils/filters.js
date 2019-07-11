@@ -34,6 +34,7 @@ const createPipeline = (...ops) => ops.reduce((a, b) => ({value, filters}) => b(
 module.exports = {
   filterBySearch,
   filterByTypes,
+  searchPokemons,
   filterByEvolutionLevels,
   createPipeline
 };

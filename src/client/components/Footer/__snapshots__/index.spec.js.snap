@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Footer /> tests snapshot test 1`] = `
+exports[`<Footer /> tests Should render properly 1`] = `
 <footer
   className="sc-bwzfXH fQsIRM"
 >

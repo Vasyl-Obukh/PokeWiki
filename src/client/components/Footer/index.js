@@ -2,8 +2,9 @@ import React from 'react';
 import SectionWrapper from '../SectionWrapper';
 import * as Styles from './styles';
 
-const Footer = () => {
-  const copyright = 'Copyright © 2019 by Vasyl Obukh. All Rights Reserved.';
+const defaultCopyright = 'Copyright © 2019 by Vasyl Obukh. All Rights Reserved.';
+
+const Footer = ({ copyright = defaultCopyright }) => {
   return (
     <Styles.Container>
       <SectionWrapper>
