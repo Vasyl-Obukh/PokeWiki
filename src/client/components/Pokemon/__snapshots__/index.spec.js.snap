@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Pokemon /> tests Should render correctly with full set of props 1`] = `
+<div
+  className="sc-bdVaJa gXpakm"
+>
+  <img
+    alt="pikachu"
+    className="sc-bwzfXH stlqt"
+    src="/some/url"
+  />
+  <div
+    className="sc-htpNat brENIm"
+  >
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      Name
+    </div>
+    <div
+      className="sc-ifAKCX iBhDQv"
+    >
+      pikachu
+    </div>
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      Abilities
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    >
+      <span
+        className="sc-EHOje fuZplJ"
+      >
+        lightning-rod
+      </span>
+      <span
+        className="sc-EHOje fuZplJ"
+      >
+        static
+      </span>
+    </div>
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      Types
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    >
+      <span
+        className="sc-EHOje fuZplJ"
+      >
+        electric
+      </span>
+    </div>
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      Experience
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    >
+      112
+    </div>
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      Height
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    >
+      5
+    </div>
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      Weight
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    >
+      60
+    </div>
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      hp
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    >
+      35
+    </div>
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      speed
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    >
+      90
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Pokemon /> tests Should render correctly with missing non-required props 1`] = `
+<div
+  className="sc-bdVaJa gXpakm"
+>
+  <img
+    alt="pikachu"
+    className="sc-bwzfXH stlqt"
+    src="#"
+  />
+  <div
+    className="sc-htpNat brENIm"
+  >
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      Name
+    </div>
+    <div
+      className="sc-ifAKCX iBhDQv"
+    >
+      pikachu
+    </div>
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      Abilities
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    >
+      <span
+        className="sc-EHOje fuZplJ"
+      >
+        lightning-rod
+      </span>
+      <span
+        className="sc-EHOje fuZplJ"
+      >
+        static
+      </span>
+    </div>
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      Types
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    >
+      <span
+        className="sc-EHOje fuZplJ"
+      >
+        electric
+      </span>
+    </div>
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      Experience
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    />
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      Height
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    />
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      Weight
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    />
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      hp
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    >
+      35
+    </div>
+    <div
+      className="sc-bxivhb exZLWy"
+    >
+      speed
+    </div>
+    <div
+      className="sc-ifAKCX eHjrkF"
+    >
+      90
+    </div>
+  </div>
+</div>
+`;

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Header /> tests snapshot test 1`] = `
+exports[`<Header /> tests Should render correctly 1`] = `
 <header
   className="sc-bdVaJa eUhlwW"
 >
@@ -18,7 +18,7 @@ exports[`<Header /> tests snapshot test 1`] = `
         <img
           alt="logo"
           className="sc-ifAKCX gaqaLv"
-          src="../../assets/images/logo.png"
+          src="../../static/images/logo.png"
         />
       </a>
       <form

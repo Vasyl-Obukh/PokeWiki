@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Logo /> tests Should render correctly 1`] = `
+<a
+  className="sc-bdVaJa eAwGjB"
+  href="/"
+  onClick={[Function]}
+>
+  <img
+    alt="logo"
+    className="sc-bwzfXH cAQUzw"
+    src="../../static/images/logo.png"
+  />
+</a>
+`;

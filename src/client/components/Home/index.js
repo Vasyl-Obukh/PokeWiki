@@ -8,7 +8,7 @@ import Sidebar from '../Sidebar';
 import Pagination from '../Pagination';
 import { showPagination } from '../../selectors';
 
-export const Home = ({ showPagination, currentPage, searchParams }) => {
+export const Home = ({ showPagination, currentPage, searchParams = {} }) => {
   return (
     <Styles.Wrapper>
       <Styles.Main>

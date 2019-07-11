@@ -1,0 +1,507 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PokemonPage /> tests Should render error message block 1`] = `
+<div
+  className="sc-VigVT iybjHG"
+>
+  <main
+    className="sc-jTzLTM jTgrwB"
+  >
+    <h2
+      className="sc-gqjmRU dTdyQT"
+    >
+      Something goes wrong...
+    </h2>
+    <div
+      className="sc-bwzfXH gQGX"
+    >
+      <img
+        alt="pikachu"
+        className="sc-htpNat ihZMVi"
+        src="#"
+      />
+      <div
+        className="sc-bxivhb iMxPcQ"
+      >
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Name
+        </div>
+        <div
+          className="sc-EHOje uksKz"
+        >
+          pikachu
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Abilities
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          <span
+            className="sc-bZQynM kXoohU"
+          >
+            lightning-rod
+          </span>
+          <span
+            className="sc-bZQynM kXoohU"
+          >
+            static
+          </span>
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Types
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          <span
+            className="sc-bZQynM kXoohU"
+          >
+            electric
+          </span>
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Experience
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        />
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Height
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        />
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Weight
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        />
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          hp
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          35
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          speed
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          90
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`<PokemonPage /> tests Should render related block 1`] = `
+<div
+  className="sc-VigVT iybjHG"
+>
+  <main
+    className="sc-jTzLTM jTgrwB"
+  >
+    <div
+      className="sc-bwzfXH gQGX"
+    >
+      <img
+        alt="pikachu"
+        className="sc-htpNat ihZMVi"
+        src="#"
+      />
+      <div
+        className="sc-bxivhb iMxPcQ"
+      >
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Name
+        </div>
+        <div
+          className="sc-EHOje uksKz"
+        >
+          pikachu
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Abilities
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          <span
+            className="sc-bZQynM kXoohU"
+          >
+            lightning-rod
+          </span>
+          <span
+            className="sc-bZQynM kXoohU"
+          >
+            static
+          </span>
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Types
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          <span
+            className="sc-bZQynM kXoohU"
+          >
+            electric
+          </span>
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Experience
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        />
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Height
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        />
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Weight
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        />
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          hp
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          35
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          speed
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          90
+        </div>
+      </div>
+    </div>
+    <h3
+      className="sc-htoDjs dLESzS"
+    >
+      Related pokemons
+    </h3>
+    <div
+      className="sc-gzVnrw jXalhU"
+    >
+      <a
+        className="sc-dnqmqq ceKmmb"
+        href="/pokemon/1"
+      >
+        <img
+          alt="bulbasaur"
+          className="sc-iwsKbI kqtvOR"
+        />
+        <p
+          className="sc-gZMcBi bImbSu"
+        >
+          bulbasaur
+        </p>
+      </a>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`<PokemonPage /> tests Should render spinner for main content 1`] = `
+<div
+  className="sc-VigVT iybjHG"
+>
+  <main
+    className="sc-jTzLTM jTgrwB"
+  >
+    <svg
+      aria-hidden="true"
+      className="svg-inline--fa fa-spinner fa-w-16 sc-bdVaJa flmXWk"
+      data-icon="spinner"
+      data-prefix="fas"
+      focusable="false"
+      role="img"
+      style={Object {}}
+      viewBox="0 0 512 512"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+        fill="currentColor"
+        style={Object {}}
+      />
+    </svg>
+    <div
+      className="sc-bwzfXH gQGX"
+    >
+      <img
+        alt="pikachu"
+        className="sc-htpNat ihZMVi"
+        src="#"
+      />
+      <div
+        className="sc-bxivhb iMxPcQ"
+      >
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Name
+        </div>
+        <div
+          className="sc-EHOje uksKz"
+        >
+          pikachu
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Abilities
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          <span
+            className="sc-bZQynM kXoohU"
+          >
+            lightning-rod
+          </span>
+          <span
+            className="sc-bZQynM kXoohU"
+          >
+            static
+          </span>
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Types
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          <span
+            className="sc-bZQynM kXoohU"
+          >
+            electric
+          </span>
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Experience
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        />
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Height
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        />
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Weight
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        />
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          hp
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          35
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          speed
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          90
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`<PokemonPage /> tests Should render spinner for related content 1`] = `
+<div
+  className="sc-VigVT iybjHG"
+>
+  <main
+    className="sc-jTzLTM jTgrwB"
+  >
+    <div
+      className="sc-bwzfXH gQGX"
+    >
+      <img
+        alt="pikachu"
+        className="sc-htpNat ihZMVi"
+        src="#"
+      />
+      <div
+        className="sc-bxivhb iMxPcQ"
+      >
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Name
+        </div>
+        <div
+          className="sc-EHOje uksKz"
+        >
+          pikachu
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Abilities
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          <span
+            className="sc-bZQynM kXoohU"
+          >
+            lightning-rod
+          </span>
+          <span
+            className="sc-bZQynM kXoohU"
+          >
+            static
+          </span>
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Types
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          <span
+            className="sc-bZQynM kXoohU"
+          >
+            electric
+          </span>
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Experience
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        />
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Height
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        />
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          Weight
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        />
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          hp
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          35
+        </div>
+        <div
+          className="sc-ifAKCX WMAKS"
+        >
+          speed
+        </div>
+        <div
+          className="sc-EHOje fgZDWy"
+        >
+          90
+        </div>
+      </div>
+    </div>
+    <svg
+      aria-hidden="true"
+      className="svg-inline--fa fa-spinner fa-w-16 sc-bdVaJa flmXWk"
+      data-icon="spinner"
+      data-prefix="fas"
+      focusable="false"
+      role="img"
+      style={Object {}}
+      viewBox="0 0 512 512"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+        fill="currentColor"
+        style={Object {}}
+      />
+    </svg>
+  </main>
+</div>
+`;

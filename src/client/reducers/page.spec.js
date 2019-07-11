@@ -3,7 +3,7 @@ import deepFreeze from 'deep-freeze';
 import page from './page';
 
 describe('page reducers', () => {
-  it('PAGE_FETCHING success', () => {
+  test('PAGE_FETCHING success', () => {
     const state = {};
     const action = {type: PAGE_FETCHING};
 
@@ -17,7 +17,7 @@ describe('page reducers', () => {
     });
   });
 
-  it('PAGE_RECEIVED succes', () => {
+  test('PAGE_RECEIVED succes', () => {
     const state = {};
     const action = {
       type: PAGE_RECEIVED,
@@ -42,7 +42,7 @@ describe('page reducers', () => {
     });
   });
 
-  it('PAGE_ERROR succes', () => {
+  test('PAGE_ERROR succes', () => {
     const state = {};
     const error = new Error('something goes wrong');
     const action = {
@@ -58,5 +58,11 @@ describe('page reducers', () => {
       isLoading: false,
       error
     });
+  });
+
+  test('Should return state if type does not match any existing', () => {
+    const state = {};
+    const action = {type: 'Unknown type'};
+    expect(page(state, action)).toEqual(state);
   });
 });

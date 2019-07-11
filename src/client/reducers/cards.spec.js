@@ -3,7 +3,7 @@ import deepFreeze from 'deep-freeze';
 import cards from './cards';
 
 describe('cards reducers', () => {
-  it('CARDS_FETCHING succes', () => {
+  test('CARDS_FETCHING succes', () => {
     const state = {};
     const action = {type: CARDS_FETCHING};
 
@@ -17,7 +17,7 @@ describe('cards reducers', () => {
     });
   });
 
-  it('CARDS_RECEIVED succes', () => {
+  test('CARDS_RECEIVED succes', () => {
     const state = {};
     const action = {
       type: CARDS_RECEIVED,
@@ -46,7 +46,7 @@ describe('cards reducers', () => {
     });
   });
 
-  it('CARDS_ERROR succes', () => {
+  test('CARDS_ERROR succes', () => {
     const state = {};
     const error = new Error('something goes wrong');
     const action = {
@@ -62,5 +62,11 @@ describe('cards reducers', () => {
       isLoading: false,
       error
     });
+  });
+
+  test('Should return state if type does not match any existing', () => {
+    const state = {};
+    const action = {type: 'Unknown type'};
+    expect(cards(state, action)).toEqual(state);
   });
 });

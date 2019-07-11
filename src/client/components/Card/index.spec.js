@@ -31,10 +31,3 @@ describe('<Card /> snapshot tests', () => {
     expect(tree).toMatchSnapshot();
   });
 });
-
-describe('<Card /> helper functions tests', () => {
-  test('getPokemonPageUrl() test', () => {
-    const id = 7;
-    expect(getPokemonPageUrl(id)).toBe('/pokemon/7');
-  });
-});

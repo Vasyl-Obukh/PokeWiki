@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as Styles from './styles';
-import paths from '../../constants/paths';
 import CardInfo from '../CardInfo';
-
-export const getPokemonPageUrl = id => paths.POKEMON_PAGE.replace(/:\w*$/, id);
+import getPokemonPageUrl from '../../utils/pageUrl';
 
 const Card = (props) => {
   const { name, thumb = '#', id, abilities = [], types = [] } = props.data;

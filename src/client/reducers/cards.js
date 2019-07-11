@@ -5,8 +5,6 @@ const cardsData = (state = {elements: [], count: 0}, action) => {
   switch (type) {
     case CARDS_RECEIVED:
       return {elements, count};
-    default:
-      return state;
   }
 };
 

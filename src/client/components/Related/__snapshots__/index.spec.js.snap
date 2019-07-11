@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Related /> tests Should render correctly if data prop is missing 1`] = `
+Array [
+  <h3
+    className="sc-bwzfXH gJIwTT"
+  >
+    Related pokemons
+  </h3>,
+  <div
+    className="sc-bdVaJa duObhc"
+  />,
+]
+`;
+
+exports[`<Related /> tests Should render correctly if non-required props is missing 1`] = `
+Array [
+  <h3
+    className="sc-bwzfXH gJIwTT"
+  >
+    Related pokemons
+  </h3>,
+  <div
+    className="sc-bdVaJa duObhc"
+  >
+    <a
+      className="sc-htpNat dJebTn"
+      href="/pokemon/1"
+    >
+      <img
+        alt="bulbasaur"
+        className="sc-bxivhb VdiwF"
+      />
+      <p
+        className="sc-ifAKCX YYcQB"
+      >
+        bulbasaur
+      </p>
+    </a>
+    <a
+      className="sc-htpNat dJebTn"
+      href="/pokemon/2"
+    >
+      <img
+        alt="pikachu"
+        className="sc-bxivhb VdiwF"
+        src="/some/url/2"
+      />
+      <p
+        className="sc-ifAKCX YYcQB"
+      >
+        pikachu
+      </p>
+    </a>
+  </div>,
+]
+`;
+
+exports[`<Related /> tests Should render correctly with no missing props 1`] = `
+Array [
+  <h3
+    className="sc-bwzfXH gJIwTT"
+  >
+    Related pokemons
+  </h3>,
+  <div
+    className="sc-bdVaJa duObhc"
+  >
+    <a
+      className="sc-htpNat dJebTn"
+      href="/pokemon/1"
+    >
+      <img
+        alt="bulbasaur"
+        className="sc-bxivhb VdiwF"
+        src="/some/url/1"
+      />
+      <p
+        className="sc-ifAKCX YYcQB"
+      >
+        bulbasaur
+      </p>
+    </a>
+    <a
+      className="sc-htpNat dJebTn"
+      href="/pokemon/2"
+    >
+      <img
+        alt="pikachu"
+        className="sc-bxivhb VdiwF"
+        src="/some/url/2"
+      />
+      <p
+        className="sc-ifAKCX YYcQB"
+      >
+        pikachu
+      </p>
+    </a>
+  </div>,
+]
+`;

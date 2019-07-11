@@ -34,7 +34,6 @@ export class Cards extends Component {
 
   render() {
     const { isLoading, elements = [], error } = this.props;
-
     if (isLoading) {
       return <Spinner />;
     }
@@ -54,7 +53,7 @@ export class Cards extends Component {
 
 export const mapStateToProps = (
   { cards: {data = {}, isLoading, error} },
-  { searchParams = new URLSearchParams() } = {}
+  { searchParams = new URLSearchParams() }
 ) => {
   const evoLevels = searchParams.get('evoLevels');
   const types = searchParams.get('types');
@@ -62,7 +61,7 @@ export const mapStateToProps = (
   return {
     searchParams: {
       page: parseInt(searchParams.get('page')) || 1,
-      evoLevels: evoLevels ? evoLevels.split(',') : [],
+      evoLevels: evoLevels ? evoLevels.split(',').map(_ => Number.parseInt(_)) : [],
       types: types ? types.split(',') : [],
       search: searchParams.get('search')
     },

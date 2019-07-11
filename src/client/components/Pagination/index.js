@@ -1,44 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import fetchPageNumbers from './pageNumbers';
 import { getPagesAmount } from '../../selectors/index';
+import * as Styles from './styles';
 
-const PaginationList = styled.ul`
-  display: flex;
-  padding: 0;
-  justify-content: center;
-`;
-
-const PaginationListItem = styled.li`
-  list-style: none;
-  color: white;
-`;
-
-const PaginationItem = styled.a`
-  display: flex;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin: 0 5px;
-  align-items: center;
-  justify-content: center;
-  background-color: ${props => props.current ? 'white' : props.theme.backgroundPrimary};
-  border: ${props => props.current ? `1px solid ${props.theme.backgroundPrimary}` : 'none' };
-  color: ${props => props.current ? props.theme.backgroundPrimary : 'inherit'};
-  text-decoration: none;
-`;
-
-const Pagination = ({
+export const Pagination = ({
   pagesAmount,
   currentPage,
   search
 }) => {
-  if (!pagesAmount || pagesAmount === 1) return null;
+  if (!pagesAmount || pagesAmount < 2) return null;
 
   const dots = '...';
   const pages = fetchPageNumbers(pagesAmount, currentPage);
@@ -49,39 +23,39 @@ const Pagination = ({
   next.set('page', currentPage + 1);
 
   return (
-    <PaginationList>
+    <Styles.List>
       {currentPage !== 1 ? (
-        <PaginationListItem>
-          <PaginationItem as={Link} to={'?' + prev}>
+        <Styles.ListItem>
+          <Styles.Item to={'?' + prev}>
             <FontAwesomeIcon icon={faChevronLeft} />
-          </PaginationItem>
-        </PaginationListItem>
+          </Styles.Item>
+        </Styles.ListItem>
       ) : null}
 
       {pages.map((page, index) => {
         const searchParams = new URLSearchParams(search);
         searchParams.set('page', page);
         return (
-          <PaginationListItem key={index}>
+          <Styles.ListItem key={index}>
             {page === dots ? (
-              <PaginationItem as='span'>{dots}</PaginationItem>
+              <Styles.Item as='span'>{dots}</Styles.Item>
             ) : page === currentPage ? (
-              <PaginationItem current as='span'>{page}</PaginationItem>
+              <Styles.Item current as='span'>{page}</Styles.Item>
             ) : (
-              <PaginationItem as={Link} to={'?' + searchParams}>{page}</PaginationItem>
+              <Styles.Item to={'?' + searchParams}>{page}</Styles.Item>
             )}
-          </PaginationListItem>
+          </Styles.ListItem>
         );
       })}
 
       {currentPage !== pagesAmount ? (
-        <PaginationListItem>
-          <PaginationItem as={Link} to={'?' + next}>
+        <Styles.ListItem>
+          <Styles.Item to={'?' + next}>
             <FontAwesomeIcon icon={faChevronRight} />
-          </PaginationItem>
-        </PaginationListItem>
+          </Styles.Item>
+        </Styles.ListItem>
       ) : null}
-    </PaginationList>
+    </Styles.List>
   );
 };
 
@@ -91,8 +65,10 @@ Pagination.propTypes = {
   search: PropTypes.object
 };
 
+export const mapStateToProps = state => ({
+  pagesAmount: getPagesAmount(state)
+});
+
 export default connect(
-  state => ({
-    pagesAmount: getPagesAmount(state)
-  })
+  mapStateToProps
 )(Pagination);

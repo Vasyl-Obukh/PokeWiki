@@ -1,6 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import Enzyme, { mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import { Cards, mapStateToProps } from './index';
+
+Enzyme.configure({adapter: new Adapter()});
 
 describe('<Cards /> tests', () => {
   let props;
@@ -12,8 +16,8 @@ describe('<Cards /> tests', () => {
       error: undefined,
       search: 'page=2&&types=normal,fire&&evoLevels=1,2&&search=bulbasaur',
       searchParams: {
-        page: '2',
-        evoLevels: ['1', '2'],
+        page: 2,
+        evoLevels: [1, 2],
         types: ['normal', 'fire'],
         search: 'bulbasaur'
       },
@@ -30,6 +34,12 @@ describe('<Cards /> tests', () => {
   test('Should invoke fetchCards only once', () => {
     renderer.create(<Cards {...props}/>);
     expect(props.fetchCards.mock.calls.length).toBe(1);
+  });
+
+  test('Should update on search prop change', () => {
+    const component = mount(<Cards {...props}/>);
+    component.setProps({search: 'page=1'});
+    expect(props.fetchCards.mock.calls.length).toBe(2);
   });
 
   test('Should render spinner', () => {
@@ -74,11 +84,11 @@ describe('Connect functions tests', () => {
     };
   });
 
-  test('mapStateToProps() with full set of params', () => {
+  test('Should render correctly with full set of params', () => {
     expect(mapStateToProps(state, props)).toEqual({
       searchParams: {
         page: 2,
-        evoLevels: ['1', '2'],
+        evoLevels: [1, 2],
         types: ['normal', 'fire'],
         search: 'bulbasaur'
       },
@@ -89,8 +99,10 @@ describe('Connect functions tests', () => {
     });
   });
 
-  test('mapStateToProps() without props', () => {
-    expect(mapStateToProps(state)).toEqual({
+  test('Should render correctly without search params', () => {
+    delete props.searchParams;
+
+    expect(mapStateToProps(state, props)).toEqual({
       searchParams: {
         page: 1,
         evoLevels: [],
@@ -115,7 +127,7 @@ describe('Connect functions tests', () => {
     expect(mapStateToProps(state, props)).toEqual({
       searchParams: {
         page: 2,
-        evoLevels: ['1', '2'],
+        evoLevels: [1, 2],
         types: ['normal', 'fire'],
         search: 'bulbasaur'
       },

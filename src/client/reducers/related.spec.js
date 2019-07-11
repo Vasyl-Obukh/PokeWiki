@@ -3,7 +3,7 @@ import deepFreeze from 'deep-freeze';
 import related from './related';
 
 describe('related reducers', () => {
-  it('RELATED_FETCHING success', () => {
+  test('RELATED_FETCHING success', () => {
     const state = {};
     const action = {type: RELATED_FETCHING};
 
@@ -16,7 +16,7 @@ describe('related reducers', () => {
     });
   });
 
-  it('RELATED_RECEIVED succes', () => {
+  test('RELATED_RECEIVED succes', () => {
     const state = {};
     const action = {
       type: RELATED_RECEIVED,
@@ -36,5 +36,11 @@ describe('related reducers', () => {
       }],
       isLoading: false,
     });
+  });
+
+  test('Should return state if type does not match any existing', () => {
+    const state = {};
+    const action = {type: 'Unknown type'};
+    expect(related(state, action)).toEqual(state);
   });
 });

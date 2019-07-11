@@ -24,7 +24,6 @@ const run = () => {
     })
     .then(updateWithEvoLevel)
     .then(data => {
-      //console.log({data: data.slice(0,5)});
       threads.parentPort.postMessage({type: 'data', value: data});
     })
     .then(() => {

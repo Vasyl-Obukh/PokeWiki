@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm, FormSection, Field } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 import * as Styles from './styles';
 import filters from '../../constants/filters';
 
@@ -41,4 +42,25 @@ FilterForm = reduxForm({
   form: 'filter'
 })(FilterForm);
 
-export default FilterForm;
+export const mapStateToProps = (state, props) => {
+  const query = new URLSearchParams(props.search);
+  const typesString = query.get('types');
+  const evoLevelsString = query.get('evoLevels');
+  const types = typesString ?
+    typesString.split(',').map(_ => [_, true])
+    : [];
+  const evoLevels = evoLevelsString ?
+    evoLevelsString.split(',').map(_ => [_, true])
+    : [];
+
+  return {
+    initialValues: {
+      types: Object.fromEntries(types),
+      evoLevels: Object.fromEntries(evoLevels)
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps
+)(FilterForm);

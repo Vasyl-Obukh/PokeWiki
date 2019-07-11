@@ -1,59 +1,59 @@
-const path               = require("path");
-const webpack            = require("webpack");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const HtmlWebpackPlugin  = require("html-webpack-plugin");
-const CopyWebpackPlugin  = require("copy-webpack-plugin");
-const ImageminPlugin     = require("imagemin-webpack-plugin").default;
-const ExtractTextPlugin  = require("extract-text-webpack-plugin");
+const path               = require('path');
+const webpack            = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin  = require('html-webpack-plugin');
+const CopyWebpackPlugin  = require('copy-webpack-plugin');
+const ImageminPlugin     = require('imagemin-webpack-plugin').default;
+const ExtractTextPlugin  = require('extract-text-webpack-plugin');
 
 const conf = {
   entry: {
-    index: path.join(__dirname, "src/client/index.js")
+    index: path.join(__dirname, 'src/client/index.js')
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "index.js",
-    publicPath: "/"
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index.js',
+    publicPath: '/'
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader"
+        loader: 'babel-loader'
       },
       {
         test: /\.(c|sa|sc)ss$/,
         use: ExtractTextPlugin.extract({
-          use: ["css-loader", "postcss-loader", "sass-loader"]
+          use: ['css-loader', 'postcss-loader', 'sass-loader']
         })
       },
       {
         test: /\.(png|gif|jpe?g)$/,
         loaders: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "/assets/images/[name].[ext]"
+              name: '/static/images/[name].[ext]'
             }
           },
-          "img-loader"
+          'img-loader'
         ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "/assets/fonts/[name].[ext]"
+              name: '/assets/fonts/[name].[ext]'
             }
           }
         ]
       },
       {
         test: /\.svg$/,
-        loader: "svg-url-loader"
+        loader: 'svg-url-loader'
       }
     ]
   },
@@ -63,28 +63,28 @@ const conf = {
     historyApiFallback: true,
     publicPath: '/',
     proxy: {
-      "/api/": "http://localhost:8000"
+      '/api/': 'http://localhost:8000'
     }
   },
   plugins: [
-    new CleanWebpackPlugin(["dist"]),
+    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
-      favicon: "./public/favicon.ico"
+      template: './public/index.html',
+      favicon: './public/favicon.ico'
     }),
     new CopyWebpackPlugin([
       {
-        from: "./src/client/assets/images",
-        to: "./assets/images"
+        from: './src/client/static/images',
+        to: './static/images'
       }
     ]),
-    new ExtractTextPlugin("./assets/styles/index.css")
+    new ExtractTextPlugin('./assets/styles/index.css')
   ]
 };
 
 module.exports = (env, options) => {
-  let production = options.mode === "production";
-  conf.devtool = production ? false/* 'source-map' */ : "eval-sourcemap";
+  let production = options.mode === 'production';
+  conf.devtool = production ? false/* 'source-map' */ : 'eval-sourcemap';
   if (production) {
     conf.plugins.push(
       new ImageminPlugin({

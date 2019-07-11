@@ -1,80 +1,32 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import * as Styles from './styles';
 
-const PokemonWrapper = styled.div`
-  display: flex;
-  padding-bottom: 50px;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const PokemonImage = styled.img`
-  width: 275px;
-  height: 275px;
-  border-radius: 50%;
-  background-color: #f0f0f0;
-  box-shadow: 0 0 5px darkslategray;
-`;
-
-const PokemonInfo = styled.div`
-  display: grid;
-  margin-top: 25px;
-  grid-template-columns: auto auto;
-  grid-column-gap: 5px;
-  grid-row-gap: 10px;
-  justify-content: center;
-`;
-
-const InfoKey = styled.div`
-  font-weight: bold;
-  text-transform: capitalize;
-  text-align: right;
-  
-  &::after {
-    content: ':';
-  }
-`;
-
-const InfoValue = styled.div`
-  font-style: italic;
-  font-weight: ${props => props.primary ? 'bold' : 'normal'};
-  text-transform: ${props => props.primary ? 'uppercase' : 'none'};
-`;
-
-const ValueItem = styled.span`
-  padding: 5px;
-  
-  &:not(:first-child) {
-    border-left: 1px solid gray;
-  }
-`;
-
-const Pokemon = ({ data: {thumb, name, abilities, types, baseExperience, height, weight, stats} }) => {
+const Pokemon = ({ data: {thumb = '#', name, abilities, types, baseExperience, height, weight, stats} }) => {
   return (
-    <PokemonWrapper>
-      <PokemonImage src={thumb} alt={name} />
-      <PokemonInfo>
-        <InfoKey>Name</InfoKey>
-        <InfoValue primary>{name}</InfoValue>
-        <InfoKey>Abilities</InfoKey>
-        <InfoValue>{abilities.map(_ => <ValueItem key={_}>{_}</ValueItem>)}</InfoValue>
-        <InfoKey>Types</InfoKey>
-        <InfoValue>{types.map(_ => <ValueItem key={_}>{_}</ValueItem>)}</InfoValue>
-        <InfoKey>Experience</InfoKey>
-        <InfoValue>{baseExperience}</InfoValue>
-        <InfoKey>Height</InfoKey>
-        <InfoValue>{height}</InfoValue>
-        <InfoKey>Weight</InfoKey>
-        <InfoValue>{weight}</InfoValue>
+    <Styles.Wrapper>
+      <Styles.Image src={thumb} alt={name} />
+      {name && <Styles.Info>
+        <Styles.InfoKey>Name</Styles.InfoKey>
+        <Styles.InfoValue primary>{name}</Styles.InfoValue>
+        <Styles.InfoKey>Abilities</Styles.InfoKey>
+        <Styles.InfoValue>{abilities.map(_ => <Styles.ValueItem key={_}>{_}</Styles.ValueItem>)}</Styles.InfoValue>
+        <Styles.InfoKey>Types</Styles.InfoKey>
+        <Styles.InfoValue>{types.map(_ => <Styles.ValueItem key={_}>{_}</Styles.ValueItem>)}</Styles.InfoValue>
+        <Styles.InfoKey>Experience</Styles.InfoKey>
+        <Styles.InfoValue>{baseExperience}</Styles.InfoValue>
+        <Styles.InfoKey>Height</Styles.InfoKey>
+        <Styles.InfoValue>{height}</Styles.InfoValue>
+        <Styles.InfoKey>Weight</Styles.InfoKey>
+        <Styles.InfoValue>{weight}</Styles.InfoValue>
         {stats.map(_ => (
           <Fragment key={_.name}>
-            <InfoKey>{_.name}</InfoKey>
-            <InfoValue>{_.base}</InfoValue>
+            <Styles.InfoKey>{_.name}</Styles.InfoKey>
+            <Styles.InfoValue>{_.base}</Styles.InfoValue>
           </Fragment>
         ))}
-      </PokemonInfo>
-    </PokemonWrapper>
+      </Styles.Info>}
+    </Styles.Wrapper>
   );
 };
 

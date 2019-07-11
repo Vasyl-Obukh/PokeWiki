@@ -23,7 +23,6 @@ worker.on('message', message => {
       case 'data':
         if (message.value) {
           message.value.forEach(el => {
-            //console.log(el);
             client.set(el.id, JSON.stringify(el));
             count = el.id > count ? el.id : count;
           });

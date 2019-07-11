@@ -6,7 +6,7 @@ import configureStore from 'redux-mock-store';
 import Header from './index';
 
 describe('<Header /> tests', () => {
-  test('snapshot test', () => {
+  test('Should render correctly', () => {
     const mockStore = configureStore();
     const initialState = {};
     const store = mockStore(initialState);
