@@ -1,8 +1,10 @@
 module.exports = (elements, n) => {
-  return [...Array(n)].map(() => {
-    let rand = Math.floor(Math.random() * elements.length);
-    const result = elements[rand];
-    elements.splice(rand, 1);
+  const elementsCopy = [...elements];
+  const size = elements.length > n ? n : elements.length;
+  return [...Array(size)].map(() => {
+    const rand = Math.floor(Math.random() * elementsCopy.length);
+    const result = elementsCopy[rand];
+    elementsCopy.splice(rand, 1);
     return result;
   });
 };

@@ -1,6 +1,6 @@
 import { CARDS_RECEIVED, CARDS_FETCHING, CARDS_ERROR } from '../constants/actionTypes';
 
-const cardsData = (state = {elements: [], count: 0}, action) => {
+const cardsData = (state, action) => {
   const {type, data: { elements, count }} = action;
   switch (type) {
     case CARDS_RECEIVED:

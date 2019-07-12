@@ -117,7 +117,7 @@ describe('<PokemonPage /> connect functions tests', () => {
     });
   });
 
-  test('mapDispatchToProps() should work correctly', () => {
+  test('mapDispatchToProps() should return correct action object', () => {
     const dispatch = jest.fn();
     const id = 7;
 

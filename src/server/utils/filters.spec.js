@@ -34,10 +34,18 @@ describe('filterBySearch()', () => {
         search: 'pikachu'
       }
     };
-    expect(filterBySearch(argument)).toEqual(argument);
+    expect(filterBySearch(argument)).toEqual({
+      value: [],
+      filters: {
+        search: 'pikachu'
+      }
+    });
 
     delete argument.filters.search;
-    expect(filterBySearch(argument)).toEqual(argument);
+    expect(filterBySearch(argument)).toEqual({
+      value: [],
+      filters: {}
+    });
   });
 
   test('Should return object with value prop containing array with objects which similar or exact as search filter', () => {
@@ -54,6 +62,14 @@ describe('filterBySearch()', () => {
       }
     });
   });
+
+  test('Should return equal object if filters prop is missing', () => {
+    const argument = {value: [{name: 'pikachu'}, {name: 'bulbasaur'}]};
+    expect(filterBySearch(argument)).toEqual({
+      value: [{name: 'pikachu'}, {name: 'bulbasaur'}],
+      filters: {}
+    });
+  });
 });
 
 describe('filterByTypes()', () => {
@@ -64,13 +80,26 @@ describe('filterByTypes()', () => {
         types: ['fire', 'grass']
       }
     };
-    expect(filterByTypes(argument)).toEqual(argument);
+    expect(filterByTypes(argument)).toEqual({
+      value: [],
+      filters: {
+        types: ['fire', 'grass']
+      }
+    });
 
     argument.filters.types = [];
-    expect(filterByTypes(argument)).toEqual(argument);
+    expect(filterByTypes(argument)).toEqual({
+      value: [],
+      filters: {
+        types: []
+      }
+    });
 
     delete argument.filters.types;
-    expect(filterByTypes(argument)).toEqual(argument);
+    expect(filterByTypes(argument)).toEqual({
+      value: [],
+      filters: {}
+    });
   });
 
   test('Should return object with value prop containing array with objects with at least one of types', () => {
@@ -94,6 +123,14 @@ describe('filterByTypes()', () => {
       }
     });
   });
+
+  test('Should return equal object if filters prop is missing', () => {
+    const argument = {value: [{name: 'pikachu'}, {name: 'bulbasaur'}]};
+    expect(filterByTypes(argument)).toEqual({
+      value: [{name: 'pikachu'}, {name: 'bulbasaur'}],
+      filters: {}
+    });
+  });
 });
 
 describe('filterByEvolutionLevels()', () => {
@@ -104,13 +141,26 @@ describe('filterByEvolutionLevels()', () => {
         evoLevels: [1, 2]
       }
     };
-    expect(filterByEvolutionLevels(argument)).toEqual(argument);
+    expect(filterByEvolutionLevels(argument)).toEqual({
+      value: [],
+      filters: {
+        evoLevels: [1, 2]
+      }
+    });
 
-    argument.filters.types = [];
-    expect(filterByEvolutionLevels(argument)).toEqual(argument);
+    argument.filters.evoLevels = [];
+    expect(filterByEvolutionLevels(argument)).toEqual({
+      value: [],
+      filters: {
+        evoLevels: []
+      }
+    });
 
-    delete argument.filters.types;
-    expect(filterByEvolutionLevels(argument)).toEqual(argument);
+    delete argument.filters.evoLevels;
+    expect(filterByEvolutionLevels(argument)).toEqual({
+      value: [],
+      filters: {}
+    });
   });
 
   test('Should return object with value prop containing array with objects with one of levels', () => {
@@ -134,6 +184,14 @@ describe('filterByEvolutionLevels()', () => {
       }
     });
   });
+
+  test('Should return equal object if filters prop is missing', () => {
+    const argument = {value: [{name: 'pikachu'}, {name: 'bulbasaur'}]};
+    expect(filterByEvolutionLevels(argument)).toEqual({
+      value: [{name: 'pikachu'}, {name: 'bulbasaur'}],
+      filters: {}
+    });
+  });
 });
 
 describe('createPipeline()', () => {
@@ -145,15 +203,52 @@ describe('createPipeline()', () => {
         {name: 'pikachu', evoLevel: 1, types: ['electric']},
         {name: 'charmander', evoLevel: 2, types: ['dragon', 'fire']},
         {name: 'bulbasaur', evoLevel: 3, types: ['grass', 'poison']},
-        {name: 'pikachu', evoLevel: 1, types: ['grass']},
-        {name: 'charmander', evoLevel: 4, types: ['dragon', 'fire']},
-        {name: 'bulbasaur', evoLevel: 3, types: ['poison']}
+        {name: 'raichu', evoLevel: 2, types: ['electric']},
+        {name: 'charizard', evoLevel: 4, types: ['dragon', 'fire']},
+        {name: 'ivysaur', evoLevel: 3, types: ['poison']},
+        {name: 'smoochum', evoLevels: 1, types: ['psychic', 'ice']}
       ],
       filters: {
-        evoLevels: [1, 3]
+        search: '',
+        types: [],
+        evoLevels: [],
       }
     };
   });
 
-  test()
+  test('Should return object with value property containing objects filtered by one function', () => {
+    argument.filters.search = 'char';
+    expect(createPipeline(filterBySearch)(argument)).toEqual({
+      value: [
+        {name: 'charmander', evoLevel: 2, types: ['dragon', 'fire']},
+        {name: 'charizard', evoLevel: 4, types: ['dragon', 'fire']}
+      ],
+      filters: {
+        search: 'char',
+        types: [],
+        evoLevels: [],
+      }
+    });
+  });
+
+  test('Should return object with value property containing objects filtered by all passed functions', () => {
+    argument.filters = {
+      search: 'chu',
+      types: ['electric'],
+      evoLevels: [1]
+    };
+
+    expect(createPipeline(filterBySearch, filterByTypes, filterByEvolutionLevels)(argument)).toEqual({
+      value: [{name: 'pikachu', evoLevel: 1, types: ['electric']}],
+      filters: {
+        search: 'chu',
+        types: ['electric'],
+        evoLevels: [1]
+      }
+    });
+  });
+
+  test('Should return equal objects filters params is empty', () => {
+    expect(createPipeline(filterBySearch)(argument)).toEqual(argument);
+  });
 });

@@ -43,4 +43,10 @@ describe('related reducers', () => {
     const action = {type: 'Unknown type'};
     expect(related(state, action)).toEqual(state);
   });
+
+  test('Should work correctly if to state prop is missing', () => {
+    const state = undefined;
+    const action = {type: 'Unknown type'};
+    expect(related(state, action)).toEqual({data: [], isLoading: false});
+  });
 });

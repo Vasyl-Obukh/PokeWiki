@@ -8,15 +8,16 @@ const getEntityFullData = _ => ({
 
 const getEntityData = _ => ({
   name: _.name,
-  id: _.id > 807 ? normalizeId(_.id) : _.id,
+  id: normalizeId(_.id),
   thumb: _.sprites ? _.sprites.front_default : '',
   abilities: _.abilities ? _.abilities.map(_ => _.ability.name) : [],
   types: _.types ? _.types.map(_ => _.type.name) : []
 });
 
-const normalizeId = id => id - 9193;
+const normalizeId = id => id > 807 ? id - 9193 : id;
 
 module.exports = {
   getEntityFullData,
-  getEntityData
+  getEntityData,
+  normalizeId
 };

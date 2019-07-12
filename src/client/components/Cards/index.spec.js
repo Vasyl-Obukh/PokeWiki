@@ -2,7 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { Cards, mapStateToProps } from './index';
+import { Cards, mapStateToProps, mapDispatchToProps } from './index';
+import { CARDS_REQUESTED } from '../../constants/actionTypes';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -12,7 +13,7 @@ describe('<Cards /> tests', () => {
   beforeEach(() => {
     props = {
       isLoading: false,
-      elements: [],
+      elements: undefined,
       error: undefined,
       search: 'page=2&&types=normal,fire&&evoLevels=1,2&&search=bulbasaur',
       searchParams: {
@@ -40,6 +41,12 @@ describe('<Cards /> tests', () => {
     const component = mount(<Cards {...props}/>);
     component.setProps({search: 'page=1'});
     expect(props.fetchCards.mock.calls.length).toBe(2);
+  });
+
+  test('Should not update if search prop did not changed', () => {
+    const component = mount(<Cards {...props}/>);
+    component.setProps({search: props.search});
+    expect(props.fetchCards.mock.calls.length).toBe(1);
   });
 
   test('Should render spinner', () => {
@@ -116,7 +123,24 @@ describe('Connect functions tests', () => {
     });
   });
 
-  test('mapStateToProps() ', () => {
+  test('Should render correctly without data prop', () => {
+    delete state.cards.data;
+
+    expect(mapStateToProps(state, props)).toEqual({
+      searchParams: {
+        page: 2,
+        evoLevels: [1, 2],
+        types: ['normal', 'fire'],
+        search: 'bulbasaur'
+      },
+      search: props.searchParams.toString(),
+      elements: [],
+      isLoading: false,
+      error: undefined
+    });
+  });
+
+  test('mapStateToProps() should work correctly', () => {
     state.cards.data.elements = [
       {name: 'bulbasaur', id: 1},
       {name: 'pikachu', id: 2}
@@ -138,6 +162,22 @@ describe('Connect functions tests', () => {
       ],
       isLoading: true,
       error: 'Something goes wrong...'
+    });
+  });
+
+  test('mapDispatchToProps() should return correct action object', () => {
+    const dispatch = jest.fn();
+    const searchParams = {
+      page: 2,
+      evoLevels: [1, 2],
+      types: ['normal', 'fire'],
+      search: 'bulbasaur'
+    };
+
+    mapDispatchToProps(dispatch).fetchCards(searchParams);
+    expect(dispatch.mock.calls[0][0]).toEqual({
+      type: CARDS_REQUESTED,
+      url: '/api/pages/2/?filters={\"search\":\"bulbasaur\",\"types\":[\"normal\",\"fire\"],\"evoLevels\":[1,2]}',
     });
   });
 });

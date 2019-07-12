@@ -1,30 +1,33 @@
-const redis = require('redis');
 const threads = require('worker_threads');
 const { Worker } = threads;
 const { getEntityData } = require('./selectors');
-
 const worker = new Worker(__dirname + '/indexingWorker.js');
-const client = redis.createClient();
-const callbacks = { 'end': [] };
-let running = false;
-let count = 0;
+
+const state = {
+  callbacks: { 'end': [] },
+  running: false,
+  count: 0,
+};
+
+const Redis = require('ioredis');
+const client = new Redis();
 
 client.on('connect', () => console.log('Redis connected...'));
 client.on('error', error => console.log(`Error happened in redis: ${error.message}`));
 
-worker.on('message', message => {
+const messageHandler = message => {
   if (message.type) {
     switch (message.type) {
       case 'fulfilled':
-        running = false;
-        callbacks['end'].forEach(cb => cb());
+        state.running = false;
+        state.callbacks['end'].forEach(cb => cb());
         console.log('Indexing finished...');
         break;
       case 'data':
         if (message.value) {
           message.value.forEach(el => {
             client.set(el.id, JSON.stringify(el));
-            count = el.id > count ? el.id : count;
+            state.count = el.id > state.count ? el.id : state.count;
           });
         }
         break;
@@ -34,34 +37,39 @@ worker.on('message', message => {
   } else {
     console.log(`Worker message: ${message}`);
   }
-});
-
-const start = () => {
-  worker.postMessage({type: 'run'});
-  running = true;
-  console.log('Indexing started...');
 };
 
+worker.on('message', messageHandler);
+
+function init() {
+  worker.postMessage({type: 'run'});
+  state.running = true;
+  console.log('Indexing started...');
+}
+
+// init._callbacks = callbacks;
+// init._running = running;
+
 const startWithInterval = (minutes) => {
-  start();
+  init();
   setInterval(
-    start,
+    init,
     minutes * 60 * 1000
   );
 };
 
 const addIndexListening = (name, cb) => {
-  callbacks[name].push(cb);
+  state.callbacks[name].push(cb);
 };
 
 function* interceptor (next) {
-  if (running) yield indexingPromise();
+  if (state.running) yield indexingPromise();
   yield next;
 }
 
 const indexingPromise = () =>  new Promise(res => addIndexListening('end', () => res()));
 
-const getPokemons = (from = 1, to = count) => {
+const getPokemons = (from = 1, to = state.count) => {
   return new Promise((resolve, reject) => {
     const list = [];
     for (let i = from; i <= to; i++) {
@@ -86,9 +94,13 @@ const getPokemon = (id, full = false) => {
 };
 
 module.exports = {
-  start,
+  init,
+  state,
   startWithInterval,
+  addIndexListening,
   interceptor,
   getPokemon,
-  getPokemons
+  getPokemons,
+  indexingPromise,
+  messageHandler
 };

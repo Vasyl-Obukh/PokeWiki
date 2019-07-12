@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-import { Home, mapStateToProps } from './index';
+import { Home, getCurrentPage, mapStateToProps } from './index';
 import configureStore from 'redux-mock-store';
 
 describe('<Home /> tests', () => {
@@ -33,6 +33,20 @@ describe('<Home /> tests', () => {
 
   test('Should render without pagination', () => {
     props.showPagination = false;
+    const component = renderer.create(
+      <Provider store={store}>
+        <Router>
+          <Home {...props} />
+        </Router>
+      </Provider>
+    );
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Should render correctly if searchParams prop is not provided', () => {
+    delete props.searchParams;
+
     const component = renderer.create(
       <Provider store={store}>
         <Router>
@@ -77,5 +91,27 @@ describe('<Home /> mapStateToProps() tests', () => {
       currentPage: 2,
       searchParams: new URLSearchParams(props.location.search)
     });
+  });
+});
+
+describe('<Home /> helper functions tests', () => {
+  test('getCurrentPage() should return page number that is passed to search string', () => {
+    const searchParams = new URLSearchParams('?page=7');
+    expect(getCurrentPage(searchParams)).toBe(7);
+  });
+
+  test('getCurrentPage() should return page number that is typecasted to integer from value passed to search string', () => {
+    const searchParams = new URLSearchParams('?page=14,&fafs');
+    expect(getCurrentPage(searchParams)).toBe(14);
+  });
+
+  test('getCurrentPage() should return 1 if page parameter is not provided', () => {
+    const searchParams = new URLSearchParams('?types=fire,electric');
+    expect(getCurrentPage(searchParams)).toBe(1);
+  });
+
+  test('getCurrentPage() should return 1 if page parameter can not be typecasted no integer', () => {
+    const searchParams = new URLSearchParams('?page=second');
+    expect(getCurrentPage(searchParams)).toBe(1);
   });
 });

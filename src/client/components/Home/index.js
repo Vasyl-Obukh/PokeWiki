@@ -8,7 +8,7 @@ import Sidebar from '../Sidebar';
 import Pagination from '../Pagination';
 import { showPagination } from '../../selectors';
 
-export const Home = ({ showPagination, currentPage, searchParams = {} }) => {
+export const Home = ({ showPagination, currentPage, searchParams = new URLSearchParams() }) => {
   return (
     <Styles.Wrapper>
       <Styles.Main>
@@ -26,11 +26,13 @@ Home.propTypes = {
   searchParams: PropTypes.object
 };
 
+export const getCurrentPage = searchParams => parseInt(searchParams.get('page')) || 1;
+
 export const mapStateToProps = (state, props) => {
   const searchParams = new URLSearchParams(props.location.search);
   return {
     showPagination: showPagination(state),
-    currentPage: parseInt(searchParams.get('page')) || 1,
+    currentPage: getCurrentPage(searchParams),
     searchParams
   };
 };
