@@ -88,3 +88,7 @@ const fetching = (urls, cb) => {
     });
   });
 };
+
+module.export = {
+  fetching
+};
