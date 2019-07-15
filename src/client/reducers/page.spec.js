@@ -2,8 +2,8 @@ import {PAGE_RECEIVED, PAGE_FETCHING, PAGE_ERROR } from '../constants/actionType
 import deepFreeze from 'deep-freeze';
 import page from './page';
 
-describe('page reducers', () => {
-  test('PAGE_FETCHING success', () => {
+describe('Page reducers tests', () => {
+  test('Should set "isLoading" property to true and the others to default on page fetching', () => {
     const state = {};
     const action = {type: PAGE_FETCHING};
 
@@ -17,7 +17,7 @@ describe('page reducers', () => {
     });
   });
 
-  test('PAGE_RECEIVED succes', () => {
+  test('Should assign fetched data to "data" property and set the others to default when page received', () => {
     const state = {};
     const action = {
       type: PAGE_RECEIVED,
@@ -42,7 +42,7 @@ describe('page reducers', () => {
     });
   });
 
-  test('PAGE_ERROR succes', () => {
+  test('Should assign "error" property to received error and the others to default on cards error', () => {
     const state = {};
     const error = new Error('something goes wrong');
     const action = {
@@ -66,7 +66,7 @@ describe('page reducers', () => {
     expect(page(state, action)).toEqual(state);
   });
 
-  test('Should work correctly if to state prop is missing', () => {
+  test('Should work correctly if state prop is missing', () => {
     const state = undefined;
     const action = {type: 'Unknown type'};
     expect(page(state, action)).toEqual({data: null, isLoading: false});

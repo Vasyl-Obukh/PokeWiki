@@ -2,10 +2,7 @@ import { CARDS_RECEIVED, CARDS_FETCHING, CARDS_ERROR } from '../constants/action
 
 const cardsData = (state, action) => {
   const {type, data: { elements, count }} = action;
-  switch (type) {
-    case CARDS_RECEIVED:
-      return {elements, count};
-  }
+  if (type === CARDS_RECEIVED) return {elements, count};
 };
 
 const cards = (state = {isLoading: false, data: {}}, action) => {

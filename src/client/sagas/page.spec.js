@@ -13,7 +13,7 @@ import { fetchLatestPage } from './page';
 import deepFreeze from 'deep-freeze';
 
 describe('page sagas', () => {
-  it('PAGE_REQUESTED SAGA', () => {
+  test('Should fetch pokemon data and then based on its types fetch related pokemons', () => {
     const action = {
       type: PAGE_REQUESTED,
       url: '/api/pokemon/7'

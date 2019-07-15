@@ -4,8 +4,8 @@ import {CARDS_REQUESTED, CARDS_FETCHING, CARDS_ERROR, CARDS_RECEIVED} from '../c
 import { fetchLatestCards } from './cards';
 import deepFreeze from 'deep-freeze';
 
-describe('cards sagas', () => {
-  it('CARDS_REQUESTED SAGA', () => {
+describe('Cards sagas tests', () => {
+  test('Should dispatch fetching start at first, then wait for data and dispatch that cards received or dispatch error on fail', () => {
     const action = {
       type: CARDS_REQUESTED,
       url: '/api/?offset=0&&limit=1'

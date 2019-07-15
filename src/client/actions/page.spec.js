@@ -1,14 +1,13 @@
 import { PAGE_REQUESTED } from '../constants/actionTypes';
-import paths from '../constants/paths';
 import { fetchPage } from './page';
 
-describe('page actions', () => {
-  it('PAGE_REQUESTED success', () => {
+describe('Page actions tests', () => {
+  test('Should return object with "url" property that contains passed "id"', () => {
     const params = 7;
 
     expect(fetchPage(params)).toEqual({
       type: PAGE_REQUESTED,
-      url: `${paths.API_ROOT}/pokemon/7`
+      url: '/api/pokemon/7'
     });
   });
 });

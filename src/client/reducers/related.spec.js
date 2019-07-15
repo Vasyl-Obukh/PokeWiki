@@ -2,8 +2,8 @@ import {RELATED_RECEIVED, RELATED_FETCHING } from '../constants/actionTypes';
 import deepFreeze from 'deep-freeze';
 import related from './related';
 
-describe('related reducers', () => {
-  test('RELATED_FETCHING success', () => {
+describe('Related reducers tests', () => {
+  test('Should set "isLoading" property to true and the others to default on related fetching', () => {
     const state = {};
     const action = {type: RELATED_FETCHING};
 
@@ -16,7 +16,7 @@ describe('related reducers', () => {
     });
   });
 
-  test('RELATED_RECEIVED succes', () => {
+  test('Should assign fetched data to "data" property and set the others to default when related received', () => {
     const state = {};
     const action = {
       type: RELATED_RECEIVED,
@@ -44,7 +44,7 @@ describe('related reducers', () => {
     expect(related(state, action)).toEqual(state);
   });
 
-  test('Should work correctly if to state prop is missing', () => {
+  test('Should work correctly if state prop is missing', () => {
     const state = undefined;
     const action = {type: 'Unknown type'};
     expect(related(state, action)).toEqual({data: [], isLoading: false});

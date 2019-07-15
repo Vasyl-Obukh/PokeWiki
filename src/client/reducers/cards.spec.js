@@ -2,8 +2,8 @@ import { CARDS_RECEIVED, CARDS_FETCHING, CARDS_ERROR } from '../constants/action
 import deepFreeze from 'deep-freeze';
 import cards from './cards';
 
-describe('cards reducers', () => {
-  test('CARDS_FETCHING succes', () => {
+describe('Cards reducers tests', () => {
+  test('Should set "isLoading" property to true and the others to default on cards fetching', () => {
     const state = {};
     const action = {type: CARDS_FETCHING};
 
@@ -17,7 +17,7 @@ describe('cards reducers', () => {
     });
   });
 
-  test('CARDS_RECEIVED succes', () => {
+  test('Should assign fetched data to "data" property and set the others to default when cards received', () => {
     const state = {};
     const action = {
       type: CARDS_RECEIVED,
@@ -46,7 +46,7 @@ describe('cards reducers', () => {
     });
   });
 
-  test('CARDS_ERROR succes', () => {
+  test('Should assign "error" property to received error and the others to default on cards error', () => {
     const state = {};
     const error = new Error('something goes wrong');
     const action = {
@@ -70,7 +70,7 @@ describe('cards reducers', () => {
     expect(cards(state, action)).toEqual(state);
   });
 
-  test('Should work correctly if to state prop is missing', () => {
+  test('Should work correctly if state prop is missing', () => {
     const state = undefined;
     const action = {type: 'Unknown type'};
     expect(cards(state, action)).toEqual({data: {}, isLoading: false});
