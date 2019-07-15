@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import fetchPageNumbers from './pageNumbers';
-import { getPagesAmount } from '../../selectors/index';
+import { getPagesAmount } from '../../selectors';
 import * as Styles from './styles';
 
 export const Pagination = ({

@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
-import store from './store/index';
+import store from './store';
 import ScrollToTop from './components/ScrollToTop';
 import App from './components/App';
 import theme from './utils/theme';

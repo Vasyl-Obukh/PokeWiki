@@ -1,4 +1,4 @@
-const controllers = require('./controllers/index');
+const controllers = require('./controllers');
 const router = require('koa-router')(
   {prefix: '/api'}
 );

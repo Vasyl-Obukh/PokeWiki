@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  server:
+    container_name: server
+    restart: always
+    build: ./server
+    ports:
+      - "8000:8000"
+    links:
+      - redis
+  client:
+    container_name: client
+    restart: always
+    build: ./client
+    ports:
+      - "8080:8080"
+    links:
+      - server
+  redis:
+    image: redis
+    restart: always
+    volumes:
+      - ./storage/redis/data:/data
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes

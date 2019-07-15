@@ -8,7 +8,7 @@ const ExtractTextPlugin  = require('extract-text-webpack-plugin');
 
 const conf = {
   entry: {
-    index: path.join(__dirname, 'src/client/index.js')
+    index: path.join(__dirname, 'src/index.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -74,7 +74,7 @@ const conf = {
     }),
     new CopyWebpackPlugin([
       {
-        from: './src/client/static/images',
+        from: './src/static/images',
         to: './static/images'
       }
     ]),
