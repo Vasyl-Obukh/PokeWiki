@@ -59,12 +59,17 @@ const conf = {
   },
   devServer: {
     port: 8080,
+    host: '0.0.0.0',
     overlay: true,
     historyApiFallback: true,
     publicPath: '/',
-    proxy: {
-      '/api/': 'http://localhost:8000'
-    }
+    disableHostCheck: true,
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://localhost:8000',
+    //     pathRewrite: {'^/api' : ''}
+    //   }
+    // }
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),

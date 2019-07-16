@@ -1,12 +1,17 @@
 FROM node
 
-WORKDIR /client
+ADD . /app
 
-COPY package*.json /client/
+WORKDIR /app
+
+COPY package.json /app
+
+COPY yarn.lock ./app
 
 RUN yarn
 
-COPY . /client/
+COPY . /app
 
 EXPOSE 8080
-CMD [ "yarn", "build"]
+
+CMD yarn dev

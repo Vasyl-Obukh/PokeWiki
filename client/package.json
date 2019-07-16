@@ -13,12 +13,6 @@
     "last 5 versions",
     "ios >= 8"
   ],
-  "jest": {
-    "automock": false,
-    "setupFiles": [
-      "./jestFetch.js"
-    ]
-  },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/plugin-proposal-class-properties": "^7.4.4",

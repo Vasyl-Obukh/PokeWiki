@@ -1,12 +1,13 @@
 FROM node
 
-WORKDIR /server
+WORKDIR /app
 
-COPY package*.json /server/
+COPY package.json /app
 
 RUN yarn
 
-COPY . /server/
+COPY . /app
 
 EXPOSE 8000
-CMD [ "yarn", "dev"]
+
+CMD yarn dev

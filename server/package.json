@@ -9,12 +9,6 @@
   },
   "author": "Vasyl Obukh",
   "license": "MIT",
-  "jest": {
-    "automock": false,
-    "setupFiles": [
-      "./jestFetch.js"
-    ]
-  },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
