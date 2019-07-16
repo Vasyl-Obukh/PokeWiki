@@ -84,7 +84,8 @@ const getPokemons = (from = 1, to = state.count) => {
       client.get(i, (error, data) => {
         if (error) reject(error);
 
-        list.push(JSON.parse(data));
+        const middle = JSON.parse(data);
+        if(middle !== null) list.push(middle);
         if (i === to) resolve(list);
       });
     }
