@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   margin: 15px;
@@ -15,7 +16,7 @@ export const Container = styled.div`
   }
 `;
 
-export const ThumbWrapper = styled.a`
+export const ThumbWrapper = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Info = styled.div`
   padding: 10px 10px 0;
   color: #333;
 `;
 
-export const Name = styled.a`
+export const Name = styled(Link)`
   display: block;
   margin: 0;
   font-size: 18px;

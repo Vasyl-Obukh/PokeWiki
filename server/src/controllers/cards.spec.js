@@ -1,6 +1,6 @@
 jest.mock('ioredis');
 jest.mock('../utils/indexator');
-const indexator = require('../utils/indexator');
+const indexator = require('../utils/store');
 const { getCards } = require('./cards');
 
 describe('Cards controller tests', () => {

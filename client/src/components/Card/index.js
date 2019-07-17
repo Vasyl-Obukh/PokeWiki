@@ -10,7 +10,7 @@ const Card = (props) => {
 
   return (
     <Styles.Container>
-      <Styles.ThumbWrapper href={url}>
+      <Styles.ThumbWrapper to={url}>
         <Styles.Thumb src={thumb} alt={name} />
       </Styles.ThumbWrapper>
       <CardInfo data={{name, url, abilities, types}}>

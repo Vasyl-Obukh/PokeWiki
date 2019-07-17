@@ -1,7 +1,7 @@
-const indexator = require('../utils/indexator');
+const store = require('../utils/store');
 
 function* getPage() {
-  this.body = yield indexator.getPokemon(this.params.id);
+  this.body = yield store.getPokemon(this.params.id);
 }
 
 module.exports = {

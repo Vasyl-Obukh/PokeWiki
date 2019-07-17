@@ -2,7 +2,7 @@ jest.mock('ioredis');
 jest.mock('../utils/randomElements');
 jest.mock('../utils/indexator');
 const getRandomElements = require('../utils/randomElements');
-const indexator = require('../utils/indexator');
+const indexator = require('../utils/store');
 const { getRelated } = require('./related');
 
 describe('Related controller tests', () => {

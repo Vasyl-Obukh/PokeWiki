@@ -5,7 +5,7 @@ import * as Styles from './styles';
 const CardInfo = ({ data: { abilities = [], types = [], name, url = '#' } }) => {
   return (
     <Styles.Info>
-      <Styles.Name href={url}>{name}</Styles.Name>
+      <Styles.Name to={url}>{name}</Styles.Name>
       <Styles.Entry>
         <Styles.Key>Abilities</Styles.Key>
         <Styles.Values>

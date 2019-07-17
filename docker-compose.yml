@@ -1,4 +1,4 @@
-version: "3"
+version: "2.1"
 
 networks:
   pokenetwork:
@@ -16,6 +16,7 @@ services:
     links:
       - server
       - client
+      - indexator
 
   server:
     container_name: server
@@ -25,6 +26,27 @@ services:
       - "8000:8000"
     networks:
       - pokenetwork
+    depends_on:
+      indexator:
+        condition: service_healthy
+
+  indexator:
+    container_name: indexator
+    restart: always
+    build: ./indexator
+    ports:
+      - "8040:8040"
+    networks:
+      - pokenetwork
+    depends_on:
+       redis:
+        condition: service_started
+    healthcheck:
+      test: curl -f http://localhost:8040/indexator/healthcheck || exit 1
+      interval: 5s
+      timeout: 1s
+      retries: 7
+
 
   client:
     container_name: client
@@ -36,9 +58,22 @@ services:
       - pokenetwork
     links:
       - server
+    depends_on:
+      server:
+        condition: service_started
 
   redis:
     container_name: redis
     image: redis
     networks:
       - pokenetwork
+
+  cron:
+    container_name: cron
+    restart: always
+    build: ./cron
+    networks:
+      - pokenetwork
+    depends_on:
+      indexator:
+        condition: service_healthy

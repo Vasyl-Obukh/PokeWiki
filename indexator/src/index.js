@@ -2,7 +2,9 @@ const app = require('koa')();
 const router = require('./routers');
 const logger = require('koa-logger');
 const { PORT } = require('./config/config');
+const indexator = require('./utils/indexator');
 
+indexator.init();
 app.use(logger());
 app.use(function *(next) {
   try {

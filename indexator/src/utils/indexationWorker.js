@@ -59,10 +59,12 @@ const updateWithEvoLevel = data => {
 
 const getEvolutionChain = (chain) => {
   const result = [[chain.species.name]];
+
   const recur = (chain, id = 1) => {
     if (chain.evolves_to.length) {
       chain.evolves_to.map(elem => {
         result[id] = result[id] ? [...result[1], elem.species.name] : [elem.species.name];
+
         recur(elem, id + 1);
       });
     }

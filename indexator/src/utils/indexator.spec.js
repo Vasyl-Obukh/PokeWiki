@@ -13,7 +13,7 @@ const {
   interceptor,
   getPokemon,
   getPokemons
-} = require('./store');
+} = require('./indexator');
 
 
 describe('Indexator tests', () => {
