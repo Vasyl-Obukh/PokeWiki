@@ -2,12 +2,18 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import CardInfo from './index';
 import * as Styles from './styles';
+import configureStore from 'redux-mock-store';
 
 Enzyme.configure({adapter: new Adapter()});
 
 describe('<CardInfo /> snapshot tests', () => {
+  const mockStore = configureStore();
+  const initialState = {cards: {data: {}}};
+  const store = mockStore(initialState);
   let data;
 
   beforeEach(() => {
@@ -20,7 +26,13 @@ describe('<CardInfo /> snapshot tests', () => {
   });
 
   test('Should render correctly', () => {
-    const component = renderer.create(<CardInfo data={data}/>);
+    const component = renderer.create(
+      <Provider store={store}>
+        <Router>
+          <CardInfo data={data}/>
+        </Router>
+      </Provider>
+    );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -30,18 +42,36 @@ describe('<CardInfo /> snapshot tests', () => {
     delete data.types;
     delete data.url;
 
-    const component = renderer.create(<CardInfo data={data}/>);
+    const component = renderer.create(
+      <Provider store={store}>
+        <Router>
+          <CardInfo data={data}/>
+        </Router>
+      </Provider>
+    );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('Url parameter should be passed to node containing name', () => {
-    const component = mount(<CardInfo data={data}/>);
-    expect(component.find(Styles.Name).prop('href')).toBe(data.url);
+    const component = mount(
+      <Provider store={store}>
+        <Router>
+          <CardInfo data={data}/>
+        </Router>
+      </Provider>
+    );
+    expect(component.find(Styles.Name).prop('to')).toBe(data.url);
   });
 
   test('Name parameter should be passed to node containing name', () => {
-    const component = mount(<CardInfo data={data}/>);
+    const component = mount(
+      <Provider store={store}>
+        <Router>
+          <CardInfo data={data}/>
+        </Router>
+      </Provider>
+    );
     expect(component.find(Styles.Name).text()).toBe(data.name);
   });
 });

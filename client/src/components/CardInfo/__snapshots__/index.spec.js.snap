@@ -6,7 +6,8 @@ exports[`<CardInfo /> snapshot tests Should not break if data has not some prope
 >
   <a
     className="sc-bwzfXH gUcobS"
-    href="#"
+    href="/"
+    onClick={[Function]}
   >
     bulbasaur
   </a>
@@ -44,6 +45,7 @@ exports[`<CardInfo /> snapshot tests Should render correctly 1`] = `
   <a
     className="sc-bwzfXH gUcobS"
     href="/pokemon/1"
+    onClick={[Function]}
   >
     bulbasaur
   </a>

@@ -1,13 +1,19 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { Cards, mapStateToProps, mapDispatchToProps } from './index';
 import { CARDS_REQUESTED } from '../../constants/actionTypes';
+import configureStore from 'redux-mock-store';
 
 Enzyme.configure({adapter: new Adapter()});
 
 describe('<Cards /> tests', () => {
+  const mockStore = configureStore();
+  const initialState = {cards: {data: {}}};
+  const store = mockStore(initialState);
   let props;
 
   beforeEach(() => {
@@ -27,24 +33,36 @@ describe('<Cards /> tests', () => {
   });
 
   test('Should render null', () => {
-    const component = renderer.create(<Cards {...props}/>);
+    const component = renderer.create(
+      <Provider store={store}>
+        <Router>
+          <Cards {...props}/>
+        </Router>
+      </Provider>
+    );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   test('Should invoke fetchCards only once', () => {
-    renderer.create(<Cards {...props}/>);
+    renderer.create(
+      <Provider store={store}>
+        <Router>
+          <Cards {...props}/>
+        </Router>
+      </Provider>
+    );
     expect(props.fetchCards.mock.calls.length).toBe(1);
   });
 
   test('Should update on search prop change', () => {
-    const component = mount(<Cards {...props}/>);
+    const component = shallow(<Cards {...props} store={store}/>);
     component.setProps({search: 'page=1'});
     expect(props.fetchCards.mock.calls.length).toBe(2);
   });
 
   test('Should not update if search prop did not changed', () => {
-    const component = mount(<Cards {...props}/>);
+    const component = shallow(<Cards store={store} {...props}/>);
     component.setProps({search: props.search});
     expect(props.fetchCards.mock.calls.length).toBe(1);
   });
@@ -52,7 +70,13 @@ describe('<Cards /> tests', () => {
   test('Should render spinner', () => {
     props.isLoading = true;
 
-    const component = renderer.create(<Cards {...props}/>);
+    const component = renderer.create(
+      <Provider store={store}>
+        <Router>
+          <Cards {...props}/>
+        </Router>
+      </Provider>
+    );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -60,7 +84,13 @@ describe('<Cards /> tests', () => {
   test('Should render error message block', () => {
     props.error = 'Something goes wrong...';
 
-    const component = renderer.create(<Cards {...props}/>);
+    const component = renderer.create(
+      <Provider store={store}>
+        <Router>
+          <Cards {...props}/>
+        </Router>
+      </Provider>
+    );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -71,7 +101,13 @@ describe('<Cards /> tests', () => {
       {name: 'pikachu', id: 2}
     ];
 
-    const component = renderer.create(<Cards {...props}/>);
+    const component = renderer.create(
+      <Provider store={store}>
+        <Router>
+          <Cards {...props}/>
+        </Router>
+      </Provider>
+    );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });

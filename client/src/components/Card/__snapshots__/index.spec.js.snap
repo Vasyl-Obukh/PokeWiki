@@ -7,6 +7,7 @@ exports[`<Card /> snapshot tests Should not break if data has not some propertie
   <a
     className="sc-bwzfXH zJzk"
     href="/pokemon/1"
+    onClick={[Function]}
   >
     <img
       alt="bulbasaur"
@@ -20,6 +21,7 @@ exports[`<Card /> snapshot tests Should not break if data has not some propertie
     <a
       className="sc-ifAKCX gzbZPg"
       href="/pokemon/1"
+      onClick={[Function]}
     >
       bulbasaur
     </a>
@@ -58,6 +60,7 @@ exports[`<Card /> snapshot tests Should render correctly 1`] = `
   <a
     className="sc-bwzfXH zJzk"
     href="/pokemon/1"
+    onClick={[Function]}
   >
     <img
       alt="bulbasaur"
@@ -71,6 +74,7 @@ exports[`<Card /> snapshot tests Should render correctly 1`] = `
     <a
       className="sc-ifAKCX gzbZPg"
       href="/pokemon/1"
+      onClick={[Function]}
     >
       bulbasaur
     </a>

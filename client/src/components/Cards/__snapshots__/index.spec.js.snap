@@ -10,6 +10,7 @@ exports[`<Cards /> tests Should render cards 1`] = `
     <a
       className="sc-htpNat BbZKb"
       href="/pokemon/1"
+      onClick={[Function]}
     >
       <img
         alt="bulbasaur"
@@ -23,6 +24,7 @@ exports[`<Cards /> tests Should render cards 1`] = `
       <a
         className="sc-EHOje jSnQJi"
         href="/pokemon/1"
+        onClick={[Function]}
       >
         bulbasaur
       </a>
@@ -58,6 +60,7 @@ exports[`<Cards /> tests Should render cards 1`] = `
     <a
       className="sc-htpNat BbZKb"
       href="/pokemon/2"
+      onClick={[Function]}
     >
       <img
         alt="pikachu"
@@ -71,6 +74,7 @@ exports[`<Cards /> tests Should render cards 1`] = `
       <a
         className="sc-EHOje jSnQJi"
         href="/pokemon/2"
+        onClick={[Function]}
       >
         pikachu
       </a>
