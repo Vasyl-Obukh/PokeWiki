@@ -1,8 +1,8 @@
 jest.mock('ioredis');
 jest.mock('../utils/randomElements');
-jest.mock('../utils/indexator');
+jest.mock('../utils/store');
 const getRandomElements = require('../utils/randomElements');
-const indexator = require('../utils/store');
+const store = require('../utils/store');
 const { getRelated } = require('./related');
 
 describe('Related controller tests', () => {
@@ -11,7 +11,7 @@ describe('Related controller tests', () => {
     {id: 2, types: ['water', 'normal']},
     {id: 3, types: ['grass', 'poison']}
   ];
-  indexator.getPokemons.mockReturnValue(data);
+  store.getPokemons.mockReturnValue(data);
   getRandomElements.mockImplementation(_ => _);
   const self = {
     query: {types: 'fire,water'}
@@ -25,7 +25,7 @@ describe('Related controller tests', () => {
       {id: 2, types: ['water', 'normal']},
       {id: 3, types: ['grass', 'poison']}
     ]);
-    expect(indexator.getPokemons).toBeCalled();
+    expect(store.getPokemons).toBeCalled();
 
     gen.next(data);
 

@@ -43,9 +43,9 @@ services:
         condition: service_started
     healthcheck:
       test: curl -f http://localhost:8040/indexator/healthcheck || exit 1
-      interval: 15s
+      interval: 5s
       timeout: 1s
-      retries: 5
+      retries: 150
 
 
   client:

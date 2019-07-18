@@ -6,8 +6,6 @@ function* getCards() {
   const offset = (this.params.page - 1) * PAGE_LIMIT;
   const filters = JSON.parse(this.request.query.filters);
 
-  console.log({filters});
-
   const pokemons = yield store.getPokemons();
 
   const result = createPipeline(

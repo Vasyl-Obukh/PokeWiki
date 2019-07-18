@@ -1,6 +1,6 @@
 jest.mock('ioredis');
-jest.mock('../utils/indexator');
-const indexator = require('../utils/store');
+jest.mock('../utils/store');
+const store = require('../utils/store');
 const { getCards } = require('./cards');
 
 describe('Cards controller tests', () => {
@@ -13,7 +13,7 @@ describe('Cards controller tests', () => {
     params: {page: 1},
     request: {query: {filters: '{"types": ["fire", "water"]}'}}
   };
-  indexator.getPokemons.mockReturnValue(data);
+  store.getPokemons.mockReturnValue(data);
 
   test('', () => {
     const gen = getCards.apply(self);
@@ -23,6 +23,6 @@ describe('Cards controller tests', () => {
       {id: 2, types: ['water', 'normal']},
       {id: 3, types: ['grass', 'poison']}
     ]);
-    expect(indexator.getPokemons).toBeCalled();
+    expect(store.getPokemons).toBeCalled();
   });
 });
