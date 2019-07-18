@@ -24,7 +24,7 @@ const updateState = () => {
 const deleteOldData = () => {
   if (state.timestampOld) {
     const timestamp = state.timestampOld;
-    for (let i = 1; i <= state.count; i++) {
+    for (let i = 1; i <= state.countOld; i++) {
       client.del(`${timestamp}_${i}`);
     }
   }
@@ -68,5 +68,7 @@ module.exports = {
   state,
   init,
   messageHandler,
-  getTimestamp
+  getTimestamp,
+  updateState,
+  deleteOldData
 };
