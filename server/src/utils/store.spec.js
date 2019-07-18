@@ -5,9 +5,18 @@ const Redis = require('ioredis');
 const { getPokemon, getPokemons } = require('./store');
 
 describe('Store tests', () => {
-  const getMock = Redis.prototype.get.mockImplementation((id, cb) => {
+  const getMock = Redis.prototype.get.mockImplementation(value => {
     const db = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}];
-    cb(null, JSON.stringify(db.find(_ => _.id = id)));
+    if (value === 'timestamp') return Promise.resolve('123');
+    if (value === 'count') return Promise.resolve('5');
+
+    return Promise.resolve(
+      JSON.stringify(
+        db.find(_ =>
+          Number.parseInt(value.match(/[0-9]*_([0-9]*)/)[1]) === _.id
+        )
+      )
+    );
   });
 
   afterEach(() => {
