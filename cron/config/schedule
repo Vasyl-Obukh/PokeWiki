@@ -1,0 +1,1 @@
+*/1 * * * * curl -f http://indexator:8040/indexator/run >> /var/log/cron/cron.log 2>&1

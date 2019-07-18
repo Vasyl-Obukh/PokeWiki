@@ -1,12 +1,11 @@
-FROM ubuntu:16.04
+FROM alpine:3.6
 
-RUN apt-get update && apt-get install -y \
-    cron \
-    postfix \
-    curl
+RUN apk --no-cache add curl bash
 
-COPY ./crontab /etc/cron.d/cron-interval
+RUN mkdir -p /var/log/cron \
+    && touch /var/log/cron/cron.log \
+    && mkdir -m 0644 -p /etc/cron.d
 
-RUN chmod 644 /etc/cron.d/cron-interval
+ADD ./config/schedule /etc/crontabs/root
 
-CMD service cron start
+CMD bash -c "crond -L /var/log/cron/cron.log && tail -F /var/log/cron/cron.log"

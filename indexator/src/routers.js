@@ -9,9 +9,9 @@ router.get('/healthcheck', function* () {
   this.response.status = timestamp ? 200 : 503;
 });
 
-router.get('/run', () => {
-  console.log('\n\nrun\n\n');
+router.get('/run', function* () {
   init();
+  this.response.status = 200;
 });
 
 module.exports = router;

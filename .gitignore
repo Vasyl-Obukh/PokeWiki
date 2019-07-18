@@ -8,6 +8,9 @@ yarn-error.log*
 # Yarn generated files
 # yarn.lock
 
+# redis storage files
+storage/
+
 # Builded project directory
 dir/
 
