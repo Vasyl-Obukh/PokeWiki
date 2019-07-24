@@ -1,11 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import FilterForm from '../FilterForm';
 import * as Styles from './styles';
 
 export const normalizeSearchParams = (searchParams, {types, evoLevels}) => {
-  searchParams.set('page', 1);
+  searchParams.set('page.tsx.tsx.tsx', 1);
   types.length ?
     searchParams.set('types', types)
     : searchParams.delete('types');
@@ -37,11 +36,6 @@ const Sidebar = (props) => {
       <FilterForm onSubmit={handleSubmit} search={props.location.search} />
     </Styles.Container>
   );
-};
-
-Sidebar.propTypes = {
-  history: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired
 };
 
 export default withRouter(Sidebar);

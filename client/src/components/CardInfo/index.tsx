@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import * as Styles from './styles';
 
 const CardInfo = ({ data: { abilities = [], types = [], name, url = '#' } }) => {
@@ -20,15 +19,6 @@ const CardInfo = ({ data: { abilities = [], types = [], name, url = '#' } }) => 
       </Styles.Entry>
     </Styles.Info>
   );
-};
-
-CardInfo.propTypes = {
-  data: PropTypes.shape({
-    abilities: PropTypes.arrayOf(PropTypes.string),
-    types: PropTypes.arrayOf(PropTypes.string),
-    name: PropTypes.string.isRequired,
-    url: PropTypes.string
-  }).isRequired
 };
 
 export default CardInfo;

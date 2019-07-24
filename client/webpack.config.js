@@ -8,20 +8,20 @@ const ExtractTextPlugin  = require('extract-text-webpack-plugin');
 
 const conf = {
   entry: {
-    index: path.join(__dirname, 'src/index.js')
+    index: path.join(__dirname, 'src/index.tsx')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
+    filename: 'index.tsx.tsx.tsx.txs.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.js',
     publicPath: '/'
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json']
   },
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader'
-      },
+      { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
+      { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
       {
         test: /\.(c|sa|sc)ss$/,
         use: ExtractTextPlugin.extract({
@@ -64,12 +64,12 @@ const conf = {
     historyApiFallback: true,
     publicPath: '/',
     disableHostCheck: true,
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://localhost:8000',
-    //     pathRewrite: {'^/api' : ''}
-    //   }
-    // }
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        //pathRewrite: {'^/api' : ''}
+      }
+    }
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),

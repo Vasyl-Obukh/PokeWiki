@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import * as Styles from './styles';
 import { reset } from 'redux-form';
 import { connect } from 'react-redux';
@@ -11,10 +10,6 @@ export const Logo = ({ resetForm }) => {
       <Styles.Image src='../../static/images/logo.png' alt='logo'/>
     </Styles.StyledLink>
   );
-};
-
-Logo.propTypes = {
-  resetForm: PropTypes.func
 };
 
 export const mapDispatchToProps = dispatch => ({

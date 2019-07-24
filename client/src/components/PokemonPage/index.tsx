@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchPage } from '../../actions/page';
@@ -9,16 +8,7 @@ import Related from '../Related';
 import Error from '../Error';
 import * as Styles from './styles';
 
-export class PokemonPage extends Component {
-  static propTypes = {
-    fetchPage: PropTypes.func.isRequired,
-    data: PropTypes.object,
-    relatedData: PropTypes.arrayOf(PropTypes.object),
-    isLoading: PropTypes.bool.isRequired,
-    relatedIsLoading: PropTypes.bool.isRequired,
-    error: PropTypes.string
-  };
-
+export class PokemonPage extends React.Component<any, any> {
   componentDidMount() {
     this.props.fetchPage(this.props.id);
   }

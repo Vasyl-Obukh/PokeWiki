@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -19,8 +18,8 @@ export const Pagination = ({
 
   const prev = new URLSearchParams(search);
   const next = new URLSearchParams(search);
-  prev.set('page', currentPage - 1);
-  next.set('page', currentPage + 1);
+  prev.set('page', currentPage - 1 + '');
+  next.set('page', currentPage + 1 + '');
 
   return (
     <Styles.List>
@@ -57,12 +56,6 @@ export const Pagination = ({
       ) : null}
     </Styles.List>
   );
-};
-
-Pagination.propTypes = {
-  pagesAmount: PropTypes.number.isRequired,
-  currentPage: PropTypes.number.isRequired,
-  search: PropTypes.object
 };
 
 export const mapStateToProps = state => ({

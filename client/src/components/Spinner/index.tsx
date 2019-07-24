@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import * as Styles from './styles';
 

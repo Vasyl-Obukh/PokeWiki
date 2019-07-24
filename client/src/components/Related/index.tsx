@@ -1,14 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import * as Styles from './styles';
 import getPokemonPageUrl from '../../utils/pageUrl';
+
+interface RelatedPokemon {
+    id: number,
+    name: string,
+    thumb: string
+}
 
 const Related = ({ data = [] }) => {
   return (
       <>
         <Styles.Title>Related pokemons</Styles.Title>
         <Styles.Wrapper>
-          {data.map(_ => (
+          {data.map((_: RelatedPokemon) => (
             <Styles.Item key={_.id} href={getPokemonPageUrl(_.id)}>
               <Styles.Image src={_.thumb} alt={_.name} />
               <Styles.Name>{_.name}</Styles.Name>
@@ -17,14 +22,6 @@ const Related = ({ data = [] }) => {
         </Styles.Wrapper>
       </>
   );
-};
-
-Related.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    thumb: PropTypes.string
-  }))
 };
 
 export default Related;

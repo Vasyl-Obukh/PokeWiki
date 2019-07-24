@@ -1,5 +1,4 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import * as Styles from './styles';
 
 const Pokemon = ({ data: {thumb = '#', name, abilities, types, baseExperience, height, weight, stats} }) => {
@@ -20,27 +19,14 @@ const Pokemon = ({ data: {thumb = '#', name, abilities, types, baseExperience, h
         <Styles.InfoKey>Weight</Styles.InfoKey>
         <Styles.InfoValue>{weight}</Styles.InfoValue>
         {stats.map(_ => (
-          <Fragment key={_.name}>
+          <React.Fragment key={_.name}>
             <Styles.InfoKey>{_.name}</Styles.InfoKey>
             <Styles.InfoValue>{_.base}</Styles.InfoValue>
-          </Fragment>
+          </React.Fragment>
         ))}
       </Styles.Info>}
     </Styles.Wrapper>
   );
-};
-
-Pokemon.propTypes = {
-  data: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    abilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-    types: PropTypes.arrayOf(PropTypes.string).isRequired,
-    stats: PropTypes.arrayOf(PropTypes.object).isRequired,
-    thumb: PropTypes.string,
-    baseExperience: PropTypes.number,
-    height: PropTypes.number,
-    weight: PropTypes.number
-  })
 };
 
 export default Pokemon;

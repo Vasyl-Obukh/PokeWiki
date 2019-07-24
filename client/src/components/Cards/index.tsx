@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchCards } from '../../actions/cards';
@@ -8,7 +7,7 @@ import Card from '../Card';
 import Error from '../Error';
 import Spinner from '../Spinner';
 
-export class Cards extends Component {
+export class Cards extends React.Component<any, any> {
   componentDidMount() {
     const { elements, isLoading, error } = this.props;
     if (!elements.length && !isLoading && !error ) {
@@ -24,12 +23,6 @@ export class Cards extends Component {
 
   static defaultProps = {
     elements: []
-  };
-
-  static propTypes = {
-    isLoading: PropTypes.bool,
-    elements: PropTypes.arrayOf(PropTypes.object),
-    error: PropTypes.string
   };
 
   render() {

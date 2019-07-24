@@ -1,10 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { reduxForm } from 'redux-form';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import * as Styles from './styles';
 
-let Search = (props) => {
+let Search = props => {
   const { handleSubmit } = props;
 
   return (
@@ -13,10 +12,6 @@ let Search = (props) => {
       <Styles.SearchIcon icon={faSearch} color='gray' />
     </Styles.Form>
   );
-};
-
-Search.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
 };
 
 Search = reduxForm({

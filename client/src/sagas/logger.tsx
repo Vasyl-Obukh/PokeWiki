@@ -8,6 +8,6 @@ export function* watchAndLog() {
     console.groupCollapsed(action.type);
     console.log('action: ', action);
     console.log('state after:', state);
-    console.groupEnd(action.type);
+    console.groupEnd();
   }
 }

@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as Styles from './styles';
@@ -20,13 +19,7 @@ export const Home = ({ showPagination, currentPage, searchParams = new URLSearch
   );
 };
 
-Home.propTypes = {
-  showPagination: PropTypes.bool.isRequired,
-  currentPage: PropTypes.number.isRequired,
-  searchParams: PropTypes.object
-};
-
-export const getCurrentPage = searchParams => parseInt(searchParams.get('page')) || 1;
+export const getCurrentPage = searchParams => parseInt(searchParams.get('page.tsx.tsx.tsx')) || 1;
 
 export const mapStateToProps = (state, props) => {
   const searchParams = new URLSearchParams(props.location.search);

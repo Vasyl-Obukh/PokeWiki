@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import * as Styles from './styles';
 import SectionWrapper from '../SectionWrapper';
@@ -21,12 +20,6 @@ export const Header = (props) => {
       </SectionWrapper>
     </Styles.Header>
   );
-};
-
-Header.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired
 };
 
 export default withRouter(Header);

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import * as Styles from './styles';
 
-export default class ScrollUpButton extends Component {
+export default class ScrollUpButton extends React.Component {
   state = {show: false};
   distance = 200;
 

@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import * as Styles from './styles';
 import CardInfo from '../CardInfo';
 import getPokemonPageUrl from '../../utils/pageUrl';
@@ -17,16 +16,6 @@ const Card = (props) => {
       </CardInfo>
     </Styles.Container>
   );
-};
-
-Card.propTypes = {
-  data: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    thumb: PropTypes.string,
-    abilities: PropTypes.array,
-    types: PropTypes.array
-  }).isRequired
 };
 
 export default Card;

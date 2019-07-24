@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import * as Styles from './styles';
@@ -24,18 +23,14 @@ let FilterForm = (props) => {
       <Styles.StyledFormSection name='evoLevels'>
         {filters.evoLevels.map(_ => (
           <div key={_}>
-            <Field component='input' type='checkbox' id={_} name={_ + ''} />
-            <Styles.Label htmlFor={_}>{_}</Styles.Label>
+            <Field component='input' type='checkbox' id={_ + ''} name={_ + ''} />
+            <Styles.Label htmlFor={_ + ''}>{_}</Styles.Label>
           </div>
         ))}
       </Styles.StyledFormSection>
       <Styles.FormButton type='submit'>filter</Styles.FormButton>
     </Styles.Form>
   );
-};
-
-FilterForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
 };
 
 FilterForm = reduxForm({
