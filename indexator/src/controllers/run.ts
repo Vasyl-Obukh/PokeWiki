@@ -1,6 +1,7 @@
+export {};
 const { init } = require('../utils/indexator');
 
-function run() {
+function* run() {
   init();
   this.response.status = 200;
 }

@@ -91,6 +91,6 @@ const fetching = (urls, cb) => {
   });
 };
 
-module.export = {
+module.exports = {
   fetching
 };

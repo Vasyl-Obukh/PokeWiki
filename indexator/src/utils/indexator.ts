@@ -1,11 +1,13 @@
+export {}
 const threads = require('worker_threads');
 const { Worker } = threads;
 const worker = new Worker(__dirname + '/indexationWorker.js');
 const Redis = require('ioredis');
 
-const client = new Redis(6379, 'redis');
+//const client = new Redis(6379, 'redis');
+const client = new Redis();
 
-const state = {
+const state: {[key: string]: number} = {
   count: 0,
   countOld: 0,
   timestamp: 0,
@@ -15,22 +17,27 @@ const state = {
 client.on('connect', () => console.log('Redis connected...'));
 client.on('error', error => console.log(`Error happened in redis: ${error.message}`));
 
-const updateState = () => {
+const updateState = (): void => {
   state.countOld = state.count;
   state.count = 0;
   state.timestampOld = state.timestamp;
 };
 
-const deleteOldData = () => {
+const deleteOldData = (): void => {
   if (state.timestampOld) {
-    const timestamp = state.timestampOld;
-    for (let i = 1; i <= state.countOld; i++) {
+    const timestamp: number = state.timestampOld;
+    for (let i: number = 1; i <= state.countOld; i++) {
       client.del(`${timestamp}_${i}`);
     }
   }
 };
 
-const messageHandler = message => {
+interface Message {
+  type?: string,
+  value?: Array<any>
+}
+
+const messageHandler = <T extends Message>(message: T): void => {
   if (message.type) {
     switch (message.type) {
       case 'data':
