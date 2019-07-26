@@ -2,9 +2,9 @@ import * as React from 'react';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import * as Styles from './styles';
 
-export default class ScrollUpButton extends React.Component {
-  state = {show: false};
-  distance = 200;
+export default class ScrollUpButton extends React.Component<{}, {show: boolean}> {
+  readonly state = {show: false};
+  private readonly distance = 200;
 
   componentDidMount() {
     this.checkForScroll();

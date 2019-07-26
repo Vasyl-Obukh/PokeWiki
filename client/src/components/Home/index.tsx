@@ -6,8 +6,17 @@ import Cards from '../Cards';
 import Sidebar from '../Sidebar';
 import Pagination from '../Pagination';
 import { showPagination } from '../../selectors';
+import { State } from '../../store';
 
-export const Home = ({ showPagination, currentPage, searchParams = new URLSearchParams() }) => {
+type Props = {
+  showPagination: boolean,
+  currentPage: number,
+  searchParams: URLSearchParams
+};
+
+export const Home = (props: Props) => {
+  const { showPagination, currentPage, searchParams = new URLSearchParams() } = props;
+
   return (
     <Styles.Wrapper>
       <Styles.Main>
@@ -19,10 +28,11 @@ export const Home = ({ showPagination, currentPage, searchParams = new URLSearch
   );
 };
 
-export const getCurrentPage = searchParams => parseInt(searchParams.get('page.tsx.tsx.tsx')) || 1;
+export const getCurrentPage = (searchParams: URLSearchParams): number =>
+  parseInt(searchParams.get('page')) || 1;
 
-export const mapStateToProps = (state, props) => {
-  const searchParams = new URLSearchParams(props.location.search);
+export const mapStateToProps = (state: State, ownProps): Props => {
+  const searchParams: URLSearchParams = new URLSearchParams(ownProps.location.search);
   return {
     showPagination: showPagination(state),
     currentPage: getCurrentPage(searchParams),

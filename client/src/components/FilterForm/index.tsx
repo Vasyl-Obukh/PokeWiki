@@ -3,8 +3,9 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import * as Styles from './styles';
 import filters from '../../constants/filters';
+import { State } from '../../store';
 
-let FilterForm = (props) => {
+const FilterForm = (props) => {
   const { handleSubmit } = props;
 
   return (
@@ -33,18 +34,31 @@ let FilterForm = (props) => {
   );
 };
 
-FilterForm = reduxForm({
-  form: 'filter'
-})(FilterForm);
+type DefaultValue = {
+  [key: string]: boolean
+};
 
-export const mapStateToProps = (state, props) => {
-  const query = new URLSearchParams(props.search);
-  const typesString = query.get('types');
-  const evoLevelsString = query.get('evoLevels');
-  const types = typesString ?
+type InitialValues = {
+  types: DefaultValue,
+  evoLevels: DefaultValue
+};
+
+type OwnProps = {
+  search: URLSearchParams | string
+}
+
+type StateProps = {
+  initialValues: InitialValues
+};
+
+export const mapStateToProps = (state: State, ownProps: OwnProps): StateProps => {
+  const query: URLSearchParams = new URLSearchParams(ownProps.search);
+  const typesString: string = query.get('types');
+  const evoLevelsString: string = query.get('evoLevels');
+  const types: (string | boolean)[][] = typesString ?
     typesString.split(',').map(_ => [_, true])
     : [];
-  const evoLevels = evoLevelsString ?
+  const evoLevels: (string | boolean)[][] = evoLevelsString ?
     evoLevelsString.split(',').map(_ => [_, true])
     : [];
 
@@ -56,6 +70,6 @@ export const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(
-  mapStateToProps
-)(FilterForm);
+export default connect(mapStateToProps)(reduxForm({
+  form: 'filter'
+})(FilterForm));

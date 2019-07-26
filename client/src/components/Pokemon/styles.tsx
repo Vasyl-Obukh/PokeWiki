@@ -34,7 +34,7 @@ export const InfoKey = styled.div`
   }
 `;
 
-export const InfoValue = styled.div`
+export const InfoValue = styled.div<{primary?: boolean}>`
   font-style: italic;
   font-weight: ${props => props.primary ? 'bold' : 'normal'};
   text-transform: ${props => props.primary ? 'uppercase' : 'none'};

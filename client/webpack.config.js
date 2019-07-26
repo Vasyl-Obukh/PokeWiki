@@ -12,7 +12,7 @@ const conf = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.tsx.tsx.tsx.txs.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.tsx.js',
+    filename: 'index.js',
     publicPath: '/'
   },
   resolve: {
@@ -64,12 +64,6 @@ const conf = {
     historyApiFallback: true,
     publicPath: '/',
     disableHostCheck: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8000',
-        //pathRewrite: {'^/api' : ''}
-      }
-    }
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
@@ -89,7 +83,7 @@ const conf = {
 
 module.exports = (env, options) => {
   let production = options.mode === 'production';
-  conf.devtool = production ? false/* 'source-map' */ : 'eval-sourcemap';
+  conf.devtool = production ? false : 'eval-sourcemap';
   if (production) {
     conf.plugins.push(
       new ImageminPlugin({

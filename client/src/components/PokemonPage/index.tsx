@@ -7,8 +7,25 @@ import Pokemon from '../Pokemon';
 import Related from '../Related';
 import Error from '../Error';
 import * as Styles from './styles';
+import {BasicPokemonShape, PokemonShape} from '../../global_interfaces/pokemon';
+import { State } from '../../store';
 
-export class PokemonPage extends React.Component<any, any> {
+type StateProps = {
+  id: number,
+  data: PokemonShape,
+  isLoading: boolean,
+  relatedIsLoading: boolean,
+  relatedData: BasicPokemonShape[],
+  error: string
+};
+
+type DispatchProps = {
+  fetchPage: (id: number) => void
+};
+
+type Props = StateProps & DispatchProps;
+
+export class PokemonPage extends React.Component<Props, {}> {
   componentDidMount() {
     this.props.fetchPage(this.props.id);
   }
@@ -29,13 +46,12 @@ export class PokemonPage extends React.Component<any, any> {
   }
 }
 
-export const mapStateToProps = (
-  {
+export const mapStateToProps = (state: State, props): StateProps => {
+  const {
     page: {data, isLoading, error},
     related: {isLoading : relatedIsLoading, data: relatedData}
-  },
-  props
-) => {
+  } = state;
+
   return {
     id: Number.parseInt(props.location.pathname.match(/[1-9][0-9]*$/)[0]),
     data,
@@ -46,7 +62,7 @@ export const mapStateToProps = (
   };
 };
 
-export const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = (dispatch): DispatchProps => ({
   fetchPage: id => dispatch(fetchPage(id))
 });
 

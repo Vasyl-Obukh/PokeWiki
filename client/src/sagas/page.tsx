@@ -9,8 +9,9 @@ import {
   RELATED_RECEIVED
 } from '../constants/actionTypes';
 import paths from '../constants/paths';
+import { GetRequestAction } from "../global_interfaces/getRequestAction";
 
-export function* fetchLatestPage(action) {
+export function* fetchLatestPage(action: GetRequestAction) {
   try {
     yield put({ type: PAGE_FETCHING });
     const { data } = yield call(axios, action.url);

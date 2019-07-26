@@ -10,7 +10,7 @@ import SectionWrapper from '../SectionWrapper';
 import ScrollUpButton from '../ScrollUpButton';
 import * as Styles from './styles';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <Styles.SiteWrapper>
       <Header />

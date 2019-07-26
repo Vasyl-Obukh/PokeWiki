@@ -6,7 +6,7 @@ export const Form = styled.form`
   position: relative;
 `;
 
-export const StyledField = styled(Field)`
+export const StyledField = styled(Field)<any>`
   padding: 10px 15px 10px 35px;
   width: 150px;
   border-radius: 25px;

@@ -1,20 +1,28 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import fetchPageNumbers from './pageNumbers';
 import { getPagesAmount } from '../../selectors';
 import * as Styles from './styles';
+import { State } from '../../store';
 
-export const Pagination = ({
-  pagesAmount,
-  currentPage,
-  search
-}) => {
+type StateProps = {
+  pagesAmount: number,
+};
+
+type Props = StateProps & {
+  currentPage: number,
+  search: URLSearchParams | string
+}
+
+export const Pagination = (props: Props) => {
+  const { pagesAmount, currentPage, search } = props;
   if (!pagesAmount || pagesAmount < 2) return null;
 
-  const dots = '...';
-  const pages = fetchPageNumbers(pagesAmount, currentPage);
+  const dots: string = '...';
+  const pages: (string | number)[] = fetchPageNumbers(pagesAmount, currentPage);
 
   const prev = new URLSearchParams(search);
   const next = new URLSearchParams(search);
@@ -25,7 +33,7 @@ export const Pagination = ({
     <Styles.List>
       {currentPage !== 1 ? (
         <Styles.ListItem>
-          <Styles.Item to={'?' + prev}>
+          <Styles.Item as={Link} to={'?' + prev}>
             <FontAwesomeIcon icon={faChevronLeft} />
           </Styles.Item>
         </Styles.ListItem>
@@ -33,15 +41,16 @@ export const Pagination = ({
 
       {pages.map((page, index) => {
         const searchParams = new URLSearchParams(search);
-        searchParams.set('page', page);
+        searchParams.set('page', page + '');
+
         return (
           <Styles.ListItem key={index}>
             {page === dots ? (
-              <Styles.Item as='span'>{dots}</Styles.Item>
+              <Styles.Item>{dots}</Styles.Item>
             ) : page === currentPage ? (
-              <Styles.Item current as='span'>{page}</Styles.Item>
+              <Styles.Item current={true}>{page}</Styles.Item>
             ) : (
-              <Styles.Item to={'?' + searchParams}>{page}</Styles.Item>
+              <Styles.Item as={Link} to={'?' + searchParams}>{page}</Styles.Item>
             )}
           </Styles.ListItem>
         );
@@ -49,7 +58,7 @@ export const Pagination = ({
 
       {currentPage !== pagesAmount ? (
         <Styles.ListItem>
-          <Styles.Item to={'?' + next}>
+          <Styles.Item as={Link} to={'?' + next}>
             <FontAwesomeIcon icon={faChevronRight} />
           </Styles.Item>
         </Styles.ListItem>
@@ -58,7 +67,7 @@ export const Pagination = ({
   );
 };
 
-export const mapStateToProps = state => ({
+export const mapStateToProps = (state: State): StateProps => ({
   pagesAmount: getPagesAmount(state)
 });
 

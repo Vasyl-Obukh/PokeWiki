@@ -1,6 +1,16 @@
 import { RELATED_FETCHING, RELATED_RECEIVED } from '../constants/actionTypes';
+import { BasicPokemonShape } from "../global_interfaces/pokemon";
+interface RelatedAction {
+  type: string,
+  data: BasicPokemonShape[]
+}
 
-const related = (state = {isLoading: false, data: []}, action) => {
+export interface RelatedState {
+ data: BasicPokemonShape[],
+ isLoading: boolean,
+}
+
+const related = (state: RelatedState = {isLoading: false, data: []}, action: RelatedAction): RelatedState => {
   const { type, data } = action;
   switch (type) {
     case RELATED_FETCHING:

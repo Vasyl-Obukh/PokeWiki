@@ -14,8 +14,6 @@ let Search = props => {
   );
 };
 
-Search = reduxForm({
+export default reduxForm({
   form: 'search'
 })(Search);
-
-export default Search;

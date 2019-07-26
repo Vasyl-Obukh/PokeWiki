@@ -7,6 +7,6 @@ const ErrorMessage = styled.h1`
   text-align: center;
 `;
 
-const ErrorPage = () => <ErrorMessage>Error Page</ErrorMessage>;
+const ErrorPage: React.FC = () => <ErrorMessage>Error Page</ErrorMessage>;
 
 export default ErrorPage;

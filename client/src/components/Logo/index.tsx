@@ -4,7 +4,15 @@ import { reset } from 'redux-form';
 import { connect } from 'react-redux';
 import paths from '../../constants/paths';
 
-export const Logo = ({ resetForm }) => {
+type DispatchProps = {
+  resetForm: () => void
+}
+
+type Props = DispatchProps; // | StateProps
+
+export const Logo = (props: Props) => {
+  const { resetForm } = props;
+
   return (
     <Styles.StyledLink to={paths.HOME} onClick={resetForm}>
       <Styles.Image src='../../static/images/logo.png' alt='logo'/>

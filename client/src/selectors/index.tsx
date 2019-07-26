@@ -1,16 +1,17 @@
 import { createSelector } from 'reselect';
 import { PAGE_LIMIT } from '../constants/config';
+import { State } from '../store';
 
-export const getCardsAmount = state => state.cards.data.count;
+export const getCardsAmount = (state: State): number => state.cards.data.count;
 
 export const getPagesAmount = createSelector(
   getCardsAmount,
-  cardsAmount => Math.ceil(cardsAmount / PAGE_LIMIT)
+  (cardsAmount: number): number => Math.ceil(cardsAmount / PAGE_LIMIT)
 );
 
-export const isCardsLoading = state => state.cards.isLoading;
+export const isCardsLoading = (state: State): boolean => state.cards.isLoading;
 
 export const showPagination = createSelector(
   [isCardsLoading, getPagesAmount],
-  (loading, pages) => !loading && pages > 1
+  (loading: boolean, pages: number): boolean => !loading && pages > 1
 );

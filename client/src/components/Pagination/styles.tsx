@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const List = styled.ul`
   display: flex;
@@ -12,7 +11,7 @@ export const ListItem = styled.li`
   color: white;
 `;
 
-export const Item = styled(Link)`
+export const Item = styled.span<{current?: boolean, to?: string, as?: object}>`
   display: flex;
   width: 30px;
   height: 30px;

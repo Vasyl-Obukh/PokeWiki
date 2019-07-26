@@ -1,17 +1,30 @@
 import { CARDS_RECEIVED, CARDS_FETCHING, CARDS_ERROR } from '../constants/actionTypes';
+import { PokemonShape } from "../global_interfaces/pokemon";
 
-const cardsData = (state, action) => {
-  const {type, data: { elements, count }} = action;
-  if (type === CARDS_RECEIVED) return {elements, count};
-};
+interface DataShape {
+  elements?: PokemonShape[],
+  count?: number
+}
 
-const cards = (state = {isLoading: false, data: {}}, action) => {
-  const { type, error } = action;
+interface CardsAction {
+  type: string,
+  error?: string,
+  data?: DataShape
+}
+
+export interface CardsState {
+  data: DataShape,
+  isLoading: boolean,
+  error?: string
+}
+
+const cards = (state: CardsState = {isLoading: false, data: {}}, action: CardsAction): CardsState => {
+  const { type, error, data } = action;
   switch (type) {
     case CARDS_FETCHING:
       return {data: {}, isLoading: true, error: undefined};
     case CARDS_RECEIVED:
-      return {data: cardsData(state.data, action), isLoading: false,  error: undefined};
+      return {data, isLoading: false,  error: undefined};
     case CARDS_ERROR:
       return {data: {}, isLoading: false, error};
     default:

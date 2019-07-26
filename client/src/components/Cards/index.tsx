@@ -6,8 +6,25 @@ import * as Styles from './styles';
 import Card from '../Card';
 import Error from '../Error';
 import Spinner from '../Spinner';
+import { State } from '../../store';
+import { SearchParams } from '../../global_interfaces/searchParams';
+import { PokemonShape } from '../../global_interfaces/pokemon';
 
-export class Cards extends React.Component<any, any> {
+type StateProps = {
+  search: string,
+  elements: PokemonShape[],
+  searchParams: SearchParams,
+  isLoading: boolean,
+  error: string
+};
+
+type DispatchProps = {
+  fetchCards: (searchParams: SearchParams) => void
+};
+
+type Props = StateProps & DispatchProps;
+
+export class Cards extends React.Component<Props, {}> {
   componentDidMount() {
     const { elements, isLoading, error } = this.props;
     if (!elements.length && !isLoading && !error ) {
@@ -44,10 +61,14 @@ export class Cards extends React.Component<any, any> {
   }
 }
 
-export const mapStateToProps = (
-  { cards: {data = {}, isLoading, error} },
-  { searchParams = new URLSearchParams() }
-) => {
+type OwnProps = {
+  searchParams: URLSearchParams,
+  [key: string]: any
+};
+
+export const mapStateToProps = (state: State, ownProps: OwnProps): StateProps => {
+  const { cards: {data = {}, isLoading, error} } = state;
+  const { searchParams = new URLSearchParams() } = ownProps;
   const evoLevels = searchParams.get('evoLevels');
   const types = searchParams.get('types');
 
@@ -69,7 +90,7 @@ export const mapDispatchToProps = dispatch => ({
   fetchCards: searchParams => dispatch(fetchCards(searchParams))
 });
 
-export default withRouter(connect(
+export default withRouter(connect<StateProps, DispatchProps, any>(
   mapStateToProps,
   mapDispatchToProps
 )(Cards));

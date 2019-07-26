@@ -1,7 +1,20 @@
 import * as React from 'react';
 import * as Styles from './styles';
 
-const CardInfo = ({ data: { abilities = [], types = [], name, url = '#' } }) => {
+interface InfoData {
+  name: string,
+  url: string,
+  types: string[],
+  abilities: string[]
+}
+
+interface Props {
+  data: InfoData,
+  [key: string]: any
+}
+
+const CardInfo = (props: Props) => {
+  const { abilities = [], types = [], name, url = '#' } = props.data;
   return (
     <Styles.Info>
       <Styles.Name to={url}>{name}</Styles.Name>
