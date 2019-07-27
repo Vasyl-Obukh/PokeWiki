@@ -1,6 +1,7 @@
-const healthcheck = require('./healthcheck');
-const run = require('./run');
+var healthcheck = require('./healthcheck');
+var runIndexation = require('./run');
 module.exports = {
-    healthcheck,
-    run
+    healthcheck: healthcheck,
+    runIndexation: runIndexation
 };
+//# sourceMappingURL=index.js.map

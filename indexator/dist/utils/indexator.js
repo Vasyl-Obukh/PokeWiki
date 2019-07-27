@@ -1,38 +1,37 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const threads = require('worker_threads');
-const { Worker } = threads;
-const worker = new Worker(__dirname + '/indexationWorker.js');
-const Redis = require('ioredis');
-//const client = new Redis(6379, 'redis');
-const client = new Redis();
-const state = {
+var threads = require('worker_threads');
+var Worker = threads.Worker;
+var worker = new Worker(__dirname + '/indexationWorker.js');
+var Redis = require('ioredis');
+var client = new Redis(6379, 'redis');
+var state = {
     count: 0,
     countOld: 0,
     timestamp: 0,
     timestampOld: 0
 };
-client.on('connect', () => console.log('Redis connected...'));
-client.on('error', error => console.log(`Error happened in redis: ${error.message}`));
-const updateState = () => {
+client.on('connect', function () { return console.log('Redis connected...'); });
+client.on('error', function (error) { return console.log("Error happened in redis: " + error.message); });
+var updateState = function () {
     state.countOld = state.count;
     state.count = 0;
     state.timestampOld = state.timestamp;
 };
-const deleteOldData = () => {
+var deleteOldData = function () {
     if (state.timestampOld) {
-        const timestamp = state.timestampOld;
-        for (let i = 1; i <= state.countOld; i++) {
-            client.del(`${timestamp}_${i}`);
+        var timestamp = state.timestampOld;
+        for (var i = 1; i <= state.countOld; i++) {
+            client.del(timestamp + "_" + i);
         }
     }
 };
-const messageHandler = (message) => {
+var messageHandler = function (message) {
     if (message.type) {
         switch (message.type) {
             case 'data':
-                message.value.forEach(el => {
-                    client.set(`${state.timestamp}_${el.id}`, JSON.stringify(el));
+                message.value.forEach(function (el) {
+                    client.set(state.timestamp + "_" + el.id, JSON.stringify(el));
                     state.count = el.id > state.count ? el.id : state.count;
                 });
                 break;
@@ -44,11 +43,11 @@ const messageHandler = (message) => {
                 console.log('Indexation finished...');
                 break;
             default:
-                console.error(`Worker: unknown message type: ${message.type}`);
+                console.error("Worker: unknown message type: " + message.type);
         }
     }
     else {
-        console.log(`Worker message: ${message}`);
+        console.log("Worker message: " + message);
     }
 };
 worker.on('message', messageHandler);
@@ -57,12 +56,13 @@ function init() {
     state.timestamp = Date.now();
     console.log('Indexation started...');
 }
-const getTimestamp = () => client.get('timestamp');
+var getTimestamp = function () { return client.get('timestamp'); };
 module.exports = {
-    state,
-    init,
-    messageHandler,
-    getTimestamp,
-    updateState,
-    deleteOldData
+    state: state,
+    init: init,
+    messageHandler: messageHandler,
+    getTimestamp: getTimestamp,
+    updateState: updateState,
+    deleteOldData: deleteOldData
 };
+//# sourceMappingURL=indexator.js.map

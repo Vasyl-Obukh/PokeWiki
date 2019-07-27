@@ -1,8 +1,8 @@
-const { getEntityData, getEntityFullData, normalizeId } = require('./selectors');
-const deepFreeze = require('deep-freeze');
-describe('getEntityData() tests', () => {
-    let data;
-    beforeEach(() => {
+var _a = require('./selectors'), getEntityData = _a.getEntityData, getEntityFullData = _a.getEntityFullData, normalizeId = _a.normalizeId;
+var deepFreeze = require('deep-freeze');
+describe('getEntityData() tests', function () {
+    var data;
+    beforeEach(function () {
         data = {
             name: 'pikachu',
             id: 77,
@@ -34,7 +34,7 @@ describe('getEntityData() tests', () => {
             ]
         };
     });
-    test('Should correctly reflect data if all data is provided', () => {
+    test('Should correctly reflect data if all data is provided', function () {
         deepFreeze(data);
         expect(getEntityData(data)).toEqual({
             name: 'pikachu',
@@ -44,7 +44,7 @@ describe('getEntityData() tests', () => {
             types: ['type 1', 'type 2']
         });
     });
-    test('Should set default values if some data is missing', () => {
+    test('Should set default values if some data is missing', function () {
         delete data.sprites;
         delete data.abilities;
         delete data.types;
@@ -58,9 +58,9 @@ describe('getEntityData() tests', () => {
         });
     });
 });
-describe('getEntityFullData() tests', () => {
-    let data;
-    beforeEach(() => {
+describe('getEntityFullData() tests', function () {
+    var data;
+    beforeEach(function () {
         data = {
             name: 'pikachu',
             id: 77,
@@ -99,7 +99,7 @@ describe('getEntityFullData() tests', () => {
             ]
         };
     });
-    test('Should correctly reflect data if all data is provided', () => {
+    test('Should correctly reflect data if all data is provided', function () {
         deepFreeze(data);
         expect(getEntityFullData(data)).toEqual({
             name: 'pikachu',
@@ -116,7 +116,7 @@ describe('getEntityFullData() tests', () => {
             ]
         });
     });
-    test('Should set default values if some data is missing', () => {
+    test('Should set default values if some data is missing', function () {
         delete data.stats;
         deepFreeze(data);
         expect(getEntityFullData(data)).toEqual({
@@ -132,13 +132,14 @@ describe('getEntityFullData() tests', () => {
         });
     });
 });
-describe('normalizeId() tests', () => {
-    test('Should return passed id if id less or equal to the breakpoint(807)', () => {
+describe('normalizeId() tests', function () {
+    test('Should return passed id if id less or equal to the breakpoint(807)', function () {
         expect(normalizeId(1)).toBe(1);
         expect(normalizeId(807)).toBe(807);
     });
-    test('Should return normalized( - 9193) id if passed id more than breakpoint(807)', () => {
+    test('Should return normalized( - 9193) id if passed id more than breakpoint(807)', function () {
         expect(normalizeId(10001)).toBe(808);
         expect(normalizeId(10123)).toBe(930);
     });
 });
+//# sourceMappingURL=selectors.spec.js.map

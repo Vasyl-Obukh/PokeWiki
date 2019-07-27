@@ -3,7 +3,7 @@ const Router = require('koa-router')(
   {prefix: '/indexator'}
 );
 
-router.get('/healthcheck', controllers.healthcheck.checkHealth);
-router.get('/run', controllers.run.runIndexation);
+Router.get('/healthcheck', controllers.healthcheck.checkHealth);
+Router.get('/run', controllers.runIndexation.run);
 
 module.exports = Router;

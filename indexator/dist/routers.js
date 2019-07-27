@@ -1,5 +1,6 @@
-const controllers = require('./controllers');
-const router = require('koa-router')({ prefix: '/indexator' });
-router.get('/healthcheck', controllers.healthcheck.checkHealth);
-router.get('/run', controllers.run.run);
-module.exports = router;
+var controllers = require('./controllers');
+var Router = require('koa-router')({ prefix: '/indexator' });
+Router.get('/healthcheck', controllers.healthcheck.checkHealth);
+Router.get('/run', controllers.runIndexation.run);
+module.exports = Router;
+//# sourceMappingURL=routers.js.map

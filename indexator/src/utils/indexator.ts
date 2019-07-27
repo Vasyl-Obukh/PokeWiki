@@ -4,8 +4,7 @@ const { Worker } = threads;
 const worker = new Worker(__dirname + '/indexationWorker.js');
 const Redis = require('ioredis');
 
-//const client = new Redis(6379, 'redis');
-const client = new Redis();
+const client = new Redis(6379, 'redis');
 
 const state: {[key: string]: number} = {
   count: 0,
