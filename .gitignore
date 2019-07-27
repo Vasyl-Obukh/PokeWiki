@@ -14,6 +14,9 @@ storage/
 # Builded project directory
 dir/
 
+# Tests coverage files
+coverage/
+
 # webstorm files
 .idea/
 

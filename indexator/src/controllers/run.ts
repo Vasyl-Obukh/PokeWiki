@@ -1,4 +1,3 @@
-export {};
 const { init } = require('../utils/indexator');
 
 function* run() {

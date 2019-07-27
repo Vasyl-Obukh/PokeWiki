@@ -1,9 +1,9 @@
 const controllers = require('./controllers');
-const router = require('koa-router')(
+const Router = require('koa-router')(
   {prefix: '/indexator'}
 );
 
 router.get('/healthcheck', controllers.healthcheck.checkHealth);
-router.get('/run', controllers.run.run);
+router.get('/run', controllers.run.runIndexation);
 
-module.exports = router;
+module.exports = Router;

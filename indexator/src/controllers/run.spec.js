@@ -1,5 +1,5 @@
-jest.mock('../utils/indexator');
-const { init } = require('../utils/indexator');
+jest.mock('../utils/indexator.ts');
+const { init } = require('../utils/indexator.ts');
 const { run } = require('./run');
 
 describe('Run() tests', () => {

@@ -1,4 +1,3 @@
-export {};
 const app = require('koa')();
 const router = require('./routers');
 const logger = require('koa-logger');

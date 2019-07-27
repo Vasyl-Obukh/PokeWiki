@@ -1,7 +1,7 @@
 const healthcheck = require('./healthcheck');
-const run = require('./run');
+const runIndexation = require('./run');
 
 module.exports = {
   healthcheck,
-  run
+  runIndexation
 };
