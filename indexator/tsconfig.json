@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "module": "commonjs",
-    "target": "es5",
+    "target": "es6",
     "types": ["jest", "node"],
     "allowSyntheticDefaultImports": true,
     "noFallthroughCasesInSwitch": true,
@@ -21,7 +21,8 @@
     "./src/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.spec.ts"
   ],
   "lib": ["esnext", "dom"]
 }

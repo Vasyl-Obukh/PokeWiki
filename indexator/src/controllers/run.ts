@@ -1,10 +1,11 @@
 const { init } = require('../utils/indexator');
 
-function* run() {
+function* runIndexation() {
+  console.log('get here')
   init();
   this.response.status = 200;
 }
 
 module.exports = {
-  run
+  runIndexation
 };

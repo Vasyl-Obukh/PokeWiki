@@ -1,38 +1,8 @@
 const { filterBySearch, filterByTypes, filterByEvolutionLevels, createPipeline } = require('../utils/filters');
 const { PAGE_LIMIT } = require('../config/config');
 const store = require('../utils/store');
-
-interface FiltersInterface {
-  search?: string,
-  types?: string[],
-  evoLevels?: number[]
-}
-
-interface Stat {
-  base: number,
-  name: string
-}
-
-export interface BasicPokemonShape {
-  id: number,
-  name: string,
-  thumb: string | null
-}
-
-export interface PokemonShape extends BasicPokemonShape {
-  baseExperience?: number,
-  height?: number,
-  weight?: number,
-  stats?: Stat[],
-  types: string[],
-  abilities: string[],
-  evoLevel: number
-}
-
-interface PipelineResult {
-  value: Required<PokemonShape>[],
-  filters: FiltersInterface
-}
+import { PokemonShape } from '../interfaces/pokemon';
+import { FiltersInterface, PipelineResult } from '../utils/filters';
 
 function* getCards() {
   const offset: number = (this.params.page - 1) * PAGE_LIMIT;

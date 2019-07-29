@@ -1,28 +1,8 @@
 const { SEARCH_CORRECTNESS } = require('../config/config');
 require('string-compare');
+import { PokemonShape } from '../interfaces/pokemon';
 
-interface Stat {
-  base: number,
-  name: string
-}
-
-export interface BasicPokemonShape {
-  id: number,
-  name: string,
-  thumb: string | null
-}
-
-export interface PokemonShape extends BasicPokemonShape {
-  baseExperience?: number,
-  height?: number,
-  weight?: number,
-  stats?: Stat[],
-  types: string[],
-  abilities: string[],
-  evoLevel: number
-}
-
-interface FiltersInterface {
+export interface FiltersInterface {
   search?: string,
   types?: string[],
   evoLevels?: number[]
@@ -31,6 +11,11 @@ interface FiltersInterface {
 interface DataInterface {
   filters: FiltersInterface,
   value: Required<PokemonShape>[]
+}
+
+export interface PipelineResult {
+  value: Required<PokemonShape>[],
+  filters: FiltersInterface
 }
 
 function filterBySearch(data: DataInterface): DataInterface {

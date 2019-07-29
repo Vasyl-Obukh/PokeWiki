@@ -4,6 +4,6 @@ const Router = require('koa-router')(
 );
 
 Router.get('/healthcheck', controllers.healthcheck.checkHealth);
-Router.get('/run', controllers.runIndexation.run);
+Router.get('/run', controllers.run.runIndexation);
 
 module.exports = Router;
